@@ -82,7 +82,7 @@ export default SignInScreen = ({ navigation }) => {
 
       <SignUp onPress={() => navigation.navigate("SignUp")}>
         <Text small center>
-          New to Umarket?
+          New to Umarket? &nbsp;
           <Text bold color="#8022d9">
             Sign Up
           </Text>

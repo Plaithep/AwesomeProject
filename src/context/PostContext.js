@@ -1,19 +1,19 @@
-import React, { useState, createContext } from "react";
+// import React, { useState, createContext } from "react";
 
-const PostContext = createContext([{}, () => {}]);
+// const PostContext = createContext([{}, () => {}]);
 
-const PostProvider = (props) => {
-  const [state, setState] = useState({
-    productname: "",
-    productType: "",
-    productdetail: "",
-  });
+// const PostProvider = (props) => {
+//   const [state, setState] = useState({
+//     productname: "",
+//     productType: "",
+//     productdetail: "",
+//   });
 
-  return (
-    <PostContext.Provider value={[state, setState]}>
-      {props.children}
-    </PostContext.Provider>
-  );
-};
+//   return (
+//     <PostContext.Provider value={[state, setState]}>
+//       {props.children}
+//     </PostContext.Provider>
+//   );
+// };
 
-export { PostContext, PostProvider };
+// export { PostContext, PostProvider };

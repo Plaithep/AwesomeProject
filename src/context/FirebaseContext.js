@@ -84,12 +84,6 @@ const Firebase = {
 // },
 
 
-  createPost: async (post)=>{
-    firebase.firestore()
-    .collection('POST')
-    .add(post)
-  },
-
 // addPost = async ({ text, localUri }) => {
 //   const remoteUri = await this.uploadPhotoAsync(localUri);
 
