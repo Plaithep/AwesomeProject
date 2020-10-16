@@ -58,5 +58,5 @@ const CardContainer = styled.TouchableOpacity`
   align-items:center;
   justify-content: center;
   border: 0.5px #707070;
-  border-radius:18px
+  border-radius: 18px
 `;

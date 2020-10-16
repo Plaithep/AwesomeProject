@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 
-import { StyleSheet, TextInput, View, Text, Platform } from "react-native";
+import { StyleSheet, TextInput, View, Text, Platform, Picker } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,6 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 export default CreatePostScreen = () => {
 
     const [productImage, setProductImage] = useState();
+    const [selectedOrder, setSelectedOrder] = useState();
+    const [selectedPrice, setSelectedPrice] = useState();
 
     const getPermission = async () => {
         if (Platform.OS !== "web") {
@@ -78,15 +80,52 @@ export default CreatePostScreen = () => {
 
             <LocationContainer>
                 <LocationTitle>Location</LocationTitle>
+                <Picker
+                    selectedValue={selectedOrder}
+                    style={styles.pickers}
+                    onValueChange={(itemValue, itemIndex) => setSelectedOrder(itemValue)}
+                >
+                    <Picker.Item label="Location" value="java" />
+                    <Picker.Item label="Location1" value="java1" />
+                    <Picker.Item label="Location2" value="java2" />
+                    <Picker.Item label="Location3" value="java3" />
+                    <Picker.Item label="Location4" value="java4" />
+                </Picker>
             </LocationContainer>
 
             <CatagoryContainer>
                 <CatagoryTitle>Catagory</CatagoryTitle>
+                <Picker
+                    selectedValue={selectedPrice}
+                    style={styles.pickers}
+                    onValueChange={(itemValue, itemIndex) => setSelectedPrice(itemValue)}
+                >
+                    <Picker.Item label="Price" value="java" />
+                    <Picker.Item label="Price1" value="java1" />
+                    <Picker.Item label="Price2" value="java2" />
+                    <Picker.Item label="Price3" value="java3" />
+                    <Picker.Item label="Price4" value="java4" />
+                </Picker>
             </CatagoryContainer>
 
             <OrderandPriceContainer>
-
+                <LayoutCol
+                    style={styles.layoutcols}
+                >
+                    <OrderTitle>Order</OrderTitle>
+                    <PriceTitle>Price</PriceTitle>
+                </LayoutCol>
+                <LayoutCol
+                    style={styles.layoutcols}
+                >
+                    <OrderField />
+                    <PriceField />
+                </LayoutCol>
             </OrderandPriceContainer>
+
+            <ComfirmButton>
+                    <Text>Confirm</Text>
+            </ComfirmButton>
 
             {/* <View>
                 <TextInput
@@ -99,24 +138,6 @@ export default CreatePostScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-        justifyContent: 'center',
-        backgroundColor: "#eaeaea"
-    },
-    topictitleInput: {
-        width: 220,
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        borderBottomWidth: 2,
-        borderBottomColor: '#b9c1ca',
-    },
-});
-
 const Container = styled.View`
     align-items: center;
     margin-top: 64px;
@@ -126,7 +147,7 @@ const Container = styled.View`
 const ProductImageContainer = styled.TouchableOpacity`
      background-color: #e1e2e6;
      width: 200px;
-      height: 160px;
+     height: 160px;
      border-radius: 12px
      align-self: center;
      margin-top: 16px;
@@ -171,7 +192,6 @@ const DetailField = styled.TextInput`
     width: 300px;
     text-align-vertical: top;
     padding: 6px;
-    border-radius: 2px;
     color: #707070;
     font-style: italic;
 `;
@@ -199,6 +219,70 @@ const CatagoryTitle = styled.Text`
 `;
 
 const OrderandPriceContainer = styled.View`
-    
+    width: 300px;
+    margin-top: 30px;
 `;
 
+const LayoutCol = styled.View`
+
+`;
+
+const OrderTitle = styled.Text`
+    text-align: left;
+    color: #707070;
+    font-weight: bold;
+`;
+
+const PriceTitle = styled.Text`
+    text-align: left;
+    color: #707070;
+    font-weight: bold;
+`;
+
+const OrderField = styled.TextInput`
+    border-color: #8e93a1;
+    border-width: 0.5px;
+    height: 30px;
+    width: 120px;
+    text-align-vertical: top;
+    padding: 6px;
+    border-radius: 2px;
+    color: #707070;
+    font-style: italic;
+`;
+
+const PriceField = styled.TextInput`
+    border-color: #8e93a1;
+    border-width: 0.5px;
+    height: 30px;
+    width: 120px;
+    text-align-vertical: top;
+    padding: 6px;
+    border-radius: 2px;
+    color: #707070;
+    font-style: italic;
+`;
+
+const ComfirmButton = styled.TouchableOpacity`
+  margin: 34px;
+  marginTop: 20px;
+  marginBottom: 6px;
+  height: 32px;
+  width: 120px;
+  align-items:center;
+  justify-content: center;
+  border: 0.5px #707070;
+  border-radius: 30px
+`;
+
+const styles = StyleSheet.create({
+    pickers: {
+        width: 300,
+        height: 30,
+    },
+    layoutcols: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    }
+});
