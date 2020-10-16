@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { UserContext } from "../context/UserContext";
 import { FirebaseContext } from "../context/FirebaseContext";
+import { StyleSheet } from "react-native";
 
 import Text from "../components/Text";
 
@@ -28,22 +29,26 @@ export default OtherScreen = () => {
           }
         />
       </ProfilePhotoContainer>
+
       <Text medium bold margin="16px 0 32px 0">
         {user.username}
       </Text>
 
-      <StatsContainer>
-        <StatContainer>
-          <Text large light>
-            OtherScreen
-          </Text>
-          <Text small bold color="#c2c4cd">
-            Posts
-          </Text>
-        </StatContainer>
-      </StatsContainer>
+      <Menu>
+        <MenuProfile>
+          <Text>PROFILE</Text>
+        </MenuProfile>
+        <MenuSeller>
+          <Text>SELLER</Text>
+        </MenuSeller>
+        <MenuHistory>
+          <Text>HISTORY</Text>
+        </MenuHistory>
+      </Menu>
 
-      <Logout onPress={logOut}>
+      <Logout
+        style={styles.logout}
+        onPress={logOut}>
         <Text>Log out</Text>
       </Logout>
     </Container>
@@ -68,16 +73,45 @@ const ProfilePhoto = styled.Image`
   border-radius: 64px;
 `;
 
-const StatContainer = styled.View`
+const Menu = styled.View``;
+
+const MenuProfile = styled.TouchableOpacity`
+  width: 100px;
+  padding: 10px;
+  border-color: #707070;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
   align-items: center;
-  flex: 1;
+  margin: 16px;
 `;
 
-const StatsContainer = styled.View`
+const MenuSeller = styled.TouchableOpacity`
+  width: 100px;
+  padding: 10px;
+  border-color: #707070;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
   align-items: center;
-  flex: 1;
+  margin: 16px;
+`;
+
+const MenuHistory = styled.TouchableOpacity`
+  width: 100px;
+  padding: 10px;
+  border-color: #707070;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  align-items: center;
+  margin: 16px;
 `;
 
 const Logout = styled.TouchableOpacity`
   margin-bottom: 32px;
 `;
+
+const styles = StyleSheet.create({
+  logout: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+  },
+});
