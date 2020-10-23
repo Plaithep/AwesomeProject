@@ -26,7 +26,7 @@ export default LoadingSCreen = () => {
           profilePhotoUrl: userInfo.profilePhotoUrl,
         });
       } else {
-        setUser((state) => ({ ...state, isLoggedIn: false }));
+        setUser((state) => ({ ...state, isLoggedIn: true })); // false
       }
     }, 1500);
   }, []);

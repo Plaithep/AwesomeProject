@@ -6,57 +6,63 @@ import { StyleSheet, TextInput, View, Text, Platform, Picker } from "react-nativ
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import RNPickerSelect from 'react-native-picker-select';
 
 export default CreatePostScreen = () => {
-    const [productImage, setProductImage] = useState();
-    const [selectedOrder, setSelectedOrder] = useState();
-    const [selectedPrice, setSelectedPrice] = useState();
+  const [productImage, setProductImage] = useState();
+  const [selectedOrder, setSelectedOrder] = useState();
+  const [selectedPrice, setSelectedPrice] = useState();
 
-    //----------------------------------------------
-    const db = firestore();
-    const [ProductName, setProductName] = useState();
-    const [ProductType, setProductType] = useState();
-    const [ProductDetail, setProductDetail] = useState();
-    const [ProductQuantity, setProductQuantity] = useState();
-    const [ProductPhoto, setProductPhoto] = useState();
-    const [ProductPrice , setProductPrice] = useState();
-    const [loading, setLoading] = useState(false);
+  //----------------------------------------------
+  const db = firestore();
+  const [ProductName, setProductName] = useState();
+  const [ProductType, setProductType] = useState();
+  const [ProductDetail, setProductDetail] = useState();
+  const [ProductQuantity, setProductQuantity] = useState();
+  const [ProductPhoto, setProductPhoto] = useState();
+  const [ProductPrice, setProductPrice] = useState();
+  //----------------------------------------------
+  const [Location, setLocation] = useState();
+
+  const [loading, setLoading] = useState(false);
 
 
-    const addProductName = async () => {
-        setLoading(true);
-        const user = firebase.getCurrentUser();
-        const UserId = await firebase.getUserId(user.uid);
-       
-         let productName = ProductName
-         let productType = ProductType
-         let productDetail = ProductDetail
-         let productQuantity = ProductQuantity
-         let productPrice = ProductPrice
-         let defaultQuantity = 1 
-         let PosterId = UserId
-         let ProductPhotoUrl = ProductPhoto
-      
-        try{
-          ProductPhotoUrl = await uploadProductImage(ProductPhoto); 
-         firestore().collection('product').add({
-           productName,
-           productType,
-           productDetail,
-           productQuantity,
-           productPrice,
-           defaultQuantity,
-           ProductPhotoUrl,
-           PosterId,
-         })
-         console.log("@AddProductName Upload done", productName)
-         console.log("@User That Upload id =", UserId )
-        }catch(error){
-          console.log("Error @AddProductName", error);
-        }finally{
-          setLoading(false);
-        }
-       };
+  const addProductName = async () => {
+    setLoading(true);
+    const user = firebase.getCurrentUser();
+    const UserId = await firebase.getUserId(user.uid);
+
+
+
+    let productName = ProductName
+    let productType = ProductType
+    let productDetail = ProductDetail
+    let productQuantity = ProductQuantity
+    let productPrice = ProductPrice
+    let defaultQuantity = 1
+    let PosterId = UserId
+    let ProductPhotoUrl = ProductPhoto
+
+    try {
+      ProductPhotoUrl = await uploadProductImage(ProductPhoto);
+      firestore().collection('product').add({
+        productName,
+        productType,
+        productDetail,
+        productQuantity,
+        productPrice,
+        defaultQuantity,
+        ProductPhotoUrl,
+        PosterId,
+      })
+      console.log("@AddProductName Upload done", productName)
+      console.log("@User That Upload id =", UserId)
+    } catch (error) {
+      console.log("Error @AddProductName", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
@@ -73,190 +79,186 @@ export default CreatePostScreen = () => {
     }
   };
 
- const addProductPhoto = async () => {
-  const status = await getPermission();
+  const addProductPhoto = async () => {
+    const status = await getPermission();
 
-  if (status !== "granted") {
-    alert("We need permission to access your camera roll");
-    return;
-  }
-  pickImage();
-};
-
-const pickImage = async () => {
-  try {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.5,
-    });
-
-    if (!result.cancelled) {
-      setProductPhoto(result.uri);
+    if (status !== "granted") {
+      alert("We need permission to access your camera roll");
+      return;
     }
-  } catch (error) {
-    console.log("Error @pickImage:", error);
-  }
-  
-};
+    pickImage();
+  };
+
+  const pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.5,
+      });
+
+      if (!result.cancelled) {
+        setProductPhoto(result.uri);
+      }
+    } catch (error) {
+      console.log("Error @pickImage:", error);
+    }
+
+  };
 
 
-const uploadProductImage = async (uri) => {
-  try {
-    const photo = await getBlob(uri);
-    
+  const uploadProductImage = async (uri) => {
+    try {
+      const photo = await getBlob(uri);
 
 
- 
 
-    db.collection('product').get().then((snapshot) => {
-      snapshot.docs.forEach(doc =>{
-        console.log(doc.data())
+
+
+      db.collection('product').get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          console.log(doc.data())
+        })
       })
-    })
 
-      
-  /**
-   * ! งงมาก ว่าทำไมมัน work คือ สามารถ Link product url ให้ตรงกันได้โดยที่ fix ค่า doc อันอื่นไว้
-   */
-    const imageRef =  firebases.storage().ref("ProductPhotos").child(ProductName);
-    await imageRef.put(photo);
 
-    const url = await imageRef.getDownloadURL();
+      /**
+       * ! งงมาก ว่าทำไมมัน work คือ สามารถ Link product url ให้ตรงกันได้โดยที่ fix ค่า doc อันอื่นไว้
+       */
+      const imageRef = firebases.storage().ref("ProductPhotos").child(ProductName);
+      await imageRef.put(photo);
 
-    await db.collection("product").doc("0qgiZ6TpnZFCi1qFTXiq").update({
-      ProductPhotoUrl: url,
+      const url = await imageRef.getDownloadURL();
+
+      await db.collection("product").doc("0qgiZ6TpnZFCi1qFTXiq").update({
+        ProductPhotoUrl: url,
+      });
+
+
+
+      return url;
+    } catch (error) {
+      console.log("Error @uploadProductPhoto: ", error);
+    }
+  };
+
+  const getBlob = async (uri) => {
+    return await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.onload = () => {
+        resolve(xhr.response);
+      };
+
+      xhr.onerror = () => {
+        reject(new TypeError("NetWork request failed"));
+      };
+
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
     });
-
-    
-
-    return url;
-  } catch (error) {
-    console.log("Error @uploadProductPhoto: ", error);
-  }
-};
-
-const getBlob = async (uri) => {
-  return await new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.onload = () => {
-      resolve(xhr.response);
-    };
-
-    xhr.onerror = () => {
-      reject(new TypeError("NetWork request failed"));
-    };
-
-    xhr.responseType = "blob";
-    xhr.open("GET", uri, true);
-    xhr.send(null);
-  });
-};
+  };
 
 
 
-    return (
-        <KeyboardAwareScrollView>
-        <Container>
+  return (
+    <KeyboardAwareScrollView>
+      <Container>
 
-            <TitleContainer>
-                <TitleField   // ใส่ชื่อ product
-                    autoCapitalize="none"
-                    placeholder="Product Name"
-                    onChangeText={(ProductName) => setProductName(ProductName)}
-                     value={ProductName}
-                />
-            </TitleContainer>
+        <TitleContainer>
+          <TitleField   // ใส่ชื่อ product
+            autoCapitalize="none"
+            placeholder="Product Name"
+            onChangeText={(ProductName) => setProductName(ProductName)}
+            value={ProductName}
+          />
+        </TitleContainer>
 
-            <ProductImageContainer onPress={addProductPhoto}  >
-                {ProductPhoto ? (
-                    <ProductImage source={{ uri: ProductPhoto }} />
-                ) : (
-                        <DefaultProductImage>
-                            <Ionicons
-                                name="md-photos"
-                                size={57}
-                                color="black" />
-                        </DefaultProductImage>
-                    )}
-            </ProductImageContainer>
+        <ProductImageContainer onPress={addProductPhoto}  >
+          {ProductPhoto ? (
+            <ProductImage source={{ uri: ProductPhoto }} />
+          ) : (
+              <DefaultProductImage>
+                <Ionicons
+                  name="md-photos"
+                  size={57}
+                  color="black" />
+              </DefaultProductImage>
+            )}
+        </ProductImageContainer>
 
-            <DetailContainer>
-                <DetailField
-                    autoCapitalize="none"
-                    placeholder="detail"
-                    multiline={true}
-                    onChangeText={ProductDetail => setProductDetail(ProductDetail)}
-                    value={ProductDetail}
-                />
-            </DetailContainer>
+        <DetailContainer>
+          <DetailField
+            autoCapitalize="none"
+            placeholder="detail"
+            multiline={true}
+            onChangeText={ProductDetail => setProductDetail(ProductDetail)}
+            value={ProductDetail}
+          />
+        </DetailContainer>
 
-            {/* <LocationContainer>
-                <LocationTitle>Location</LocationTitle>
-                <Picker
-                    selectedValue={selectedOrder}
-                    style={styles.pickers}
-                    onValueChange={(itemValue, itemIndex) => setSelectedOrder(itemValue)}
-                >
-                    <Picker.Item label="Location" value="java" />
-                    <Picker.Item label="Location1" value="java1" />
-                    <Picker.Item label="Location2" value="java2" />
-                    <Picker.Item label="Location3" value="java3" />
-                    <Picker.Item label="Location4" value="java4" />
-                </Picker>
-            </LocationContainer> */}
+        <LocationContainer>
+          <LocationTitle>Location</LocationTitle>
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+              { label: 'Football', value: 'football' },
+              { label: 'Baseball', value: 'baseball' },
+              { label: 'Hockey', value: 'hockey' },
+            ]}
+          />
+        </LocationContainer>
 
-            {/* <CatagoryContainer>
-                <CatagoryTitle>Catagory</CatagoryTitle>
-                <Picker
-                    selectedValue={selectedPrice}
-                    style={styles.pickers}
-                    onValueChange={(itemValue, itemIndex) => setSelectedPrice(itemValue)}
-                >
-                    <Picker.Item label="Price" value="java" />
-                    <Picker.Item label="Price1" value="java1" />
-                    <Picker.Item label="Price2" value="java2" />
-                    <Picker.Item label="Price3" value="java3" />
-                    <Picker.Item label="Price4" value="java4" />
-                </Picker>
-            </CatagoryContainer> */}
+        <CatagoryContainer>
+          <CatagoryTitle>Catagory</CatagoryTitle>
+          <RNPickerSelect
+            onValueChange={(value) => console.log(value)}
+            items={[
+              { label: 'Football', value: 'football' },
+              { label: 'Baseball', value: 'baseball' },
+              { label: 'Hockey', value: 'hockey' },
+            ]}
+          />
+        </CatagoryContainer>
 
-            <OrderandPriceContainer>
-                <LayoutCol
-                    style={styles.layoutcols}
-                >
-                    <OrderTitle>Quantity</OrderTitle>
-                    <PriceTitle >Price</PriceTitle>
-                </LayoutCol>
-                <LayoutCol
-                    style={styles.layoutcols}
-                >
-                    <OrderField  keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())}/>
-                    <PriceField   keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())}/>
-                </LayoutCol>
-            </OrderandPriceContainer>
 
-            <ComfirmButton onPress={addProductName} disabled={loading}>
-                {loading ? (
-                    <Loading />
-                ) : (
-                    <Text>Confirm</Text>
-                )}
 
-            </ComfirmButton>
+        <OrderandPriceContainer>
+          <LayoutCol
+            style={styles.layoutcols}
+          >
+            <OrderTitle>Quantity</OrderTitle>
+            <PriceTitle >Price</PriceTitle>
+          </LayoutCol>
+          <LayoutCol
+            style={styles.layoutcols}
+          >
+            <OrderField keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
+            <PriceField keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
+          </LayoutCol>
+        </OrderandPriceContainer>
 
-            {/* <View>
+        <ComfirmButton onPress={addProductName} disabled={loading}>
+          {loading ? (
+            <Loading />
+          ) : (
+              <Text>Confirm</Text>
+            )}
+
+        </ComfirmButton>
+
+        {/* <View>
                 <TextInput
                     placeholder='TOPIC'
                     style={styles.topictitleInput}
                 />
             </View> */}
-        </Container>
-        </KeyboardAwareScrollView>
+      </Container>
+    </KeyboardAwareScrollView>
 
-    );
+  );
 };
 
 const Container = styled.View`
@@ -397,18 +399,18 @@ const ComfirmButton = styled.TouchableOpacity`
 `;
 
 const styles = StyleSheet.create({
-    pickers: {
-        width: 300,
-        height: 30,
-    },
-    layoutcols: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-    }
+  pickers: {
+    width: 300,
+    height: 30,
+  },
+  layoutcols: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }
 });
 
 const Loading = styled.ActivityIndicator.attrs((props) => ({
-    color: "#ffffff",
-    size: "small",
-  }))``;
+  color: "#ffffff",
+  size: "small",
+}))``;
