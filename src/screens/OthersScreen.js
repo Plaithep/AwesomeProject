@@ -47,18 +47,18 @@ export default OtherScreen = () => {
       </Menu>
 
       <Logout
-        style={styles.logout}
+        style={styleAlignItemsLogout}
         onPress={logOut}>
         <Text>Log out</Text>
       </Logout>
+
     </Container>
   );
 };
 
 const Container = styled.View`
-  align-items: center;
-  margin-top: 64px;
   flex: 1;
+  align-items: center;
 `;
 
 const ProfilePhotoContainer = styled.View`
@@ -73,7 +73,9 @@ const ProfilePhoto = styled.Image`
   border-radius: 64px;
 `;
 
-const Menu = styled.View``;
+const Menu = styled.View`
+flex: 1;
+`;
 
 const MenuProfile = styled.TouchableOpacity`
   width: 100px;
@@ -106,12 +108,12 @@ const MenuHistory = styled.TouchableOpacity`
 `;
 
 const Logout = styled.TouchableOpacity`
+flex: 1;
   margin-bottom: 32px;
 `;
 
-const styles = StyleSheet.create({
-  logout: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-  },
-});
+const styleAlignItemsLogout = {
+  flexDirection: 'row',
+  alignItems: 'flex-end',
+  flexwrap: 'wrap',
+};

@@ -17,6 +17,7 @@ export default AppStackScreens = () => {
         <AppStack.Screen name="Loading" component={LoadingScreen} />
       ) : user.isLoggedIn ? (
         <AppStack.Screen name="Main" component={MainStackScreens} />
+        
       ) : (
         <AppStack.Screen name="Auth" component={AuthStackScreens} />
       )}

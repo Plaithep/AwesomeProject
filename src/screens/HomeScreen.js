@@ -8,7 +8,11 @@ export default HomeScreen = () => {
       <Container>
         <FeedContainer>
           <StatusBar barStyle="dark-content" />
-          <View></View>
+
+          <ProfileContainer>
+
+          </ProfileContainer>
+
         </FeedContainer>
       </Container>
     </SafeAreaView>
@@ -28,3 +32,7 @@ const FeedContainer = styled.View`
 `;
 
 const StatusBar = styled.StatusBar``;
+
+const ProfileContainer = styled.View`
+
+`;
