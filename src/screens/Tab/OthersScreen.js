@@ -52,7 +52,7 @@ export default OtherScreen = ({navigation}) => {
         <View>
           <Logout
             onPress={logOut}>
-            <Text>Log out</Text>
+            <Text style={styles.logOut}>Log out</Text>
           </Logout></View>
 
     </Container>
@@ -98,5 +98,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: 'space-around',
+  },
+  logOut: {
+    color: '#E37272',
+    fontWeight: 'bold',
   },
 });
