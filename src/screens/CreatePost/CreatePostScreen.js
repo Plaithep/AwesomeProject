@@ -169,7 +169,7 @@ export default CreatePostScreen = () => {
 
         <TitleContainer>
           <TitleField   // ใส่ชื่อ product
-            autoCapitalize="none"
+            autoCapitalize="characters"
             placeholder="Product Name"
             onChangeText={(ProductName) => setProductName(ProductName)}
             value={ProductName}
@@ -191,7 +191,7 @@ export default CreatePostScreen = () => {
 
         <DetailContainer>
           <DetailField
-            autoCapitalize="none"
+            autoCapitalize="sentences"
             placeholder="detail"
             multiline={true}
             onChangeText={ProductDetail => setProductDetail(ProductDetail)}

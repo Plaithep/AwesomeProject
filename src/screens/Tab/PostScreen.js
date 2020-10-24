@@ -58,6 +58,6 @@ const CardContainer = styled.TouchableOpacity`
   height: 160px;
   align-items:center;
   justify-content: center;
-  border: 0.5px #707070;
-  border-radius: 18px
+  border-radius: 14px
+  background-color: white;
 `;
