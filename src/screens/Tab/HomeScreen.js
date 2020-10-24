@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 
-export default HomeScreen = () => {
+export default HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView>
 
@@ -27,12 +27,12 @@ export default HomeScreen = () => {
 
 
         <View style={styles.colDirection}>
-          <TouchableOpacity style={styles.rowDirectionAround}>
+          <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Seller")}>
             <SettingIconPic></SettingIconPic>
-            <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>setting</Text>
+            <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>seller</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.rowDirectionAround}>
+          <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Profile")}>
             <ProfileIconPic></ProfileIconPic>
             <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>profile</Text>
           </TouchableOpacity>
@@ -108,6 +108,8 @@ export default HomeScreen = () => {
         </ContentContainer>
       </View>
 
+      
+
     </SafeAreaView>
   );
 };
@@ -134,6 +136,7 @@ const ProfileContainer = styled.View`
 
 const ContentContainer = styled.View`
   padding: 14px;
+  padding-bottom: 0px;
   width: 350px;
   border-radius: 20px;
   border: 1px #707070;
@@ -286,6 +289,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
+    bottom: -17,
   },
   textConfirmButton: {
     fontWeight: 'bold',

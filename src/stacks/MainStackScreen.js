@@ -79,7 +79,7 @@ export default MainStackScreens = () => {
     >
       <MainStack.Screen name="Message" component={MessageScreen} />
       <MainStack.Screen name="Post" component={PostStack} />
-      <MainStack.Screen name="Home" component={HomeScreen} />
+      <MainStack.Screen name="Home" component={HomeStack} />
       <MainStack.Screen name="Notification" component={NotificationScreen} />
       <MainStack.Screen name="Others" component={OtherStack} />
     </MainStack.Navigator>
@@ -90,26 +90,46 @@ export default MainStackScreens = () => {
  *  TODO: ต้องเพิ่ม Stack สำหรับ ทุกๆหน้าเเละเรียกใช้งานในทุกๆ Tab
  *  
  */
-const Stack = createStackNavigator()
+const PostScreenStack = createStackNavigator()
 function PostStack() {
   return (
-    <Stack.Navigator hearderMode="none">
-      <Stack.Screen name="Post" component={PostScreen} />
-      <Stack.Screen name="CreatePost" component={CreatePostScreen} />
-      <Stack.Screen name="CreatePoll" component={CreatePollScreen} />
-    </Stack.Navigator>
+    <PostScreenStack.Navigator hearderMode="none">
+      <PostScreenStack.Screen name="Post" component={PostScreen} />
+      <PostScreenStack.Screen name="CreatePost" component={CreatePostScreen} />
+      <PostScreenStack.Screen name="CreatePoll" component={CreatePollScreen} />
+    </PostScreenStack.Navigator>
 
   )
 }
 
-const SecondStack = createStackNavigator()
+const OtherScreenStack = createStackNavigator()
 function OtherStack() {
   return (
-    <SecondStack.Navigator hearderMode='none'>
-      <SecondStack.Screen name="Other"    component ={OthersScreen}/>
-      <SecondStack.Screen name="Profile"  component ={ProfileScreen}/>
-      <SecondStack.Screen name="Seller"   component ={SellerScreen}/>
-      <SecondStack.Screen name="History"  component = {HistoryScreen}/>
-    </SecondStack.Navigator>
+    <OtherScreenStack.Navigator hearderMode='none'>
+      <OtherScreenStack.Screen name="Other"    component ={OthersScreen}/>
+      <OtherScreenStack.Screen name="Profile"  component ={ProfileScreen}/>
+      <OtherScreenStack.Screen name="Seller"   component ={SellerScreen}/>
+      <OtherScreenStack.Screen name="History"  component = {HistoryScreen}/>
+    </OtherScreenStack.Navigator>
+  )
+}
+
+const HomeScreenStack = createStackNavigator()
+function HomeStack() {
+  return (
+    <HomeScreenStack.Navigator hearderMode='none'>
+      <HomeScreenStack.Screen name="Home"    component ={HomeScreen}/>
+      <HomeScreenStack.Screen name="Profile"  component ={ProfileScreen}/>
+      <HomeScreenStack.Screen name="Seller"   component ={SellerScreen}/>
+    </HomeScreenStack.Navigator>
+  )
+}
+
+const notiScreenStack = createStackNavigator()
+function NotiStack() {
+  return (
+    <notiScreenStack.Navigator hearderMode='none'>
+      <notiScreenStack.Screen name="Nitification"    component ={NotificationScreen}/>
+    </notiScreenStack.Navigator>
   )
 }
