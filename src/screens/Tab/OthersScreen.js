@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { UserContext } from "../../context/UserContext";
 import { FirebaseContext } from "../../context/FirebaseContext";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import Text from "../../components/Text";
 
-export default OtherScreen = () => {
+export default OtherScreen = ({navigation}) => {
   const [user, setUser] = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
 
@@ -19,38 +19,42 @@ export default OtherScreen = () => {
     }
   };
   return (
-    <Container>
-      <ProfilePhotoContainer>
-        <ProfilePhoto
-          source={
-            user.ProfilePhotoUrl === "default"
-              ? require("../../../assets/defaultProfilePicture.jpg")
-              : { uri: user.profilePhotoUrl }
-          }
-        />
-      </ProfilePhotoContainer>
+    <Container style={styles.container}>
+      
+        <View>
+          <ProfilePhotoContainer>
+            <ProfilePhoto
+              source={
+                user.ProfilePhotoUrl === "default"
+                  ? require("../../../assets/defaultProfilePicture.jpg")
+                  : { uri: user.profilePhotoUrl }
+              }
+            />
+          </ProfilePhotoContainer>
 
-      <Text medium bold margin="16px 0 32px 0">
-        {user.username}
-      </Text>
+          <Text medium bold margin="16px 0 32px 0">
+            {user.username} Puminan Picroh
+          </Text>
+        </View>
 
-      <Menu>
-        <MenuProfile>
-          <Text>PROFILE</Text>
-        </MenuProfile>
-        <MenuSeller>
-          <Text>SELLER</Text>
-        </MenuSeller>
-        <MenuHistory>
-          <Text>HISTORY</Text>
-        </MenuHistory>
-      </Menu>
+        <View>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+              <Text>PROFILE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Seller")}>
+              <Text>SELLER</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("History")}>
+              <Text>HISTORY</Text>
+            </TouchableOpacity>
+        </View>
 
-      <Logout
-        style={styles.logout}
-        onPress={logOut}>
-        <Text>Log out</Text>
-      </Logout>
+        <View>
+          <Logout
+            onPress={logOut}>
+            <Text>Log out</Text>
+          </Logout></View>
+
     </Container>
   );
 };
@@ -71,31 +75,11 @@ const ProfilePhoto = styled.Image`
   width: 128px;
   height: 128px;
   border-radius: 64px;
+  background-color: #707070;
 `;
 
-const Menu = styled.View``;
 
-const MenuProfile = styled.TouchableOpacity`
-  width: 100px;
-  padding: 10px;
-  border-color: #707070;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  align-items: center;
-  margin: 16px;
-`;
-
-const MenuSeller = styled.TouchableOpacity`
-  width: 100px;
-  padding: 10px;
-  border-color: #707070;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  align-items: center;
-  margin: 16px;
-`;
-
-const MenuHistory = styled.TouchableOpacity`
+const TouchableOpacity = styled.TouchableOpacity`
   width: 100px;
   padding: 10px;
   border-color: #707070;
@@ -110,8 +94,9 @@ const Logout = styled.TouchableOpacity`
 `;
 
 const styles = StyleSheet.create({
-  logout: {
-    flexDirection: "row",
-    alignItems: "flex-end",
+  container: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: 'space-around',
   },
 });

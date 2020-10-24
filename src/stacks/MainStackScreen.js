@@ -15,12 +15,14 @@ import OthersScreen from "../screens/Tab/OthersScreen";
 import CreatePostScreen from "../screens/CreatePost/CreatePostScreen";
 import CreatePollScreen from "../screens/CreatePost/CreatePollScreen";
 
-
+import ProfileScreen from "../screens/ProfileScreen";
+import SellerScreen from "../screens/SellerScreen";
+import HistoryScreen from "../screens/HistoryScreen";
 
 
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
-  
+
 
   const tabBarOptions = {
     showLabel: false,
@@ -46,20 +48,11 @@ export default MainStackScreens = () => {
         case "Notification":
           iconName = "ios-notifications";
           break;
-        case "Profile":
-          iconName = "ios-person";
-          break;
-        case "Others" :
+        case "Others":
           iconName = "ios-keypad";
           break;
-        case "Post" :
+        case "Post":
           iconName = "ios-browsers";
-          break;
-        case "CreatePost" :
-          iconName = "ios-analytics";
-          break;
-        case "CreatePoll" :
-          iconName = "ios-apps";
           break;
 
         default:
@@ -76,9 +69,9 @@ export default MainStackScreens = () => {
     },
   });
 
-/**
- *  TODO: เเก้ Other ให้เป็น Modal
- */
+  /**
+   *  TODO: เเก้ Other ให้เป็น Modal
+   */
   return (
     <MainStack.Navigator
       tabBarOptions={tabBarOptions}
@@ -88,7 +81,7 @@ export default MainStackScreens = () => {
       <MainStack.Screen name="Post" component={PostStack} />
       <MainStack.Screen name="Home" component={HomeScreen} />
       <MainStack.Screen name="Notification" component={NotificationScreen} />
-      <MainStack.Screen  name="Others"  component={OthersScreen} />
+      <MainStack.Screen name="Others" component={OtherStack} />
     </MainStack.Navigator>
   );
 };
@@ -98,13 +91,25 @@ export default MainStackScreens = () => {
  *  
  */
 const Stack = createStackNavigator()
-function PostStack(){
-  return(
-  <Stack.Navigator hearderMode="none">
-  <Stack.Screen name="Post" component={PostScreen} />
-  <Stack.Screen name="CreatePost" component={CreatePostScreen} />
-  <Stack.Screen name="CreatePoll" component={CreatePollScreen} />
-  </Stack.Navigator>
+function PostStack() {
+  return (
+    <Stack.Navigator hearderMode="none">
+      <Stack.Screen name="Post" component={PostScreen} />
+      <Stack.Screen name="CreatePost" component={CreatePostScreen} />
+      <Stack.Screen name="CreatePoll" component={CreatePollScreen} />
+    </Stack.Navigator>
 
-)
+  )
+}
+
+const SecondStack = createStackNavigator()
+function OtherStack() {
+  return (
+    <SecondStack.Navigator hearderMode='none'>
+      <SecondStack.Screen name="Other"    component ={OthersScreen}/>
+      <SecondStack.Screen name="Profile"  component ={ProfileScreen}/>
+      <SecondStack.Screen name="Seller"   component ={SellerScreen}/>
+      <SecondStack.Screen name="History"  component = {HistoryScreen}/>
+    </SecondStack.Navigator>
+  )
 }
