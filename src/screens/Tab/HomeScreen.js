@@ -28,12 +28,12 @@ export default HomeScreen = ({navigation}) => {
 
         <View style={styles.colDirection}>
           <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Seller")}>
-            <SettingIconPic></SettingIconPic>
+            <SettingIconPic style={{position: 'relative', right: -12}}></SettingIconPic>
             <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>seller</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Profile")}>
-            <ProfileIconPic></ProfileIconPic>
+            <ProfileIconPic style={{position: 'relative', right: -12}}></ProfileIconPic>
             <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>profile</Text>
           </TouchableOpacity>
         </View>
@@ -251,6 +251,8 @@ const styles = StyleSheet.create({
   hashtage: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    position: 'relative',
+    right: -17,
   },
   contentPicture: {
     padding: 10,
@@ -295,5 +297,5 @@ const styles = StyleSheet.create({
   textConfirmButton: {
     fontWeight: 'bold',
     color: '#707070',
-  }
+  },
 });

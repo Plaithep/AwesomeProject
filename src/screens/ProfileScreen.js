@@ -4,80 +4,64 @@ import styled from "styled-components";
 import { UserContext } from "../context/UserContext";
 import { FirebaseContext } from "../context/FirebaseContext";
 
-import Text from "../components/Text";
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 
 export default ProfileScreen = () => {
-  const [user, setUser] = useContext(UserContext);
-  const firebase = useContext(FirebaseContext);
-
-  const logOut = async () => {
-    const loggedOut = await firebase.logOut();
-
-    if (loggedOut) {
-      setUser((state) => ({ ...state, isLoggedIn: false }));
-    }
-  };
   return (
-    <Container>
-      <ProfilePhotoContainer>
-        <ProfilePhoto
-          source={
-            user.ProfilePhotoUrl === "default"
-              ? require("../../assets/defaultProfilePicture.jpg")
-              : { uri: user.profilePhotoUrl }
-          }
-        />
-      </ProfilePhotoContainer>
-      <Text medium bold margin="16px 0 32px 0">
-        {user.username}
-      </Text>
+    <View>
 
-      <StatsContainer>
-        <StatContainer>
-          <Text large light>
-            23
-          </Text>
-          <Text small bold color="#c2c4cd">
-            Posts
-          </Text>
-        </StatContainer>
-      </StatsContainer>
+      <View>
+        <View style={prop.profilepic}>
+          <ProfilePic style={component.profilepic}></ProfilePic>
+        </View>
+      </View>
 
-      <Logout onPress={logOut}>
-        <Text>Log out</Text>
-      </Logout>
-    </Container>
+      <View style={prop.editpicicon}>
+        <TouchableOpacity>
+          <EditPicIcon style={component.editpicicon}></EditPicIcon>
+          <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10, position: 'relative', top: 165, right: 150 }}>edit</Text>
+        </TouchableOpacity>
+      </View>
+
+
+      <View>
+        <View>
+
+        </View>
+      </View>
+    </View>
   );
 };
 
-const Container = styled.View`
-  align-items: center;
-  margin-top: 64px;
-  flex: 1;
-`;
+const ProfilePic = styled.View``;
+const EditPicIcon = styled.View``;
 
-const ProfilePhotoContainer = styled.View`
-  shadow-opacity: 0.8;
-  shadow-radius: 30px;
-  shadow-color: #222222;
-`;
+const component = StyleSheet.create({
+  profilepic: {
+    backgroundColor: 'gray',
+    width: 120,
+    height: 120,
+    borderRadius: 100,
+  },
+  editpicicon: {
+    backgroundColor: 'gray',
+    width: 40,
+    height: 40,
+    borderRadius: 100,
+    borderColor: 'white',
+    borderWidth: 2,
+  },
+})
 
-const ProfilePhoto = styled.Image`
-  width: 128px;
-  height: 128px;
-  border-radius: 64px;
-`;
-
-const StatContainer = styled.View`
-  align-items: center;
-  flex: 1;
-`;
-
-const StatsContainer = styled.View`
-  align-items: center;
-  flex: 1;
-`;
-
-const Logout = styled.TouchableOpacity`
-  margin-bottom: 32px;
-`;
+const prop = StyleSheet.create({
+  profilepic: {
+    paddingTop: 25,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  editpicicon: {
+    position: 'relative',
+    left: 210,
+    top: -39,
+  },
+})

@@ -32,8 +32,6 @@ export default CreatePostScreen = () => {
     const user = firebase.getCurrentUser();
     const UserId = await firebase.getUserId(user.uid);
 
-
-
     let productName = ProductName
     let productType = ProductType
     let productDetail = ProductDetail
