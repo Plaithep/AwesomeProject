@@ -2,115 +2,182 @@ import { HeaderBackground } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export default HomeScreen = ({navigation}) => {
+export default HomeScreen = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <KeyboardAwareScrollView>
+      <SafeAreaView>
+        <Container>
+          <FeedContainer>
+            <StatusBar barStyle="dark-content" />
+          </FeedContainer>
+        </Container>
 
-      <Container>
-        <FeedContainer>
-          <StatusBar barStyle="dark-content" />
-        </FeedContainer>
-      </Container>
+        <ProfileContainer style={styles.rowDirectionAround}>
 
-      <ProfileContainer style={styles.rowDirectionAround}>
-
-        <TouchableOpacity style={styles.rowDirectionAround}>
-          <View style={styles.profilePic}>
-            <ProfilePic style={styles.profilePic}></ProfilePic>
-          </View>
-          <View style={styles.profileText}>
-            <Text>Puminan Picroh</Text>
-            <Text>new normal</Text>
-          </View>
-        </TouchableOpacity>
-
-
-        <View style={styles.colDirection}>
-          <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Seller")}>
-            <SettingIconPic style={{position: 'relative', right: -12}}></SettingIconPic>
-            <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>seller</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Profile")}>
-            <ProfileIconPic style={{position: 'relative', right: -12}}></ProfileIconPic>
-            <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>profile</Text>
-          </TouchableOpacity>
-        </View>
-      </ProfileContainer>
-
-      <View style={styles.search}><Search placeholder="search"></Search></View>
-
-      <View style={styles.content}>
-        <ContentContainer>
           <View style={styles.rowDirectionAround}>
+            <View style={styles.profilePic}>
+              <ProfilePic style={styles.profilePic}></ProfilePic>
+            </View>
+            <View style={styles.profileText}>
+              <Text>Puminan Picroh</Text>
+              <Text>new normal</Text>
+            </View>
+          </View>
 
-            <TouchableOpacity style={styles.rowDirectionAround}>
-              <ProfilePicContent></ProfilePicContent>
-              <View style={styles.profileText}><Text>Puminan</Text></View>
+
+          <View style={styles.colDirection}>
+            <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Seller")}>
+              <SettingIconPic style={{ position: 'relative', right: -12 }}></SettingIconPic>
+              <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>seller</Text>
             </TouchableOpacity>
 
-            <View style={styles.profilePic}>
-              <View style={styles.hashtage}>
-                <Tag><Text style={styles.texthashtage}>#sweet</Text></Tag>
-                <Tag><Text style={styles.texthashtage}>#kathu</Text></Tag>
+            <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Profile")}>
+              <ProfileIconPic style={{ position: 'relative', right: -12 }}></ProfileIconPic>
+              <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>profile</Text>
+            </TouchableOpacity>
+          </View>
+        </ProfileContainer>
+
+        <View style={styles.search}><Search placeholder="search"></Search></View>
+
+        {/* Content1 */}
+        <View style={styles.content}>
+          <ContentContainer>
+            <View style={styles.rowDirectionAround}>
+
+              <TouchableOpacity style={styles.rowDirectionAround}>
+                <ProfilePicContent></ProfilePicContent>
+                <View style={styles.profileText}><Text>Puminan</Text></View>
+              </TouchableOpacity>
+
+              <View style={styles.profilePic}>
+                <View style={styles.hashtage}>
+                  <Tag><Text style={styles.texthashtage}>#sweet</Text></Tag>
+                  <Tag><Text style={styles.texthashtage}>#kathu</Text></Tag>
+                </View>
               </View>
+
+
+              <View style={styles.profilePic}>
+                <ProfileStatus></ProfileStatus>
+              </View>
+
             </View>
 
-
-            <View style={styles.profilePic}>
-              <ProfileStatus></ProfileStatus>
+            <View style={styles.contentPicture}>
+              <ContentPicture></ContentPicture>
             </View>
 
-          </View>
-
-          <View style={styles.contentPicture}>
-            <ContentPicture></ContentPicture>
-          </View>
-
-          <View style={styles.contnentText}>
-            <View>
+            <View style={styles.contnentText}>
               <View>
-                <Text style={styles.textTitle}>NEW DELICIOUS CUPCAKE</Text>
+                <View>
+                  <Text style={styles.textTitle}>NEW DELICIOUS CUPCAKE</Text>
+                </View>
+
+                <View>
+                  <Text style={styles.textDetail}>I like to make cupcakes I hope you'll enjoy it and it's no peanuts. Ingredients 1. flour 2. wiping cream 3. candy</Text>
+                </View>
+
+                <View style={styles.rowDirectionBetween}>
+                  <View>
+                    <Text style={styles.textBoldDetail}>delivery on <Text style={styles.textDetail}>11 Aug 2020</Text></Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textBoldDetail}>order <Text style={styles.textDetail}>20/40</Text></Text>
+                  </View>
+                </View>
+
+                <View style={styles.rowDirectionBetween}>
+                  <View>
+                    <Text style={styles.textBoldDetail}>delivery time <Text style={styles.textDetail}>11.00 am - 12.00 am</Text></Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textPrice}>45<Text style={styles.textPrice}> ฿</Text></Text>
+                  </View>
+                </View>
+
+              </View>
+            </View>
+
+            <TouchableOpacity style={styles.confirmButton}>
+              <OrderButton style={styles.componentConfirmButton}>
+                <Text style={styles.textConfirmButton}>ORDER</Text>
+              </OrderButton>
+            </TouchableOpacity>
+          </ContentContainer>
+        </View>
+
+        {/* Content2 */}
+        <View style={styles.content}>
+          <ContentContainer>
+            <View style={styles.rowDirectionAround}>
+
+              <TouchableOpacity style={styles.rowDirectionAround}>
+                <ProfilePicContent></ProfilePicContent>
+                <View style={styles.profileText}><Text>Puminan</Text></View>
+              </TouchableOpacity>
+
+              <View style={styles.profilePic}>
+                <View style={styles.hashtage}>
+                  <Tag><Text style={styles.texthashtage}>#sweet</Text></Tag>
+                  <Tag><Text style={styles.texthashtage}>#kathu</Text></Tag>
+                </View>
               </View>
 
-              <View>
-                <Text style={styles.textDetail}>I like to make cupcakes I hope you'll enjoy it and it's no peanuts. Ingredients 1. flour 2. wiping cream 3. candy</Text>
-              </View>
 
-              <View style={styles.rowDirectionBetween}>
-                <View>
-                  <Text style={styles.textBoldDetail}>delivery on <Text style={styles.textDetail}>11 Aug 2020</Text></Text>
-                </View>
-                <View>
-                  <Text style={styles.textBoldDetail}>order <Text style={styles.textDetail}>20/40</Text></Text>
-                </View>
-              </View>
-
-              <View style={styles.rowDirectionBetween}>
-                <View>
-                  <Text style={styles.textBoldDetail}>delivery time <Text style={styles.textDetail}>11.00 am - 12.00 am</Text></Text>
-                </View>
-                <View>
-                  <Text style={styles.textPrice}>45<Text style={styles.textPrice}> ฿</Text></Text>
-                </View>
+              <View style={styles.profilePic}>
+                <ProfileStatus></ProfileStatus>
               </View>
 
             </View>
-          </View>
 
-          <TouchableOpacity style={styles.confirmButton}>
-            <OrderButton style={styles.componentConfirmButton}>
-              <Text style={styles.textConfirmButton}>ORDER</Text>
-            </OrderButton>
-          </TouchableOpacity>
+            <View style={styles.contentPicture}>
+              <ContentPicture></ContentPicture>
+            </View>
 
-        </ContentContainer>
-      </View>
+            <View style={styles.contnentText}>
+              <View>
+                <View>
+                  <Text style={styles.textTitle}>NEW DELICIOUS CUPCAKE</Text>
+                </View>
 
-      
+                <View>
+                  <Text style={styles.textDetail}>I like to make cupcakes I hope you'll enjoy it and it's no peanuts. Ingredients 1. flour 2. wiping cream 3. candy</Text>
+                </View>
 
-    </SafeAreaView>
+                <View style={styles.rowDirectionBetween}>
+                  <View>
+                    <Text style={styles.textBoldDetail}>delivery on <Text style={styles.textDetail}>11 Aug 2020</Text></Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textBoldDetail}>order <Text style={styles.textDetail}>20/40</Text></Text>
+                  </View>
+                </View>
+
+                <View style={styles.rowDirectionBetween}>
+                  <View>
+                    <Text style={styles.textBoldDetail}>delivery time <Text style={styles.textDetail}>11.00 am - 12.00 am</Text></Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textPrice}>45<Text style={styles.textPrice}> ฿</Text></Text>
+                  </View>
+                </View>
+
+              </View>
+            </View>
+
+            <TouchableOpacity style={styles.confirmButton}>
+              <OrderButton style={styles.componentConfirmButton}>
+                <Text style={styles.textConfirmButton}>ORDER</Text>
+              </OrderButton>
+            </TouchableOpacity>
+          </ContentContainer>
+        </View>
+
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -129,17 +196,17 @@ const FeedContainer = styled.View`
 const StatusBar = styled.StatusBar``;
 
 const ProfileContainer = styled.View`
-  height: 120px;
-  padding: 10px;
-  padding-top: 30px;
+  padding-top: 20px;
 `;
 
 const ContentContainer = styled.View`
   padding: 14px;
+  padding-top: 16px;
   padding-bottom: 0px;
-  width: 350px;
+  width: 335px;
   border-radius: 20px;
   border: 1px #707070;
+  background-color: white;
 `;
 
 const ProfilePic = styled.View`
@@ -207,6 +274,7 @@ const OrderButton = styled.View`
   height: 25px;
   width: 80px;
   border-radius: 30px;
+  background-color: white;
 `;
 
 const styles = StyleSheet.create({
@@ -232,8 +300,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   search: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'center',
   },
