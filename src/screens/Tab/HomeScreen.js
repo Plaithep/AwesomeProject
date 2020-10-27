@@ -337,6 +337,7 @@ const styles = StyleSheet.create({
     color: '#707070',
   },
   textDetail: {
+    textAlign: 'justify',
     color: '#707070',
     fontWeight: '100',
   },
