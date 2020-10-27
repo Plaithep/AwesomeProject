@@ -1,369 +1,351 @@
 import { HeaderBackground } from "@react-navigation/stack";
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import React, { useState, Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  TextInput,
+  Modal,
+  TouchableHighlightBase,
+} from "react-native";
 import styled from "styled-components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default HomeScreen = ({ navigation }) => {
+  const [modalOrder, setmodalOrder] = useState(false);
+
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView>
-        <Container>
-          <FeedContainer>
-            <StatusBar barStyle="dark-content" />
-          </FeedContainer>
-        </Container>
-
-        <ProfileContainer style={styles.rowDirectionAround}>
-
-          <View style={styles.rowDirectionAround}>
-            <View style={styles.profilePic}>
-              <ProfilePic style={styles.profilePic}></ProfilePic>
+        <View style={prop.conntentComponent}>
+          <View style={prop.profileComponent}>
+            <View style={prop.profiledisplay}>
+              <View style={component.picprofile}></View>
+              <View style={prop.textprofiledisplay}>
+                <Text style={prop.textprofiletitle}>Puminan Picroh</Text>
+                <Text style={prop.textprofiledetail}>i am new</Text>
+              </View>
             </View>
-            <View style={styles.profileText}>
-              <Text>Puminan Picroh</Text>
-              <Text>new normal</Text>
+
+            <View style={prop.colcenterbutoon}>
+              <TouchableOpacity
+                style={prop.rowbutton}
+                onPress={() => navigation.navigate("Seller")}
+              >
+                <View style={component.profilebutton}></View>
+                <Text style={prop.textbutton}>Profile</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={prop.rowbutton}
+                onPress={() => navigation.navigate("Profile")}
+              >
+                <View style={component.sellerbutton}></View>
+                <Text style={prop.textbutton}>Seller </Text>
+              </TouchableOpacity>
             </View>
           </View>
 
-
-          <View style={styles.colDirection}>
-            <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Seller")}>
-              <SettingIconPic style={{ position: 'relative', right: -12 }}></SettingIconPic>
-              <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>seller</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.rowDirectionAround} onPress={() => navigation.navigate("Profile")}>
-              <ProfileIconPic style={{ position: 'relative', right: -12 }}></ProfileIconPic>
-              <Text style={{ transform: [{ rotate: '90deg' }], fontSize: 10 }}>profile</Text>
-            </TouchableOpacity>
+          <View style={prop.searchbar}>
+            <TextInput
+              style={component.searchbar}
+              placeholder="search"
+            ></TextInput>
           </View>
-        </ProfileContainer>
 
-        <View style={styles.search}><Search placeholder="search"></Search></View>
+          <View style={prop.displaycontent}>
+            {/* content 1 */}
+            <View style={component.cardcontent}>
+              <View style={prop.cardheader}>
+                <View style={prop.profilecardheader}>
+                  <View style={component.picprofilecontent}></View>
+                  <Text style={prop.textcardheader}>
+                    Plaithep Polratanapibol
+                  </Text>
+                </View>
+                <View style={component.leveluser}></View>
+              </View>
 
-        {/* Content1 */}
-        <View style={styles.content}>
-          <ContentContainer>
-            <View style={styles.rowDirectionAround}>
+              <View style={component.picturecontent}></View>
 
-              <TouchableOpacity style={styles.rowDirectionAround}>
-                <ProfilePicContent></ProfilePicContent>
-                <View style={styles.profileText}><Text>Puminan</Text></View>
-              </TouchableOpacity>
+              <View style={prop.cardtext}>
+                <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
+                <Text style={prop.carddetail}>
+                  I like to make cupcakes I hope you'll enjoy it and it's no
+                  peanuts. Ingredients 1. flour 2. wiping cream 3. candy
+                </Text>
 
-              <View style={styles.profilePic}>
-                <View style={styles.hashtage}>
-                  <Tag><Text style={styles.texthashtage}>#sweet</Text></Tag>
-                  <Tag><Text style={styles.texthashtage}>#kathu</Text></Tag>
+                <View style={prop.secondrowtext}>
+                  <View style={prop.rowtext}>
+                    <Text style={prop.cardsemititle}>delivery on: </Text>
+                    <Text style={prop.carddetail}>11 Aug 2020</Text>
+                  </View>
+                  <View style={prop.rowtext}>
+                    <Text style={prop.cardsemititle}>order: </Text>
+                    <Text style={prop.carddetail}>14/20</Text>
+                  </View>
+                </View>
+
+                <View style={prop.secondrowtext}>
+                  <View style={prop.rowtext}>
+                    <Text style={prop.cardsemititle}>delivery time: </Text>
+                    <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                  </View>
+                  <View style={prop.rowtext}>
+                    <Text style={prop.cardPrice}>45 ฿</Text>
+                  </View>
                 </View>
               </View>
 
-
-              <View style={styles.profilePic}>
-                <ProfileStatus></ProfileStatus>
-              </View>
-
-            </View>
-
-            <View style={styles.contentPicture}>
-              <ContentPicture></ContentPicture>
-            </View>
-
-            <View style={styles.contnentText}>
               <View>
-                <View>
-                  <Text style={styles.textTitle}>NEW DELICIOUS CUPCAKE</Text>
-                </View>
-
-                <View>
-                  <Text style={styles.textDetail}>I like to make cupcakes I hope you'll enjoy it and it's no peanuts. Ingredients 1. flour 2. wiping cream 3. candy</Text>
-                </View>
-
-                <View style={styles.rowDirectionBetween}>
-                  <View>
-                    <Text style={styles.textBoldDetail}>delivery on <Text style={styles.textDetail}>11 Aug 2020</Text></Text>
+                <Modal
+                  animationType="none"
+                  transparent={true}
+                  visible={modalOrder}
+                  onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                  }}
+                >
+                  <View style={prop.centermodalview}>
+                    <View style={component.modalview}>
+                      <Text>How much do you wamt</Text>
+                      <TextInput
+                        placeholder="number"
+                        keyboardType="numeric"
+                      ></TextInput>
+                      <View>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setmodalOrder(!modalOrder);
+                          }}
+                        >
+                          <Text style={{ color: "green", fontWeight: "bold" }}>
+                            Confirm
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
                   </View>
+                </Modal>
+                <TouchableOpacity
+                  style={component.orderbutton}
+                  onPress={() => {
+                    setmodalOrder(!modalOrder);
+                  }}
+                >
                   <View>
-                    <Text style={styles.textBoldDetail}>order <Text style={styles.textDetail}>20/40</Text></Text>
+                    <Text style={component.textinformation}>Order</Text>
                   </View>
-                </View>
-
-                <View style={styles.rowDirectionBetween}>
-                  <View>
-                    <Text style={styles.textBoldDetail}>delivery time <Text style={styles.textDetail}>11.00 am - 12.00 am</Text></Text>
-                  </View>
-                  <View>
-                    <Text style={styles.textPrice}>45<Text style={styles.textPrice}> ฿</Text></Text>
-                  </View>
-                </View>
-
+                </TouchableOpacity>
               </View>
             </View>
-
-            <TouchableOpacity style={styles.confirmButton}>
-              <OrderButton style={styles.componentConfirmButton}>
-                <Text style={styles.textConfirmButton}>ORDER</Text>
-              </OrderButton>
-            </TouchableOpacity>
-          </ContentContainer>
+          </View>
         </View>
-
-        {/* Content2 */}
-        <View style={styles.content}>
-          <ContentContainer>
-            <View style={styles.rowDirectionAround}>
-
-              <TouchableOpacity style={styles.rowDirectionAround}>
-                <ProfilePicContent></ProfilePicContent>
-                <View style={styles.profileText}><Text>Puminan</Text></View>
-              </TouchableOpacity>
-
-              <View style={styles.profilePic}>
-                <View style={styles.hashtage}>
-                  <Tag><Text style={styles.texthashtage}>#sweet</Text></Tag>
-                  <Tag><Text style={styles.texthashtage}>#kathu</Text></Tag>
-                </View>
-              </View>
-
-
-              <View style={styles.profilePic}>
-                <ProfileStatus></ProfileStatus>
-              </View>
-
-            </View>
-
-            <View style={styles.contentPicture}>
-              <ContentPicture></ContentPicture>
-            </View>
-
-            <View style={styles.contnentText}>
-              <View>
-                <View>
-                  <Text style={styles.textTitle}>NEW DELICIOUS CUPCAKE</Text>
-                </View>
-
-                <View>
-                  <Text style={styles.textDetail}>I like to make cupcakes I hope you'll enjoy it and it's no peanuts. Ingredients 1. flour 2. wiping cream 3. candy</Text>
-                </View>
-
-                <View style={styles.rowDirectionBetween}>
-                  <View>
-                    <Text style={styles.textBoldDetail}>delivery on <Text style={styles.textDetail}>11 Aug 2020</Text></Text>
-                  </View>
-                  <View>
-                    <Text style={styles.textBoldDetail}>order <Text style={styles.textDetail}>20/40</Text></Text>
-                  </View>
-                </View>
-
-                <View style={styles.rowDirectionBetween}>
-                  <View>
-                    <Text style={styles.textBoldDetail}>delivery time <Text style={styles.textDetail}>11.00 am - 12.00 am</Text></Text>
-                  </View>
-                  <View>
-                    <Text style={styles.textPrice}>45<Text style={styles.textPrice}> ฿</Text></Text>
-                  </View>
-                </View>
-
-              </View>
-            </View>
-
-            <TouchableOpacity style={styles.confirmButton}>
-              <OrderButton style={styles.componentConfirmButton}>
-                <Text style={styles.textConfirmButton}>ORDER</Text>
-              </OrderButton>
-            </TouchableOpacity>
-          </ContentContainer>
-        </View>
-
       </SafeAreaView>
     </KeyboardAwareScrollView>
   );
 };
 
-const Container = styled.View`
-  flex: 1;
-`;
-
-const FeedContainer = styled.View`
-  transform: rotate(90deg);
-  text-shadow-offset: 10px 5px;
-  font-variant: small-caps;
-  margin: 5px 7px 2px;
-  background-color: papayawhip;
-`;
-
-const StatusBar = styled.StatusBar``;
-
-const ProfileContainer = styled.View`
-  padding-top: 20px;
-`;
-
-const ContentContainer = styled.View`
-  padding: 14px;
-  padding-top: 16px;
-  padding-bottom: 0px;
-  width: 335px;
-  border-radius: 20px;
-  border: 1px #707070;
-  background-color: white;
-`;
-
-const ProfilePic = styled.View`
-  background-color: #e1e2e6;
-  width: 70px;
-  height: 70px;
-  border-radius: 50px
-`;
-
-const ProfilePicContent = styled.View`
-  background-color: #e1e2e6;
-  width: 45px;
-  height: 45px;
-  border-radius: 50px
-`;
-
-const SettingIconPic = styled.View`
-  background-color: #4F7595;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-`;
-
-const ProfileIconPic = styled.View`
-  background-color: #4D7B6B;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px
-`;
-
-const ProfileStatus = styled.View`
-  background-color: #EFD779;
-  width: 20px;
-  height: 20px;
-  border-radius: 50px
-`;
-
-const Search = styled.TextInput`
-    height: 30px;
-    width: 300px;
-    align-items:center;
-    justify-content: center;
-    border-radius: 30px
-    background-color: #e1e2e6;
-    color: #707070;
-    padding-left: 20px;
-`;
-
-const Tag = styled.View`
-  height: 20px;
-  width: 55px;
-  border-radius: 30px;
-  background-color: #707070;
-  justify-content: center;
-`;
-
-const ContentPicture = styled.View`
-  background-color: #e1e2e6;
-  height: 150px;
-  width: 300px;
-`;
-
-const OrderButton = styled.View`
-  border: 1px #707070;
-  height: 25px;
-  width: 80px;
-  border-radius: 30px;
-  background-color: white;
-`;
-
-const styles = StyleSheet.create({
-  rowDirectionAround: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+const prop = StyleSheet.create({
+  conntentComponent: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
   },
-  rowDirectionBetween: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  profileComponent: {
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 15,
   },
-  colDirection: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+  colcenterbutoon: {
+    flexDirection: "column",
   },
-  profilePic: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+  textprofile: {},
+  rowbutton: {
+    flexDirection: "row",
+    marginTop: 6,
+    marginBottom: 6,
+    position: "relative",
+    left: "20%",
   },
-  profileText: {
-    paddingLeft: 10,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  search: {
-    paddingTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  content: {
-    padding: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  texthashtage: {
+  textbutton: {
+    transform: [
+      {
+        rotate: "270deg",
+      },
+    ],
     fontSize: 12,
-    fontWeight: '200',
-    color: 'white',
-    textAlign: 'center',
   },
-  hashtage: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    position: 'relative',
-    right: -17,
+  profiledisplay: {
+    flexDirection: "row",
   },
-  contentPicture: {
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  textprofiledisplay: {
+    marginLeft: "6%",
+    flexDirection: "column",
+    justifyContent: "center",
   },
-  contnentText: {
-    paddingLeft: 17,
-    paddingRight: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  searchbar: {
+    paddingTop: 20,
+    flexDirection: "row",
+    justifyContent: "center",
   },
-  textTitle: {
-    fontWeight: 'bold',
-    color: '#707070',
+  displaycontent: {
+    marginTop: 20,
+    width: "100%",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  textDetail: {
-    textAlign: 'justify',
-    color: '#707070',
-    fontWeight: '100',
+  cardheader: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingLeft: 5,
+    paddingRight: 5,
   },
-  textBoldDetail: {
-    fontWeight: 'bold',
-    color: '#707070',
+  textcardheader: {
+    paddingLeft: 12,
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#707070",
   },
-  textPrice: {
+  textprofiletitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#707070",
+  },
+  textprofiledetail: {
+    fontSize: 13,
+    color: "#707070",
+  },
+  profilecardheader: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  cardtext: {
+    width: "90%",
+  },
+  cardtitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "#707070",
+    marginTop: 4,
+  },
+  carddetail: {
+    fontSize: 13,
+    color: "#707070",
+    textAlign: "justify",
+  },
+  cardsemititle: {
+    fontSize: 13,
+    fontWeight: "bold",
+    color: "#707070",
+  },
+  rowtext: {
+    flexDirection: "row",
+  },
+  secondrowtext: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  cardPrice: {
     fontSize: 22,
-    fontWeight: 'bold',
-    color: '#E37272',
+    fontWeight: "bold",
+    color: "#e37272",
   },
-  confirmButton: {
-    padding: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
+  centermodalview: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#707070B0",
   },
-  componentConfirmButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+});
+
+const component = StyleSheet.create({
+  picprofile: {
+    backgroundColor: "#e1e2e6",
+    width: 75,
+    height: 75,
+    borderRadius: 100,
+  },
+  profilebutton: {
+    backgroundColor: "#4D7B6B",
+    width: 36,
+    height: 36,
+    borderRadius: 50,
+  },
+  sellerbutton: {
+    backgroundColor: "#4F7595",
+    width: 36,
+    height: 36,
+    borderRadius: 50,
+  },
+  searchbar: {
+    width: "80%",
+    height: 30,
+    backgroundColor: "#e1e2e6",
+    borderRadius: 30,
+    color: "#707070",
+    textAlign: "center",
+  },
+  cardcontent: {
+    flexDirection: "column",
+    alignItems: "center",
+    width: "78%",
+    backgroundColor: "white",
+    padding: 14,
+    paddingTop: 16,
+    paddingBottom: 0,
+    borderWidth: 1,
+    borderColor: "#707070",
+    borderRadius: 20,
+    marginBottom: 25,
+  },
+  picprofilecontent: {
+    width: 45,
+    height: 45,
+    backgroundColor: "#e1e2e6",
+    borderRadius: 100,
+  },
+  leveluser: {
+    width: 22,
+    height: 22,
+    backgroundColor: "#efd779",
+    borderRadius: 100,
+  },
+  picturecontent: {
+    marginTop: 10,
+    width: "90%",
+    height: 150,
+    backgroundColor: "#e1e2e6",
+  },
+  modalview: {
+    padding: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  orderbutton: {
+    width: 90,
+    height: 30,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#707070",
+    borderRadius: 30,
+
+    justifyContent: "center",
+    alignItems: "center",
     position: 'relative',
-    bottom: -17,
-  },
-  textConfirmButton: {
-    fontWeight: 'bold',
-    color: '#707070',
+    bottom: -12,
   },
 });
