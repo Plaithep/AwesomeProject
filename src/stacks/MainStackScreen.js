@@ -75,7 +75,7 @@ export default MainStackScreens = () => {
       tabBarOptions={tabBarOptions}
       screenOptions={screenOptions}
     >
-      <MainStack.Screen name="Message" component={MessageScreen} />
+      <MainStack.Screen name="Message" component={MessageStack} />
       <MainStack.Screen name="Post" component={PostStack} />
       <MainStack.Screen name="Home" component={HomeStack} />
       <MainStack.Screen name="Notification" component={NotiStack} />
@@ -88,6 +88,16 @@ export default MainStackScreens = () => {
  *  TODO: ต้องเพิ่ม Stack สำหรับ ทุกๆหน้าเเละเรียกใช้งานในทุกๆ Tab
  *
  */
+
+const MessageScreenStack = createStackNavigator();
+function MessageStack () {
+  return (
+    <MessageScreenStack.Navigator hearderMode="none">
+      <MessageScreenStack.Screen name="Message" component={MessageScreen} />
+    </MessageScreenStack.Navigator>
+  );
+}
+
 const PostScreenStack = createStackNavigator();
 function PostStack() {
   return (
