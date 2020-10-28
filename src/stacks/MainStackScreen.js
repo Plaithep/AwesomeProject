@@ -4,13 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 
-
 import HomeScreen from "../screens/Tab/HomeScreen";
 import MessageScreen from "../screens/Tab/MessageScreen";
 import PostScreen from "../screens/Tab/PostScreen";
 import NotificationScreen from "../screens/Tab/NotificationScreen";
 import OthersScreen from "../screens/Tab/OthersScreen";
-
 
 import CreatePostScreen from "../screens/CreatePost/CreatePostScreen";
 import CreatePollScreen from "../screens/CreatePost/CreatePollScreen";
@@ -19,10 +17,10 @@ import ProfileScreen from "../screens/ProfileScreen";
 import SellerScreen from "../screens/SellerScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 
+import ContentSellerScreen from "../screens/ContentSellerScreen";
 
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
-
 
   const tabBarOptions = {
     showLabel: false,
@@ -30,7 +28,7 @@ export default MainStackScreens = () => {
       height: 60,
       backgroundColor: "#222222",
       paddingBottom: 10,
-      paddingTop: 6
+      paddingTop: 6,
     },
   };
 
@@ -88,9 +86,9 @@ export default MainStackScreens = () => {
 
 /**
  *  TODO: ต้องเพิ่ม Stack สำหรับ ทุกๆหน้าเเละเรียกใช้งานในทุกๆ Tab
- *  
+ *
  */
-const PostScreenStack = createStackNavigator()
+const PostScreenStack = createStackNavigator();
 function PostStack() {
   return (
     <PostScreenStack.Navigator hearderMode="none">
@@ -98,38 +96,53 @@ function PostStack() {
       <PostScreenStack.Screen name="CreatePost" component={CreatePostScreen} />
       <PostScreenStack.Screen name="CreatePoll" component={CreatePollScreen} />
     </PostScreenStack.Navigator>
-
-  )
+  );
 }
 
-const OtherScreenStack = createStackNavigator()
+const OtherScreenStack = createStackNavigator();
 function OtherStack() {
   return (
-    <OtherScreenStack.Navigator hearderMode='none'>
-      <OtherScreenStack.Screen name="Other"    component ={OthersScreen}/>
-      <OtherScreenStack.Screen name="Profile"  component ={ProfileScreen}/>
-      <OtherScreenStack.Screen name="Seller"   component ={SellerScreen}/>
-      <OtherScreenStack.Screen name="History"  component = {HistoryScreen}/>
+    <OtherScreenStack.Navigator hearderMode="none">
+      <OtherScreenStack.Screen name="Other" component={OthersScreen} />
+      <OtherScreenStack.Screen name="Profile" component={ProfileScreen} />
+      <OtherScreenStack.Screen name="Seller" component={ConSellStack} />
+      <OtherScreenStack.Screen name="History" component={HistoryScreen} />
     </OtherScreenStack.Navigator>
-  )
+  );
 }
 
-const HomeScreenStack = createStackNavigator()
+const HomeScreenStack = createStackNavigator();
 function HomeStack() {
   return (
-    <HomeScreenStack.Navigator hearderMode='none'>
-      <HomeScreenStack.Screen name="Home"    component ={HomeScreen}/>
-      <HomeScreenStack.Screen name="Profile"  component ={ProfileScreen}/>
-      <HomeScreenStack.Screen name="Seller"   component ={SellerScreen}/>
+    <HomeScreenStack.Navigator hearderMode="none">
+      <HomeScreenStack.Screen name="Home" component={HomeScreen} />
+      <HomeScreenStack.Screen name="Profile" component={ProfileScreen} />
+      <HomeScreenStack.Screen name="Seller" component={ConSellStack} />
     </HomeScreenStack.Navigator>
-  )
+  );
 }
 
-const notiScreenStack = createStackNavigator()
+const notiScreenStack = createStackNavigator();
 function NotiStack() {
   return (
-    <notiScreenStack.Navigator hearderMode='none'>
-      <notiScreenStack.Screen name="Notification"    component ={NotificationScreen}/>
+    <notiScreenStack.Navigator hearderMode="none">
+      <notiScreenStack.Screen
+        name="Notification"
+        component={NotificationScreen}
+      />
     </notiScreenStack.Navigator>
-  )
+  );
+}
+
+const ContentSellerScreenStack = createStackNavigator();
+function ConSellStack() {
+  return (
+    <ContentSellerScreenStack.Navigator hearderMode="none">
+      <ContentSellerScreenStack.Screen name="Seller" component={SellerScreen} />
+      <ContentSellerScreenStack.Screen
+        name="ContentSeller"
+        component={ContentSellerScreen}
+      />
+    </ContentSellerScreenStack.Navigator>
+  );
 }

@@ -32,14 +32,14 @@ export default HomeScreen = ({ navigation }) => {
             <View style={prop.colcenterbutoon}>
               <TouchableOpacity
                 style={prop.rowbutton}
-                onPress={() => navigation.navigate("Seller")}
+                onPress={() => navigation.navigate("Profile")}
               >
                 <View style={component.profilebutton}></View>
                 <Text style={prop.textbutton}>Profile</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={prop.rowbutton}
-                onPress={() => navigation.navigate("Profile")}
+                onPress={() => navigation.navigate("Seller")}
               >
                 <View style={component.sellerbutton}></View>
                 <Text style={prop.textbutton}>Seller </Text>

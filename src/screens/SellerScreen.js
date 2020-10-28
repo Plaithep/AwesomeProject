@@ -10,7 +10,7 @@ import {
 import styled from "styled-components";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-export default SellerScreen = () => {
+export default SellerScreen = ({navigation}) => {
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView>
@@ -30,7 +30,7 @@ export default SellerScreen = () => {
               <View style={{ width: "80%", alignItems: "flex-end" }}>
                 <Text>new post</Text>
               </View>
-              <TouchableOpacity style={component.cardcontent}>
+              <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("ContentSeller")}>
                 <View style={component.levelcard}></View>
                 <View style={prop.textcardcontent}>
                   <Text style={text.titleproduct}>NEW DELICIOUS CUPCAKE</Text>
