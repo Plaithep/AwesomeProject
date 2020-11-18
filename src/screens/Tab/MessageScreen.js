@@ -51,4 +51,3 @@ const ComfirmButton = styled.TouchableOpacity`
   border: 0.5px #707070;
   border-radius: 30px
 `
-

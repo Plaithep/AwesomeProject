@@ -14,18 +14,18 @@ import {
   Image,
   Animated,
   ScrollView,
-  Dimensions,
-  Alert
+  Dimensions
 } from "react-native";
 import styled from "styled-components";
 import moment from 'moment'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+
 import { UserContext} from "../../context/UserContext"
 import {FirebaseContext} from "../../context/FirebaseContext"
 import { firestore } from "firebase";
 import "firebase/firestore";
 import firebases from "firebase";
-
 
 
 
@@ -47,10 +47,7 @@ export default HomeScreen = ({ navigation }) => {
   const uid = Firebase.getCurrentUser().uid;
  
   // const productRef =  firestore().collection('product')
-/* 
-! มี Bugs อยู่ที่ UpdatedefaultQuantity มันดึงค่า defaultQuantity อะไรมาไม่รู้ไม่ใช่จากตัว product 
-! วิธีเเก้ที่คิดไว่้คือการ get ค่ามาใหม่ 
-**/
+
 
   useEffect(() =>{
     getProduct();
@@ -115,7 +112,7 @@ export default HomeScreen = ({ navigation }) => {
   const onRefresh = () =>{
     setTimeout(() => {
       getProduct();
-    },500);
+    },1000);
   }
 
 
@@ -139,8 +136,7 @@ export default HomeScreen = ({ navigation }) => {
  const AddOrder = async (PosterId,productName1,ProductPhotoUrl,productDetail,defaultQuantity) => {
   const uid = Firebase.getCurrentUser().uid;
   const UserId = await Firebase.getUserInfo(user.uid);
-  var Ordernumber = parseFloat(OrderQuantity)
-   let orderQuantity = Ordernumber
+   let orderQuantity = OrderQuantity
    let posterId = PosterId
    let orderDetail = productDetail
    let orderProductPhotoUrl = ProductPhotoUrl
@@ -159,103 +155,35 @@ export default HomeScreen = ({ navigation }) => {
       UserCreateOrder,
       posterId
      })
-     console.log("Create Order = " + ordername +" ---"+ orderQuantity )
-     console.log("This is default Quantity " + defaultQuantity )
-     updateQuantity(defaultQuantity,productName1,Ordernumber)
-    
-     
-
+     console.log("Create Order = " + ordername +" ---"+ orderQuantity)
+    //  updateQuantity(defaultQuantity,productName1)
+     alert("Order making successfully")
    }catch(error){
      console.log("Error @ create order = " + error )
      alert("There something worng while trying to make your order Errorcode= " + error )
    }
  }
 
+ /* 
+ ! ค้องเเก้ให้สามารถ อัปเดต product quantity ให้ได้
+ */
 
- const updateQuantity = async (defaultQuantity,productName1,Ordernumber) =>{
-  const ID = await getProductDocId(productName1)
-  const DefaultProductValue = await getProductDefaultQuantity(productName1)
-  const GetProductQuantity = await getProductQuantity(productName1)
-  console.log(GetProductQuantity +" ssssssssssssssssssssssssssssssssssssssssssssss")
-  var number1 =  Ordernumber
-  var sum = number1 + DefaultProductValue
-  let Amout = GetProductQuantity
-  try{
-    if(sum <= Amout){
-      firestore().collection('product').doc(ID).update({
-        defaultQuantity : sum
-       })
-       console.log("UPdate defaultQuantity of the product is  " + sum)
-       alert("Order making successfully")
-       onRefresh()
-       
-    }else{
-      alert("Error at making Order")
-    }
-  
-}catch(error){
-  console.log("Error @ updateQuantity" + error)
-}
- }
+//  const updateQuantity = async (defaultQuantity,productName1) =>{
+//    let number =  OrderQuantity + defaultQuantity
+//    try{
+//    const pew = await firestore().collection('product').where('productName', '==', productName1).get()
+//    console.log(pew)
+//    }catch(error){
+//      console.log("Error @ update Quantity " + error)
+//    }
+//  }
 
-
- const getProductDefaultQuantity = async (productName1) =>{
-  try{
-    const snapshot =  await firestore().collection('product').where('productName' ,'==', productName1).get()
-    
-    let value = null
-      snapshot.docs.every(doc => {
-        console.log(doc.data().defaultQuantity + " THIS isdefaultQuantity")
-        value = doc.data().defaultQuantity
-      })
-      return value;     
- 
-   }catch(error){
-     console.log("Error @ Get Prdocut ID  " + error)
-   }
-   
-   }
-
-   const getProductQuantity = async (productName1) =>{
-    try{
-      const snapshot =  await firestore().collection('product').where('productName' ,'==', productName1).get()
-      
-      let value = null
-        snapshot.docs.every(doc => {
-          console.log(doc.data().productQuantity + " THIS is productQuantity")
-          value = doc.data().productQuantity
-        })
-        return value;     
-   
-     }catch(error){
-       console.log("Error @ Get Prdocut ID  " + error)
-     }
-     
-     }
- 
- const getProductDocId = async (productName1) =>{
-  try{
-    const snapshot =  await firestore().collection('product').where('productName' ,'==', productName1).get()
-    
-    let id = null
-      snapshot.docs.every(doc => {
-        console.log(doc.id + " THIS is DOC.ID")
-        id = doc.id
-      })
-      return id;     
- 
-   }catch(error){
-     console.log("Error @ Get Prdocut ID  " + error)
-   }
-   
-   }
- 
 
 
        {/* user feed below */}
 
        /* 
-        ! Add data เพิ่มเข้าไปด้วย delivery time
+        ! Add data เพิ่มเข้าไปด้วย delivery date & time
        **/
       const renderList = ({ PosterId,profilePhotoUrl,username,ProductPhotoUrl,defaultQuantity,productCatagory,productDetail,productLocation,productName,productPrice,productQuantity,productTime,productDate}) =>{  
         return (
@@ -324,7 +252,6 @@ export default HomeScreen = ({ navigation }) => {
                         <TouchableOpacity
                           onPress={() => {
                             setmodalOrder(!modalOrder), console.log("--------"),console.log(productName1)
-                           
                             AddOrder(PosterId,productName1,ProductPhotoUrl,productDetail,defaultQuantity )
                           }}
                         >
@@ -399,7 +326,7 @@ export default HomeScreen = ({ navigation }) => {
           <TextInput
             style={component.searchbar}
             placeholder="search"
-          />
+          ></TextInput>
         </View>
         </View>
         </SafeAreaView>

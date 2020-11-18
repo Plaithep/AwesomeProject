@@ -57,7 +57,7 @@ export default SellerScreen = ({navigation}) => {
     }
 
   
-    const renderList = ({PosterId, username,defaultQuantity,productName,productQuantity,productDate,productDetail,productPrice,ProductPhotoUrl,}) =>{
+    const renderList = ({PosterId, username,defaultQuantity,productName,productQuantity,productDate,productDetail,productPrice,ProductPhotoUrl,productTime}) =>{
     return (
         <View>
           <View>
@@ -73,7 +73,8 @@ export default SellerScreen = ({navigation}) => {
                   defaultQuantity: defaultQuantity,
                   productQuantity: productQuantity,
                   productPrice: productPrice,
-                  ProductPhotoUrl: ProductPhotoUrl
+                  ProductPhotoUrl: ProductPhotoUrl,
+                  productTime : productTime
                   })}}>
                 <View style={component.levelcard}></View>
                 <View style={prop.textcardcontent}>

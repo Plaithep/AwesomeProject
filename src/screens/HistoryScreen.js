@@ -34,7 +34,7 @@ export default HistoryScreen = () => {
     const getHistory = async () => {
         setIsLoading(true);
         console.log(uid)
-        const snapshot = await firestore().collection('order').where('UserCreateOrder','==', uid).get()
+        const snapshot = await firestore().collection('order').where('UserCreateOrder','==', uid).orderBy('date','desc').get()
         if(!snapshot.empty){
             let newHistory = [];
 

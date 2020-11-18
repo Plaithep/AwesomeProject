@@ -16,7 +16,7 @@ import firebases from "firebase";
 import { FirebaseContext } from "../../context/FirebaseContext";
 
 
-export default CreatePostScreen = () => {
+export default CreatePostScreen = ({navigation}) => {
 
   const db = firestore();
   const [ProductName, setProductName] = useState();
@@ -27,7 +27,7 @@ export default CreatePostScreen = () => {
   const [ProductLocation, setProductLocation] = useState();
   const [ProductCatagory, setProductCatagory] = useState();
   const [ProductDate, setProductDate] = useState();
-  const [ProductTime, setPorudct] = useState();
+  const [ProductTime, setPorudctTime] = useState();
   //----------------------------------------------
 
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,8 @@ export default CreatePostScreen = () => {
     let Posterdata = uid
     let ProductPhotoUrl = ProductPhoto
     let productDate  = ProductDate
-
+    let productTime = ProductTime
+    let postStatus =  true;
     try {
       ProductPhotoUrl = await uploadProductImage(ProductPhoto);
       firestore().collection('product').add({
@@ -67,13 +68,17 @@ export default CreatePostScreen = () => {
         productDate,
         Posterdata,
         PosterId,
+        productTime,
+        postStatus
       })
       console.log("@AddProductName Upload done", productName)
       console.log("@User That Upload id =", UserId)
+      
     } catch (error) {
       console.log("Error @AddProductName", error);
     } finally {
       setLoading(false);
+      navigation.navigate("Home")
     }
   };
 
@@ -124,10 +129,6 @@ export default CreatePostScreen = () => {
   const uploadProductImage = async (uri) => {
     try {
       const photo = await getBlob(uri);
-
-
-
-
 
       db.collection('product').get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
@@ -207,9 +208,12 @@ export default CreatePostScreen = () => {
   const hideTimePicker = () => {
     setTimePickerVisible(false)
   }
-  const handleTimeConfirm = (date) => {
-    console.log(date)
-    hideDatePicker
+  const handleTimeConfirm = (time) => {
+    let ProductTime = time
+    ProductTime = moment(time).format('HH:mm')
+    console.log(ProductTime)
+    hideTimePicker()
+    setPorudctTime(ProductTime)
   }
 
   return (
@@ -293,6 +297,7 @@ export default CreatePostScreen = () => {
         <SelectTimeContainer>
               <SelectTimeTitle onPress={TimePicker}>
                 <Text>Time</Text>
+              <Text>{ProductTime}</Text>
               </SelectTimeTitle>
               <DateTimePickerModal
         isVisible={isTimePickVisible}
@@ -302,8 +307,6 @@ export default CreatePostScreen = () => {
         mode={"time"}
         datePickerModeAndroid={'spinner'}
         locale="en_GB"
-        date={new Date()}
-        
       />
       </SelectTimeContainer>
         <OrderandPriceContainer>
@@ -330,18 +333,7 @@ export default CreatePostScreen = () => {
             )}
 
         </ComfirmButton>
-        {/* <Button title="Show Date Picker" onPress={showDatePicker} />
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-        isDarkModeEnabled={false}
-        mode={"datetime"}
-        datePickerModeAndroid={'spinner'}
-      /> */}
     
-      
-        
       </Container>
 
 

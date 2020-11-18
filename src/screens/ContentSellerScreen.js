@@ -22,15 +22,15 @@ import { UserContext} from "../context/UserContext"
 
 export default ContentSellerScreen = ({navigation,route}) => {
     // const productName = props.navigation.getParam("productName")
-    const {productName,PosterId,productDetail,productDate,defaultQuantity,productQuantity,productPrice,ProductPhotoUrl} = route.params;
+    const {productName,PosterId,productDetail,productDate,productTime,defaultQuantity,productQuantity,productPrice,ProductPhotoUrl} = route.params;
     const [ user,setUser] = useContext(UserContext);
     
     const [isMoreLoading, setIsMoreLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [lastDoc,setLastDoc] = useState(null);
     const [Buyer, setBuyer] = useState([])
-
-
+    const Firebase = useContext(FirebaseContext);
+    const uid = Firebase.getCurrentUser().uid;
   const onRefresh = () =>{
     setTimeout(() => {
      getBuyerData();
@@ -41,9 +41,92 @@ export default ContentSellerScreen = ({navigation,route}) => {
     getBuyerData();
   },[])
 
+
+    const AddChatRoom = async (Buyer,UserCreateOrder) =>{
+      // console.log(Buyer)
+      console.log(UserCreateOrder)
+      const uid = Firebase.getCurrentUser().uid;
+      const UserId = await Firebase.getUserInfo(user.uid);
+      const Checkroom1 = await CheckRoom1(UserCreateOrder)
+      console.log(CheckRoom1) 
+      
+      // console.log(Checkroom1)
+      // Checkroom1 จะได้ค่ามาเป็น DOC id
+      // const Checkroom2 = await CheckRoom2(uid,BuyerId,Checkroom1,Buyer)
+ 
+    // if(Checkroom1 == Checkroom2){
+    //     console.log("room already created")
+        // navigation.navigate('Message');
+      // }else{
+      //   console.log("create room")
+        // firestore()
+        // .collection('THREADS')
+        // .add({
+        //   BuyerName : Buyer.username,
+        //   BuyerId : UserCreateOrder,
+        //   BuyerUri : Buyer.profilePhotoUrl,
+        //   SellerName :  UserId.username,
+        //   SellerUri : UserId.profilePhotoUrl,
+        //   SellerId : uid
+        // })
+      // }
+    
+    }
+ /* 
+ ! คือตอนนี้ Checkroom1 มัน return ค่ากลับมาเป็น Null เพราะไม่มีห้องเเต่จริงๆมันต้องสร้างห้องขึ้นมา ต้องย้ายการสร้างห้องมาอยู่ใน Chatroom1
+ **/
+
+      // const CheckRoom1 = async (UserCreateOrder) =>{
+      //   const query = firestore().collection("THREADS")
+      //   query = query.where('BuyerID' ,'==',UserCreateOrder)
+      //   query.get().then(
+      //     console.log(query)
+      //   )
+      //   // if(!doc.exists){
+      //   //   console.log("No document")
+      //   // }else{
+      //   //   console.log(doc.id)
+      //   // }
+      // }
+
+      const CheckRoom1 = async (UserCreateOrder) =>{
+        let id = null
+       const snapshot = firestore().collection('THREADS').where('BuyerID', '==',UserCreateOrder).get()
+      //  const doc = await snapshot.get()
+      console.log(snapshot)
+       if(!doc.exists){
+         console.log("No document")
+         return id
+       }else{
+        console.log('This is Doc.id in CheckRoom2', doc.id);
+        id = doc.id
+        return id
+       }
+      }
+
+      // const CheckRoom2 = async (uid,BuyerId,Checkroom1) =>{ 
+      //   try{
+      //     let id = null
+      //   if(Checkroom1 != null){
+      //      const snapshot = firestore().collection('THREADS').doc(Checkroom1)
+      //      const doc = await snapshot.get()
+      //      if(!doc.exists){
+      //        console.log("No document")
+      //      }else{
+      //       console.log('This is Doc.id in CheckRoom2', doc.id);
+      //       id = doc.id
+      //      }
+      //     }
+      //     return id
+      //    }catch(error){
+      //     console.log("Error @ CheckRoom2  " + error)
+      //   }
+      //  }
+      
+
     const  getBuyerData = async () =>{
         setIsLoading(true);
-        const snapshot = await firestore().collection('order').where("ordername", "==", productName).get();
+        const snapshot = await firestore().collection('order').where("ordername", "==", productName).orderBy('date', 'desc').get();
         if(!snapshot.empty){
           let newBuyerData = [];
 
@@ -58,7 +141,8 @@ export default ContentSellerScreen = ({navigation,route}) => {
          }setIsLoading(false)
         
     }
-      const renderList = ({Buyer,username, orderQuantity,profilePhotoUrl}) =>{
+    
+      const renderList = ({Buyer,username, orderQuantity,profilePhotoUrl,UserCreateOrder}) =>{
   return (
     <KeyboardAwareScrollView>
       <SafeAreaView>
@@ -66,7 +150,9 @@ export default ContentSellerScreen = ({navigation,route}) => {
          
           <View style={prop.containercontect}>
             {/* card contect 1 */}
-            <TouchableOpacity style={component.contectcard}>
+            <TouchableOpacity style={component.contectcard}
+             onPress={() =>{ AddChatRoom(Buyer,UserCreateOrder)}}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Image style={component.piccontect} source={{uri:Buyer.profilePhotoUrl}} ></Image>
                 <Text>{Buyer.username}</Text>
@@ -99,7 +185,7 @@ export default ContentSellerScreen = ({navigation,route}) => {
         <View>
           <Text>order {defaultQuantity}/{productQuantity}</Text>
           <Text>delivery on {productDate}</Text>
-          <Text>delivery time 11.00-12.00</Text>
+          <Text>delivery time {productTime}</Text>
         </View>
         <View>
           <Text style={text.textPrice}>{productPrice} ฿</Text>

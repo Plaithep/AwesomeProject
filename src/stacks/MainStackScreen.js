@@ -3,9 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 import HomeScreen from "../screens/Tab/HomeScreen";
+import Home2Screen from "../screens/Tab/Home2Screen";
 import MessageScreen from "../screens/Tab/MessageScreen";
 import PostScreen from "../screens/Tab/PostScreen";
 import NotificationScreen from "../screens/Tab/NotificationScreen";
@@ -86,6 +89,8 @@ export default MainStackScreens = () => {
       <MainStack.Screen name="Others" component={OtherStack} />
     </MainStack.Navigator>
   );
+
+  
 };
 
 /**
@@ -136,6 +141,9 @@ function HomeStack() {
   );
 }
 
+
+
+
 const notiScreenStack = createStackNavigator();
 function NotiStack() {
   return (
@@ -158,3 +166,6 @@ function ConSellStack() {
     </ContentSellerScreenStack.Navigator>
   );
 }
+
+
+
