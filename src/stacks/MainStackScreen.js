@@ -82,10 +82,10 @@ export default MainStackScreens = () => {
       tabBarOptions={tabBarOptions}
       screenOptions={screenOptions}
     >
-      <MainStack.Screen name="Message" component={MessageScreen} />
+      <MainStack.Screen name="Message" component={MessageStack} />
       <MainStack.Screen name="Post" component={PostStack} />
       <MainStack.Screen name="Home" component={HomeStack} />
-      <MainStack.Screen name="Notification" component={NotificationScreen} />
+      <MainStack.Screen name="Notification" component={NotiStack} />
       <MainStack.Screen name="Others" component={OtherStack} />
     </MainStack.Navigator>
   );
