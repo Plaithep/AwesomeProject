@@ -11,6 +11,12 @@ export default MessageScreen = ({ navigation }) => {
   return (
     <KeyboardAwareScrollView>
       <View style={prop.container}>
+        {/* chat 1 */}
+        <TouchableOpacity style={prop.chats}>
+          <View style={prop.profilepic}></View>
+          <Text>Name Surname</Text>
+        </TouchableOpacity>
+        {/* chat 2 */}
         <TouchableOpacity style={prop.chats}>
           <View style={prop.profilepic}></View>
           <Text>Name Surname</Text>
@@ -34,7 +40,8 @@ const prop = StyleSheet.create({
     width: '100%',
     backgroundColor: "white",
     borderRadius: 10,
-    padding: 10
+    padding: 10,
+    marginBottom: 15,
   },
   profilepic: {
     width: 60,
