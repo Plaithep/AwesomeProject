@@ -9,141 +9,218 @@ import {
   TextInput,
   Modal,
   TouchableHighlightBase,
+  ImageBackground
 } from "react-native";
 import styled from "styled-components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import { AntDesign } from '@expo/vector-icons';
+
 export default HomeScreen = ({ navigation }) => {
   const [modalOrder, setmodalOrder] = useState(false);
 
+  const imagebackground = { uri: "https://i.pinimg.com/564x/e1/c8/ce/e1c8cef9422e6b0d7b83fb806fa6cbd7.jpg" };
+
+
   return (
-    <KeyboardAwareScrollView>
-      <SafeAreaView>
-        <View style={prop.conntentComponent}>
-          <View style={prop.profileComponent}>
-            <View style={prop.profiledisplay}>
-              <View style={component.picprofile}></View>
-              <View style={prop.textprofiledisplay}>
-                <Text style={prop.textprofiletitle}>Puminan Picroh</Text>
-                <Text style={prop.textprofiledetail}>i am new</Text>
-              </View>
-            </View>
-
-            <View style={prop.colcenterbutoon}>
-              <TouchableOpacity
-                style={prop.rowbutton}
-                onPress={() => navigation.navigate("Profile")}
-              >
-                <View style={component.profilebutton}></View>
-                <Text style={prop.textbutton}>Profile</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={prop.rowbutton}
-                onPress={() => navigation.navigate("Seller")}
-              >
-                <View style={component.sellerbutton}></View>
-                <Text style={prop.textbutton}>Seller </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={prop.searchbar}>
-            <TextInput
-              style={component.searchbar}
-              placeholder="search"
-            ></TextInput>
-          </View>
-
-          <View style={prop.displaycontent}>
-            {/* content 1 */}
-            <View style={component.cardcontent}>
-              <View style={prop.cardheader}>
-                <View style={prop.profilecardheader}>
-                  <View style={component.picprofilecontent}></View>
-                  <Text style={prop.textcardheader}>
-                    Plaithep Polratanapibol
-                  </Text>
-                </View>
-                <View style={component.leveluser}></View>
-              </View>
-
-              <View style={component.picturecontent}></View>
-
-              <View style={prop.cardtext}>
-                <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
-                <Text style={prop.carddetail}>
-                  I like to make cupcakes I hope you'll enjoy it and it's no
-                  peanuts. Ingredients 1. flour 2. wiping cream 3. candy
-                </Text>
-
-                <View style={prop.secondrowtext}>
-                  <View style={prop.rowtext}>
-                    <Text style={prop.cardsemititle}>delivery on: </Text>
-                    <Text style={prop.carddetail}>11 Aug 2020</Text>
-                  </View>
-                  <View style={prop.rowtext}>
-                    <Text style={prop.cardsemititle}>order: </Text>
-                    <Text style={prop.carddetail}>14/20</Text>
-                  </View>
-                </View>
-
-                <View style={prop.secondrowtext}>
-                  <View style={prop.rowtext}>
-                    <Text style={prop.cardsemititle}>delivery time: </Text>
-                    <Text style={prop.carddetail}>11.00 - 14.00</Text>
-                  </View>
-                  <View style={prop.rowtext}>
-                    <Text style={prop.cardPrice}>45 ฿</Text>
-                  </View>
+    <ImageBackground source={imagebackground} style={component.image}>
+      <KeyboardAwareScrollView>
+        <SafeAreaView>
+          <View style={prop.conntentComponent}>
+            <View style={prop.profileComponent}>
+              <View style={prop.profiledisplay}>
+                <View style={component.picprofile}></View>
+                <View style={prop.textprofiledisplay}>
+                  <Text style={prop.textprofiletitle}>Puminan Picroh</Text>
+                  <Text style={prop.textprofiledetail}>i am new</Text>
                 </View>
               </View>
 
-              <View>
-                <Modal
-                  animationType="none"
-                  transparent={true}
-                  visible={modalOrder}
-                  onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                  }}
-                >
-                  <View style={prop.centermodalview}>
-                    <View style={component.modalview}>
-                      <Text>How much do you wamt</Text>
-                      <TextInput
-                        placeholder="number"
-                        keyboardType="numeric"
-                      ></TextInput>
-                      <View>
-                        <TouchableOpacity
-                          onPress={() => {
-                            setmodalOrder(!modalOrder);
-                          }}
-                        >
-                          <Text style={{ color: "green", fontWeight: "bold" }}>
-                            Confirm
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-                  </View>
-                </Modal>
+              <View style={prop.colcenterbutoon}>
                 <TouchableOpacity
-                  style={component.orderbutton}
-                  onPress={() => {
-                    setmodalOrder(!modalOrder);
-                  }}
+                  style={prop.rowbutton}
+                  onPress={() => navigation.navigate("Profile")}
                 >
-                  <View>
-                    <Text style={component.textinformation}>Order</Text>
-                  </View>
+                  <View style={component.profilebutton}></View>
+                  <Text style={prop.textbutton}>Profile</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={prop.rowbutton}
+                  onPress={() => navigation.navigate("Seller")}
+                >
+                  <View style={component.sellerbutton}></View>
+                  <Text style={prop.textbutton}>Seller </Text>
                 </TouchableOpacity>
               </View>
             </View>
+
+            <View style={prop.searchbar}>
+              <TextInput
+                style={component.searchbar}
+                placeholder="search"
+              ></TextInput>
+            </View>
+
+
+            <View style={{ width: '100%' }}>
+              <Modal
+                animationType="none"
+                transparent={true}
+                visible={modalOrder}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                }}
+              >
+                <View style={prop.centermodalview}>
+                  <View style={component.modalview}>
+
+                    <View style={prop.cardheader}>
+                      <View style={prop.profilecardheader}>
+                        <View style={component.picprofilecontent}></View>
+                        <Text style={prop.textcardheader}>
+                          Plaithep Polratanapibol
+                      </Text>
+                      </View>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setmodalOrder(!modalOrder);
+                        }}
+                      >
+                        <AntDesign name="closecircleo" size={20} color="gray" />
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                    </View>
+
+                    <View style={component.picturecontent}></View>
+
+                    <View style={prop.cardtext}>
+
+                      <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
+                      <Text style={prop.carddetail}>
+                        I like to make cupcakes I hope you'll enjoy it and it's no
+                        peanuts. Ingredients 1. flour 2. wiping cream 3. candy
+                      </Text>
+
+                      <View style={prop.secondrowtext}>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>delivery on: </Text>
+                          <Text style={prop.carddetail}>11 Aug 2020</Text>
+                        </View>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>order: </Text>
+                          <Text style={prop.carddetail}>14/20</Text>
+                        </View>
+                      </View>
+
+                      <View style={prop.secondrowtext}>
+
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>delivery time: </Text>
+                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                        </View>
+
+                        <Text style={prop.cardPrice}>45 ฿</Text>
+
+                      </View>
+
+                    </View>
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <View style={{marginRight: 15}}>
+                        <TextInput keyboardType="numeric" style={{
+                          borderWidth: 0.5,
+                          borderColor: "gray",
+                          borderRadius: 3,
+                          width: 75,
+                          color: "gray",
+                          textAlign: 'center'
+                        }} />
+                      </View>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setmodalOrder(!modalOrder);
+                        }}
+                      >
+                        <View>
+                          <Text style={{ color: "#2E8B57", fontWeight: '700', fontSize: 19}}>
+                            order
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
+              </Modal>
+              <TouchableOpacity
+                onPress={() => {
+                  setmodalOrder(!modalOrder);
+                }}
+              >
+                <View style={prop.displaycontent}>
+                  {/* content 1 */}
+                  <View style={component.cardcontent}>
+
+                    <View style={prop.cardheader}>
+                      <View style={prop.profilecardheader}>
+                        <View style={component.picprofilecontent}></View>
+                        <Text style={prop.textcardheader}>
+                          Plaithep Polratanapibol
+                      </Text>
+                      </View>
+                    </View>
+
+                    <View style={component.picturecontent}></View>
+
+                    <View style={prop.cardtext}>
+
+                      <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
+
+
+                      <View style={prop.secondrowtext}>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>delivery on: </Text>
+                          <Text style={prop.carddetail}>11 Aug 2020</Text>
+                        </View>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>order: </Text>
+                          <Text style={prop.carddetail}>14/20</Text>
+                        </View>
+                      </View>
+
+                      <View style={prop.secondrowtext}>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardsemititle}>delivery time: </Text>
+                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                        </View>
+                        <View style={prop.rowtext}>
+                          <Text style={prop.cardPrice}>45 ฿</Text>
+                        </View>
+                      </View>
+                    </View>
+
+                  </View>
+
+                </View>
+              </TouchableOpacity>
+            </View>
+
+
+
           </View>
-        </View>
-      </SafeAreaView>
-    </KeyboardAwareScrollView>
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
+    </ImageBackground>
   );
 };
 
@@ -154,11 +231,15 @@ const prop = StyleSheet.create({
     alignItems: "center",
   },
   profileComponent: {
-    width: "80%",
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 15,
+    paddingTop: 15,
+    paddingBottom: 10,
+    paddingLeft: 35,
+    paddingRight: 35,
+    backgroundColor: 'white'
   },
   colcenterbutoon: {
     flexDirection: "column",
@@ -189,22 +270,21 @@ const prop = StyleSheet.create({
   },
   searchbar: {
     paddingTop: 20,
+    marginBottom: 20,
     flexDirection: "row",
     justifyContent: "center",
   },
   displaycontent: {
-    marginTop: 20,
-    width: "100%",
     flexDirection: "column",
     alignItems: "center",
+    marginBottom: 20,
   },
   cardheader: {
-    width: "100%",
+    width: "90%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingLeft: 5,
-    paddingRight: 5,
+    marginBottom: 2
   },
   textcardheader: {
     paddingLeft: 12,
@@ -232,7 +312,7 @@ const prop = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
     color: "#707070",
-    marginTop: 4,
+    marginTop: 6
   },
   carddetail: {
     fontSize: 13,
@@ -246,13 +326,14 @@ const prop = StyleSheet.create({
   },
   rowtext: {
     flexDirection: "row",
+    marginTop: 1
   },
   secondrowtext: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
   cardPrice: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: "bold",
     color: "#e37272",
   },
@@ -294,15 +375,12 @@ const component = StyleSheet.create({
   cardcontent: {
     flexDirection: "column",
     alignItems: "center",
-    width: "78%",
+    width: "76%",
     backgroundColor: "white",
     padding: 14,
     paddingTop: 16,
-    paddingBottom: 0,
-    borderWidth: 1,
-    borderColor: "#707070",
+    paddingBottom: 10,
     borderRadius: 20,
-    marginBottom: 25,
   },
   picprofilecontent: {
     width: 45,
@@ -323,11 +401,13 @@ const component = StyleSheet.create({
     backgroundColor: "#e1e2e6",
   },
   modalview: {
+    flexDirection: "column",
+    width: '85%',
     padding: 20,
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 15,
+    paddingRight: 15,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 18,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -335,17 +415,9 @@ const component = StyleSheet.create({
       height: 2,
     },
   },
-  orderbutton: {
-    width: 90,
-    height: 30,
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#707070",
-    borderRadius: 30,
-
-    justifyContent: "center",
-    alignItems: "center",
-    position: 'relative',
-    bottom: -12,
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
 });
