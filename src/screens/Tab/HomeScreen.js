@@ -19,7 +19,7 @@ import { AntDesign } from '@expo/vector-icons';
 export default HomeScreen = ({ navigation }) => {
   const [modalOrder, setmodalOrder] = useState(false);
 
-  const imagebackground = { uri: "https://i.pinimg.com/564x/e1/c8/ce/e1c8cef9422e6b0d7b83fb806fa6cbd7.jpg" };
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg"};
 
 
   return (
@@ -62,8 +62,9 @@ export default HomeScreen = ({ navigation }) => {
             </View>
 
 
-{/* content 1 */}
+            {/* content 1 */}
             <View style={{ width: '100%' }}>
+              
               <Modal
                 animationType="none"
                 transparent={true}
@@ -72,16 +73,19 @@ export default HomeScreen = ({ navigation }) => {
                   Alert.alert("Modal has been closed.");
                 }}
               >
+                <ImageBackground source={imagebackground} style={component.image}>
                 <View style={prop.centermodalview}>
                   <View style={component.modalview}>
 
                     <View style={prop.cardheader}>
-                      <View style={prop.profilecardheader}>
+
+                      <TouchableOpacity style={prop.profilecardheader}>
                         <View style={component.picprofilecontent}></View>
                         <Text style={prop.textcardheader}>
                           Plaithep Polratanapibol
                       </Text>
-                      </View>
+                      </TouchableOpacity>
+
                       <TouchableOpacity
                         onPress={() => {
                           setmodalOrder(!modalOrder);
@@ -162,7 +166,9 @@ export default HomeScreen = ({ navigation }) => {
                     </View>
                   </View>
                 </View>
+                </ImageBackground>
               </Modal>
+              
               <TouchableOpacity
                 onPress={() => {
                   setmodalOrder(!modalOrder);
@@ -217,7 +223,7 @@ export default HomeScreen = ({ navigation }) => {
             </View>
 
 
-{/* content 2 */}
+            {/* content 2 */}
             <View style={{ width: '100%' }}>
               <Modal
                 animationType="none"
@@ -395,7 +401,7 @@ const prop = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 35,
     paddingRight: 35,
-    backgroundColor: 'white'
+    backgroundColor: '#FFFFFFA0',
   },
   colcenterbutoon: {
     flexDirection: "column",
@@ -497,7 +503,6 @@ const prop = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#707070B0",
   },
 });
 
@@ -532,7 +537,7 @@ const component = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     width: "76%",
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFFB0",
     padding: 14,
     paddingTop: 16,
     paddingBottom: 10,
@@ -558,22 +563,17 @@ const component = StyleSheet.create({
   },
   modalview: {
     flexDirection: "column",
-    width: '85%',
+    width: '83%',
     padding: 20,
     paddingLeft: 15,
     paddingRight: 15,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF40",
     borderRadius: 18,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
   },
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 });
