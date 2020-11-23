@@ -5,12 +5,14 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { UserContext } from "../context/UserContext";
 import { FirebaseContext } from "../context/FirebaseContext";
 
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Modal, PickerIOSComponent , RefreshControl } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Modal, PickerIOSComponent , RefreshControl, imagebackground } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { firestore } from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 export default ProfileScreen = () => {
+
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
   const Firebase = useContext(FirebaseContext);
   const [ user,setUser] = useContext(UserContext);
