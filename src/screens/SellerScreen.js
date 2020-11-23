@@ -75,6 +75,7 @@ export default SellerScreen = ({navigation}) => {
                   productPrice: productPrice,
                   ProductPhotoUrl: ProductPhotoUrl,
                   productTime : productTime
+                  
                   })}}>
                 <View style={component.levelcard}></View>
                 <View style={prop.textcardcontent}>

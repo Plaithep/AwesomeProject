@@ -17,9 +17,7 @@ import {
   Dimensions,
   Alert
 } from "react-native";
-import styled from "styled-components";
 import moment from 'moment'
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { UserContext} from "../../context/UserContext"
 import {FirebaseContext} from "../../context/FirebaseContext"
 import { firestore } from "firebase";
@@ -30,6 +28,9 @@ import firebases from "firebase";
 
 
 export default HomeScreen = ({ navigation }) => {
+
+  const image = { uri: "https://reactjs.org/logo-og.png" };
+
   const [modalOrder, setmodalOrder] = useState(false);
 
   let onEndReachedCalledDuringMomentum = false;
@@ -47,10 +48,6 @@ export default HomeScreen = ({ navigation }) => {
   const uid = Firebase.getCurrentUser().uid;
  
   // const productRef =  firestore().collection('product')
-/* 
-! มี Bugs อยู่ที่ UpdatedefaultQuantity มันดึงค่า defaultQuantity อะไรมาไม่รู้ไม่ใช่จากตัว product 
-! วิธีเเก้ที่คิดไว่้คือการ get ค่ามาใหม่ 
-**/
 
   useEffect(() =>{
     getProduct();
@@ -236,7 +233,7 @@ export default HomeScreen = ({ navigation }) => {
  const getProductDocId = async (productName1) =>{
   try{
     const snapshot =  await firestore().collection('product').where('productName' ,'==', productName1).get()
-    
+    console.log(snapshot)
     let id = null
       snapshot.docs.every(doc => {
         console.log(doc.id + " THIS is DOC.ID")
@@ -635,5 +632,10 @@ const component = StyleSheet.create({
     alignItems: "center",
     position: 'relative',
     bottom: -12,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
 });

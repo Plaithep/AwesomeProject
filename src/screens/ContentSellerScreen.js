@@ -43,85 +43,61 @@ export default ContentSellerScreen = ({navigation,route}) => {
 
 
     const AddChatRoom = async (Buyer,UserCreateOrder) =>{
-      // console.log(Buyer)
-      console.log(UserCreateOrder)
       const uid = Firebase.getCurrentUser().uid;
       const UserId = await Firebase.getUserInfo(user.uid);
-      const Checkroom1 = await CheckRoom1(UserCreateOrder)
-      console.log(CheckRoom1) 
-      
-      // console.log(Checkroom1)
-      // Checkroom1 จะได้ค่ามาเป็น DOC id
-      // const Checkroom2 = await CheckRoom2(uid,BuyerId,Checkroom1,Buyer)
- 
-    // if(Checkroom1 == Checkroom2){
-    //     console.log("room already created")
-        // navigation.navigate('Message');
-      // }else{
-      //   console.log("create room")
-        // firestore()
-        // .collection('THREADS')
-        // .add({
-        //   BuyerName : Buyer.username,
-        //   BuyerId : UserCreateOrder,
-        //   BuyerUri : Buyer.profilePhotoUrl,
-        //   SellerName :  UserId.username,
-        //   SellerUri : UserId.profilePhotoUrl,
-        //   SellerId : uid
-        // })
-      // }
-    
-    }
- /* 
- ! คือตอนนี้ Checkroom1 มัน return ค่ากลับมาเป็น Null เพราะไม่มีห้องเเต่จริงๆมันต้องสร้างห้องขึ้นมา ต้องย้ายการสร้างห้องมาอยู่ใน Chatroom1
- **/
-
-      // const CheckRoom1 = async (UserCreateOrder) =>{
-      //   const query = firestore().collection("THREADS")
-      //   query = query.where('BuyerID' ,'==',UserCreateOrder)
-      //   query.get().then(
-      //     console.log(query)
-      //   )
-      //   // if(!doc.exists){
-      //   //   console.log("No document")
-      //   // }else{
-      //   //   console.log(doc.id)
-      //   // }
-      // }
-
-      const CheckRoom1 = async (UserCreateOrder) =>{
-        let id = null
-       const snapshot = firestore().collection('THREADS').where('BuyerID', '==',UserCreateOrder).get()
-      //  const doc = await snapshot.get()
-      console.log(snapshot)
-       if(!doc.exists){
-         console.log("No document")
-         return id
-       }else{
-        console.log('This is Doc.id in CheckRoom2', doc.id);
-        id = doc.id
-        return id
-       }
+      const Checkroom1 = await CheckRoom1(UserCreateOrder,uid)
+      console.log(Checkroom1 + "This is return Value")
+      let ID = Checkroom1
+    if(Checkroom1 != null){
+        console.log("room already created")
+        let ID = Checkroom1
+        firestore().collection('THREADS').doc(Checkroom1).update({
+          roomID : ID
+        })
+        navigation.navigate('Message',{
+          RoomID : Checkroom1
+        });
+      }else{
+        console.log("create room")
+        firestore()
+        .collection('THREADS')
+        .add({
+           
+          BuyerName : Buyer.username,
+          BuyerId : UserCreateOrder,
+          BuyerUri : Buyer.profilePhotoUrl,
+          SellerName :  UserId.username,
+          SellerUri : UserId.profilePhotoUrl,
+          SellerId : uid,
+        })
+        // navigation.navigate('Message',{
+        //   RoomID : Checkroom1
+        // });
       }
+    }
 
-      // const CheckRoom2 = async (uid,BuyerId,Checkroom1) =>{ 
-      //   try{
-      //     let id = null
-      //   if(Checkroom1 != null){
-      //      const snapshot = firestore().collection('THREADS').doc(Checkroom1)
-      //      const doc = await snapshot.get()
-      //      if(!doc.exists){
-      //        console.log("No document")
-      //      }else{
-      //       console.log('This is Doc.id in CheckRoom2', doc.id);
-      //       id = doc.id
-      //      }
-      //     }
-      //     return id
-      //    }catch(error){
-      //     console.log("Error @ CheckRoom2  " + error)
-      //   }
-      //  }
+       const CheckRoom1 = async (UserCreateOrder,uid) =>{
+          try{
+            let id = null
+            const snapshot =  firestore().collection("THREADS")
+            .where('BuyerId' ,'==',UserCreateOrder)
+            .where('SellerId', '==', uid)
+             const Data = await snapshot.get()
+       
+             Data.docs.every((doc) =>{
+               console.log(doc.id + " THIS is DOC.ID" + " >>>>" + doc.data().BuyerId)
+               id = doc.id
+             })
+              return id
+           }catch(error){
+             console.log("Error @ CheckRoom1  " + error)
+           }
+
+  
+           }
+        
+    
+
       
 
     const  getBuyerData = async () =>{

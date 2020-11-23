@@ -24,6 +24,7 @@ import HistoryScreen from "../screens/HistoryScreen";
 
 import ContentSellerScreen from "../screens/ContentSellerScreen";
 
+import ChatMessageScreen from "../screens/Chat/ChatMessageScreen"
 
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
@@ -82,7 +83,7 @@ export default MainStackScreens = () => {
       tabBarOptions={tabBarOptions}
       screenOptions={screenOptions}
     >
-      <MainStack.Screen name="Message" component={MessageScreen} />
+      <MainStack.Screen name="Message" component={MessageStack} />
       <MainStack.Screen name="Post" component={PostStack} />
       <MainStack.Screen name="Home" component={HomeStack} />
       <MainStack.Screen name="Notification" component={NotificationScreen} />
@@ -101,8 +102,11 @@ export default MainStackScreens = () => {
 const MessageScreenStack = createStackNavigator();
 function MessageStack () {
   return (
-    <MessageScreenStack.Navigator hearderMode="none">
+    <MessageScreenStack.Navigator hearderMode="none" >
       <MessageScreenStack.Screen name="Message" component={MessageScreen} />
+      <MessageScreenStack.Screen name="ChatScreen" component={ChatMessageScreen} options={({route}) => ({
+        title: route.params.BuyerNames
+      })}/>
     </MessageScreenStack.Navigator>
   );
 }
@@ -129,6 +133,8 @@ function OtherStack() {
     </OtherScreenStack.Navigator>
   );
 }
+
+
 
 const HomeScreenStack = createStackNavigator();
 function HomeStack() {
