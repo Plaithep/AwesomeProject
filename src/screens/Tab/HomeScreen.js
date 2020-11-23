@@ -19,8 +19,7 @@ import { AntDesign } from '@expo/vector-icons';
 export default HomeScreen = ({ navigation }) => {
   const [modalOrder, setmodalOrder] = useState(false);
 
-  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg"};
-
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
   return (
     <ImageBackground source={imagebackground} style={component.image}>
@@ -64,7 +63,7 @@ export default HomeScreen = ({ navigation }) => {
 
             {/* content 1 */}
             <View style={{ width: '100%' }}>
-              
+
               <Modal
                 animationType="none"
                 transparent={true}
@@ -74,101 +73,105 @@ export default HomeScreen = ({ navigation }) => {
                 }}
               >
                 <ImageBackground source={imagebackground} style={component.image}>
-                <View style={prop.centermodalview}>
-                  <View style={component.modalview}>
+                  <View style={prop.centermodalview}>
+                    <View style={component.modalview}>
 
-                    <View style={prop.cardheader}>
+                      <View style={prop.cardheader}>
 
-                      <TouchableOpacity style={prop.profilecardheader}>
-                        <View style={component.picprofilecontent}></View>
-                        <Text style={prop.textcardheader}>
-                          Plaithep Polratanapibol
+                        <TouchableOpacity style={prop.profilecardheader}>
+                          <View style={component.picprofilecontent}></View>
+                          <Text style={prop.textcardheader}>
+                            Plaithep Polratanapibol
                       </Text>
-                      </TouchableOpacity>
+                        </TouchableOpacity>
 
-                      <TouchableOpacity
-                        onPress={() => {
-                          setmodalOrder(!modalOrder);
-                        }}
-                      >
-                        <AntDesign name="closecircleo" size={20} color="gray" />
-                      </TouchableOpacity>
-                    </View>
-
-                    <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setmodalOrder(!modalOrder);
+                          }}
+                        >
+                          <AntDesign name="closecircleo" size={20} color="gray" />
+                        </TouchableOpacity>
                       </View>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+
+                      <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
+                        <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                          <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                        </View>
+                        <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                          <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                        </View>
+                        <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                          <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                        </View>
                       </View>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
-                      </View>
-                    </View>
 
-                    <View style={component.picturecontent}></View>
+                      <View style={component.picturecontent}></View>
 
-                    <View style={prop.cardtext}>
+                      <View style={prop.cardtext}>
 
-                      <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
-                      <Text style={prop.carddetail}>
-                        I like to make cupcakes I hope you'll enjoy it and it's no
-                        peanuts. Ingredients 1. flour 2. wiping cream 3. candy
+                        <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
+                        <Text style={prop.carddetail}>
+                          I like to make cupcakes I hope you'll enjoy it and it's no
+                          peanuts. Ingredients 1. flour 2. wiping cream 3. candy
                       </Text>
 
-                      <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery on: </Text>
-                          <Text style={prop.carddetail}>11 Aug 2020</Text>
-                        </View>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>order: </Text>
-                          <Text style={prop.carddetail}>14/20</Text>
-                        </View>
-                      </View>
-
-                      <View style={prop.secondrowtext}>
-
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery time: </Text>
-                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                        <View style={prop.secondrowtext}>
+                          <View style={prop.rowtext}>
+                            <Text style={prop.cardsemititle}>delivery on: </Text>
+                            <Text style={prop.carddetail}>11 Aug 2020</Text>
+                          </View>
+                          <View style={prop.rowtext}>
+                            <Text style={prop.cardsemititle}>order: </Text>
+                            <Text style={prop.carddetail}>14/20</Text>
+                          </View>
                         </View>
 
-                        <Text style={prop.cardPrice}>45 ฿</Text>
+                        <View style={prop.secondrowtext}>
+
+                          <View style={prop.rowtext}>
+                            <Text style={prop.cardsemititle}>delivery time: </Text>
+                            <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                          </View>
+
+                          <Text style={prop.cardPrice}>45 ฿</Text>
+
+                        </View>
 
                       </View>
 
-                    </View>
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <View style={{ marginRight: 15 }}>
-                        <TextInput keyboardType="numeric" style={{
-                          borderWidth: 0.5,
-                          borderColor: "gray",
-                          borderRadius: 3,
-                          width: 75,
-                          color: "gray",
-                          textAlign: 'center'
-                        }} />
-                      </View>
-                      <TouchableOpacity
-                        onPress={() => {
-                          setmodalOrder(!modalOrder);
-                        }}
-                      >
+                      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <View>
-                          <Text style={{ color: "#2E8B57", fontWeight: '700', fontSize: 19 }}>
-                            order
-                          </Text>
+                          <TextInput keyboardType="numeric" style={{
+                            borderWidth: 0.5,
+                            borderColor: "gray",
+                            borderRadius: 3,
+                            width: 75,
+                            color: "gray",
+                            textAlign: 'center',
+                          }}></TextInput>
                         </View>
-                      </TouchableOpacity>
+                      </View>
+
+                      <View style={{width: '30%', height: 35, backgroundColor: '#2E8B57', justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setmodalOrder(!modalOrder);
+                          }}
+                        >
+                          <View>
+                            <Text style={{ color: "white", fontWeight: '700', fontSize: 19 }}>
+                              order
+                          </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+
                     </View>
                   </View>
-                </View>
                 </ImageBackground>
               </Modal>
-              
+
               <TouchableOpacity
                 onPress={() => {
                   setmodalOrder(!modalOrder);
@@ -221,163 +224,6 @@ export default HomeScreen = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
             </View>
-
-
-            {/* content 2 */}
-            <View style={{ width: '100%' }}>
-              <Modal
-                animationType="none"
-                transparent={true}
-                visible={modalOrder}
-                onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-                }}
-              >
-                <View style={prop.centermodalview}>
-                  <View style={component.modalview}>
-
-                    <View style={prop.cardheader}>
-                      <View style={prop.profilecardheader}>
-                        <View style={component.picprofilecontent}></View>
-                        <Text style={prop.textcardheader}>
-                          Plaithep Polratanapibol
-                      </Text>
-                      </View>
-                      <TouchableOpacity
-                        onPress={() => {
-                          setmodalOrder(!modalOrder);
-                        }}
-                      >
-                        <AntDesign name="closecircleo" size={20} color="gray" />
-                      </TouchableOpacity>
-                    </View>
-
-                    <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
-                      </View>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
-                      </View>
-                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
-                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
-                      </View>
-                    </View>
-
-                    <View style={component.picturecontent}></View>
-
-                    <View style={prop.cardtext}>
-
-                      <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
-                      <Text style={prop.carddetail}>
-                        I like to make cupcakes I hope you'll enjoy it and it's no
-                        peanuts. Ingredients 1. flour 2. wiping cream 3. candy
-                      </Text>
-
-                      <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery on: </Text>
-                          <Text style={prop.carddetail}>11 Aug 2020</Text>
-                        </View>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>order: </Text>
-                          <Text style={prop.carddetail}>14/20</Text>
-                        </View>
-                      </View>
-
-                      <View style={prop.secondrowtext}>
-
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery time: </Text>
-                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
-                        </View>
-
-                        <Text style={prop.cardPrice}>45 ฿</Text>
-
-                      </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <View style={{ marginRight: 15 }}>
-                        <TextInput keyboardType="numeric" style={{
-                          borderWidth: 0.5,
-                          borderColor: "gray",
-                          borderRadius: 3,
-                          width: 75,
-                          color: "gray",
-                          textAlign: 'center'
-                        }} />
-                      </View>
-                      <TouchableOpacity
-                        onPress={() => {
-                          setmodalOrder(!modalOrder);
-                        }}
-                      >
-                        <View>
-                          <Text style={{ color: "#2E8B57", fontWeight: '700', fontSize: 19 }}>
-                            order
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-              </Modal>
-              <TouchableOpacity
-                onPress={() => {
-                  setmodalOrder(!modalOrder);
-                }}
-              >
-                <View style={prop.displaycontent}>
-                  {/* content 1 */}
-                  <View style={component.cardcontent}>
-
-                    <View style={prop.cardheader}>
-                      <View style={prop.profilecardheader}>
-                        <View style={component.picprofilecontent}></View>
-                        <Text style={prop.textcardheader}>
-                          Plaithep Polratanapibol
-                      </Text>
-                      </View>
-                    </View>
-
-                    <View style={component.picturecontent}></View>
-
-                    <View style={prop.cardtext}>
-
-                      <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
-
-
-                      <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery on: </Text>
-                          <Text style={prop.carddetail}>11 Aug 2020</Text>
-                        </View>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>order: </Text>
-                          <Text style={prop.carddetail}>14/20</Text>
-                        </View>
-                      </View>
-
-                      <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery time: </Text>
-                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
-                        </View>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardPrice}>45 ฿</Text>
-                        </View>
-                      </View>
-                    </View>
-
-                  </View>
-
-                </View>
-              </TouchableOpacity>
-            </View>
-
-
 
           </View>
         </SafeAreaView>
@@ -537,7 +383,7 @@ const component = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     width: "76%",
-    backgroundColor: "#FFFFFFB0",
+    backgroundColor: "#FFFFFFC0",
     padding: 14,
     paddingTop: 16,
     paddingBottom: 10,
@@ -567,7 +413,7 @@ const component = StyleSheet.create({
     padding: 20,
     paddingLeft: 15,
     paddingRight: 15,
-    backgroundColor: "#FFFFFF40",
+    backgroundColor: "#FFFFFFF0",
     borderRadius: 18,
     alignItems: "center",
   },
