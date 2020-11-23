@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   RefreshControl,
   Image,
+  ImageBackground
 } from "react-native";
 import styled from "styled-components";
 
@@ -18,6 +19,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 export default SellerScreen = ({navigation}) => {
+
+    const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
     const [isMoreLoading, setIsMoreLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -95,6 +98,7 @@ export default SellerScreen = ({navigation}) => {
 
 
   return(
+    <ImageBackground source={imagebackground} style={component.image}>
     <SafeAreaView>
      <View style={prop.profilecontent}>
             <View>
@@ -116,6 +120,7 @@ export default SellerScreen = ({navigation}) => {
     }
     />
 </SafeAreaView>
+</ImageBackground>
   )
 };
 
@@ -163,6 +168,10 @@ const component = StyleSheet.create({
     height: 20,
     backgroundColor: "#efd779",
     borderRadius: 20,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
   },
 });
 

@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { UserContext } from "../context/UserContext";
 import { FirebaseContext } from "../context/FirebaseContext";
 
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Modal, PickerIOSComponent , RefreshControl, imagebackground } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert, Modal, PickerIOSComponent , RefreshControl, ImageBackground } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { firestore } from "firebase";
 import "firebase/auth";
@@ -161,7 +161,7 @@ export default ProfileScreen = () => {
 
   return (
     <>
-  
+  <ImageBackground source={imagebackground} style={component.image}>
       <View style={prop.profilepic}>
         <ProfilePicฺBorder style={component.profilepicborder}>
           <ProfilePic style={component.profilepic} source={{uri: user.profilePhotoUrl}}/>
@@ -338,7 +338,7 @@ export default ProfileScreen = () => {
 
         </View>
       </KeyboardAwareScrollView>
-
+      </ImageBackground>
     </>
   );
 };
@@ -404,7 +404,12 @@ const component = StyleSheet.create({
     borderRadius: 10,
     padding: 14,
     elevation: 2
-  }
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
 })
 
 const prop = StyleSheet.create({

@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   FlatList,
   RefreshControl,
-  Image
+  Image,
+  ImageBackground
 } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +22,9 @@ import { FirebaseContext } from "../context/FirebaseContext";
 import { UserContext } from "../context/UserContext"
 
 export default ContentSellerScreen = ({ navigation, route }) => {
+
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
+
   // const productName = props.navigation.getParam("productName")
   const { productName, PosterId, productDetail, productDate, productTime, defaultQuantity, productQuantity, productPrice, ProductPhotoUrl } = route.params;
   const [user, setUser] = useContext(UserContext);
@@ -144,6 +148,7 @@ export default ContentSellerScreen = ({ navigation, route }) => {
 
   const renderList = ({ Buyer, username, orderQuantity, profilePhotoUrl, UserCreateOrder }) => {
     return (
+
       <KeyboardAwareScrollView>
         <SafeAreaView>
           <View style={prop.container}>
@@ -153,7 +158,7 @@ export default ContentSellerScreen = ({ navigation, route }) => {
               <TouchableOpacity style={component.contectcard}
                 onPress={() => { AddChatRoom(Buyer, UserCreateOrder) }}
               >
-                <View style={{ flexDirection: "row", alignItems: "center"}}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image style={component.piccontect} source={{ uri: Buyer.profilePhotoUrl }} ></Image>
                   <Text>{Buyer.username}</Text>
                 </View>
@@ -205,20 +210,22 @@ export default ContentSellerScreen = ({ navigation, route }) => {
   }
 
   return (
-    <SafeAreaView>
-      <FlatList data={Buyer}
-        renderItem={({ item }) => renderList(item)}
-        keyExtractor={(item, index) => String(index, item)}
-        refreshControl={
-          <RefreshControl
-            refreshing={isLoading}
-            onRefresh={onRefresh}
-          />
-        }
-        ListHeaderComponent={getHeader}
-      />
+    <ImageBackground source={imagebackground} style={component.image}>
+      <SafeAreaView>
+        <FlatList data={Buyer}
+          renderItem={({ item }) => renderList(item)}
+          keyExtractor={(item, index) => String(index, item)}
+          refreshControl={
+            <RefreshControl
+              refreshing={isLoading}
+              onRefresh={onRefresh}
+            />
+          }
+          ListHeaderComponent={getHeader}
+        />
 
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   )
 };
 
@@ -248,11 +255,11 @@ const component = StyleSheet.create({
     padding: 25,
     width: "90%",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 12,
   },
   picproduct: {
-    width: "50%",
-    height: 160,
+    width: "52%",
+    height: 170,
     backgroundColor: "gray",
   },
   contectcard: {
@@ -274,16 +281,23 @@ const component = StyleSheet.create({
     backgroundColor: "gray",
     marginRight: 12,
   },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
 });
 
 const text = StyleSheet.create({
   title: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   detail: {
     fontSize: 14,
     color: "black",
+    textAlign: 'center'
   },
   textPrice: {
     fontSize: 26,
