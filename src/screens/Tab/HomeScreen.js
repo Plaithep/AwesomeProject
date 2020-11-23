@@ -141,29 +141,29 @@ export default HomeScreen = ({ navigation }) => {
                       </View>
 
                       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <View>
-                          <TextInput keyboardType="numeric" style={{
-                            borderWidth: 0.5,
-                            borderColor: "gray",
-                            borderRadius: 3,
-                            width: 75,
-                            color: "gray",
-                            textAlign: 'center',
-                          }}></TextInput>
-                        </View>
+                        <Text style={prop.cardsemititle}>order here:  </Text>
+
+                        <TextInput keyboardType="numeric" style={{
+                          borderBottomWidth: 0.8,
+                          borderColor: "gray",
+                          borderRadius: 3,
+                          color: "gray",
+                          width: 60,
+                          textAlign: 'center',
+                        }}></TextInput>
+
                       </View>
 
-                      <View style={{width: '30%', height: 35, backgroundColor: '#2E8B57', justifyContent: 'center', alignItems: 'center'}}>
+                      <View style={component.orderbutton}>
                         <TouchableOpacity
                           onPress={() => {
                             setmodalOrder(!modalOrder);
                           }}
                         >
-                          <View>
-                            <Text style={{ color: "white", fontWeight: '700', fontSize: 19 }}>
-                              order
+                          <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>
+                            order
                           </Text>
-                          </View>
+
                         </TouchableOpacity>
                       </View>
 
@@ -411,6 +411,7 @@ const component = StyleSheet.create({
     flexDirection: "column",
     width: '83%',
     padding: 20,
+    paddingBottom: 2,
     paddingLeft: 15,
     paddingRight: 15,
     backgroundColor: "#FFFFFFF0",
@@ -421,5 +422,15 @@ const component = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+  },
+  orderbutton: {
+    width: '30%',
+    height: 30,
+    backgroundColor: "gray",
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    position: 'relative',
+    bottom: -15,
   },
 });
