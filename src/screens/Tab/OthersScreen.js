@@ -3,11 +3,14 @@ import styled from "styled-components";
 
 import { UserContext } from "../../context/UserContext";
 import { FirebaseContext } from "../../context/FirebaseContext";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
 
 import Text from "../../components/Text";
 
 export default OtherScreen = ({navigation}) => {
+
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
+
   const [user, setUser] = useContext(UserContext);
   const firebase = useContext(FirebaseContext);
 
@@ -19,9 +22,10 @@ export default OtherScreen = ({navigation}) => {
     }
   };
   return (
+    <ImageBackground source={imagebackground} style={styles.image}>
     <Container style={styles.container}>
       
-        <View>
+        <View style= {{alignItems: 'center'}}>
           <ProfilePhotoContainer>
             <ProfilePhoto
               source={
@@ -33,7 +37,7 @@ export default OtherScreen = ({navigation}) => {
           </ProfilePhotoContainer>
 
           <Text medium bold margin="16px 0 32px 0">
-            {user.username} Puminan Picroh
+            {user.username}
           </Text>
         </View>
 
@@ -56,6 +60,7 @@ export default OtherScreen = ({navigation}) => {
           </Logout></View>
 
     </Container>
+    </ImageBackground>
   );
 };
 
@@ -102,5 +107,10 @@ const styles = StyleSheet.create({
   logOut: {
     color: '#E37272',
     fontWeight: 'bold',
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });

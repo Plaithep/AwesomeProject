@@ -6,73 +6,79 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  ImageBackground
 } from "react-native";
 import styled from "styled-components";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-export default SellerScreen = ({navigation}) => {
+export default SellerScreen = ({ navigation }) => {
+
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
+  
   return (
-    <KeyboardAwareScrollView>
-      <SafeAreaView>
-        <View>
-          <View style={prop.profilecontent}>
-            <View>
-              <View style={component.profilepic}></View>
-            </View>
-            <View style={prop.textprofile}>
-              <Text style={text.profiletitle}>PUMINAN PICROH</Text>
-              <Text style={text.profiledetail}>i am new</Text>
-            </View>
-          </View>
-
+    <ImageBackground source={imagebackground} style={component.image}>
+      <KeyboardAwareScrollView>
+        <SafeAreaView>
           <View>
-            <View style={{ alignItems: "center", paddingTop: 20 }}>
-              <View style={{ width: "80%", alignItems: "flex-end" }}>
-                <Text>new post</Text>
+            <View style={prop.profilecontent}>
+              <View>
+                <View style={component.profilepic}></View>
               </View>
-              <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("ContentSeller")}>
-                <View style={component.levelcard}></View>
-                <View style={prop.textcardcontent}>
-                  <Text style={text.titleproduct}>NEW DELICIOUS CUPCAKE</Text>
-                  <Text style={text.detailproduct}>
-                    delivery on 11 Aug 2020
-                  </Text>
-                  <Text style={text.detailproduct}>order 20/40</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity style={component.cardcontent}>
-                <View style={component.levelcard}></View>
-                <View style={prop.textcardcontent}>
-                  <Text style={text.titleproduct}>
-                    WHAT IS YOUR FAVOURITE CAKE?
-                  </Text>
-                  <Text style={text.detailproduct}>delivery on 2 Aug 2020</Text>
-                  <Text style={text.detailproduct}>order 38/40</Text>
-                </View>
-              </TouchableOpacity>
+              <View style={prop.textprofile}>
+                <Text style={text.profiletitle}>PUMINAN PICROH</Text>
+                <Text style={text.profiledetail}>i am new</Text>
+              </View>
             </View>
 
-            <View style={{ alignItems: "center", paddingTop: 20 }}>
-              <View style={{ width: "80%", alignItems: "flex-end" }}>
-                <Text>history</Text>
-              </View>
-              <TouchableOpacity style={component.cardhistorycontent}>
-                <View style={component.levelcard}></View>
-                <View style={prop.textcardcontent}>
-                  <Text style={text.titlehistoryproduct}>
-                    OLD DELICIOUS CUPCAKE
-                  </Text>
-                  <Text style={text.detailhistoryproduct}>
-                    delivery on 11 Sep 2020
-                  </Text>
-                  <Text style={text.detailhistoryproduct}>order 40/40</Text>
+            <View>
+              <View style={{ alignItems: "center", paddingTop: 20 }}>
+                <View style={{ width: "80%", alignItems: "flex-end" }}>
+                  <Text>new post</Text>
                 </View>
-              </TouchableOpacity>
+                <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("ContentSeller")}>
+                  <View style={component.levelcard}></View>
+                  <View style={prop.textcardcontent}>
+                    <Text style={text.titleproduct}>NEW DELICIOUS CUPCAKE</Text>
+                    <Text style={text.detailproduct}>
+                      delivery on 11 Aug 2020
+                  </Text>
+                    <Text style={text.detailproduct}>order 20/40</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={component.cardcontent}>
+                  <View style={component.levelcard}></View>
+                  <View style={prop.textcardcontent}>
+                    <Text style={text.titleproduct}>
+                      WHAT IS YOUR FAVOURITE CAKE?
+                  </Text>
+                    <Text style={text.detailproduct}>delivery on 2 Aug 2020</Text>
+                    <Text style={text.detailproduct}>order 38/40</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              <View style={{ alignItems: "center", paddingTop: 20 }}>
+                <View style={{ width: "80%", alignItems: "flex-end" }}>
+                  <Text>history</Text>
+                </View>
+                <TouchableOpacity style={component.cardhistorycontent}>
+                  <View style={component.levelcard}></View>
+                  <View style={prop.textcardcontent}>
+                    <Text style={text.titlehistoryproduct}>
+                      OLD DELICIOUS CUPCAKE
+                  </Text>
+                    <Text style={text.detailhistoryproduct}>
+                      delivery on 11 Sep 2020
+                  </Text>
+                    <Text style={text.detailhistoryproduct}>order 40/40</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </KeyboardAwareScrollView>
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
+    </ImageBackground>
   );
 };
 
@@ -120,6 +126,11 @@ const component = StyleSheet.create({
     height: 20,
     backgroundColor: "#efd779",
     borderRadius: 20,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });
 

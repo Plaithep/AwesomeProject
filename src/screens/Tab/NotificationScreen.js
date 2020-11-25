@@ -12,13 +12,6 @@ export default NotificationScreen = ({ navigation }) => {
 
         <View name='card notification' style={prop.box}>
           <View style={component.boxMessage}>
-            <View style={prop.iconcol}>
-              <View style={prop.icon}>
-                <StatusBar style={component.statusBar}></StatusBar>
-                <ProfilePic style={component.profilePic}></ProfilePic>
-              </View>
-            </View>
-
             <View style={prop.textMessage}>
               <Text style={styles.textMessage}>PLEASE Review !!! New Chocolate Cupcake</Text>
               <Text style={styles.textTime}>3 item(s) will delevery on 12 Aug 2020</Text>
@@ -42,7 +35,7 @@ const styles = StyleSheet.create({
   textMessage: {
     color: '#707070',
     fontWeight: '100',
-    fontWeight: '700'
+    fontWeight: '700',
   },
 });
 
@@ -65,7 +58,8 @@ const component = StyleSheet.create({
     width: '100%',
     padding: 10,
     backgroundColor: '#FFFFFFD0',
-    borderRadius: 8
+    borderRadius: 8,
+    justifyContent: 'center'
   }
 });
 
@@ -85,7 +79,7 @@ const prop = StyleSheet.create({
     flexDirection: 'row',
   },
   textMessage: {
-    width: '80%',
+    width: '90%',
     flexDirection: 'column',
     justifyContent: 'center',
   },

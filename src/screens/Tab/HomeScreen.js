@@ -192,7 +192,9 @@ export default HomeScreen = ({ navigation }) => {
                           color: "gray",
                           width: 60,
                           textAlign: 'center',
-                        }}></TextInput>
+                        }}
+                          placeholder="number"
+                        ></TextInput>
 
                       </View>
 
