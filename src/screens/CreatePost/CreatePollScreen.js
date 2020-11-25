@@ -1,48 +1,52 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
+import { StyleSheet, TextInput, View, Text, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import styled from "styled-components";
 
 export default CreatePollScreen = () => {
 
+    const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
+
     return (
-        <KeyboardAwareScrollView>
-       <Container>
-           <TitleContainer>
-                <TitleField
-                    autoCapitalize="none"
-                    placeholder="Title"
-                />
-            </TitleContainer>
+        <ImageBackground source={imagebackground} style={styles.image}>
+            <KeyboardAwareScrollView>
+                <Container>
+                    <TitleContainer>
+                        <TitleField
+                            autoCapitalize="none"
+                            placeholder="Title"
+                        />
+                    </TitleContainer>
 
-            <DetailContainer>
-                <DetailField
-                    autoCapitalize="none"
-                    placeholder="detail"
-                />
-            </DetailContainer>
+                    <DetailContainer>
+                        <DetailField
+                            autoCapitalize="none"
+                            placeholder="detail"
+                        />
+                    </DetailContainer>
 
-            <OptionContainer>
-                <OptionTitle>Option</OptionTitle>
-                <OptionBox>
-                    <Option placeholder="option1"></Option>
-                    <Option placeholder="option2"></Option>
-                    <Text>more option</Text>
-                </OptionBox>
-            </OptionContainer>
+                    <OptionContainer>
+                        <OptionTitle>Option</OptionTitle>
+                        <OptionBox>
+                            <Option placeholder="option1"></Option>
+                            <Option placeholder="option2"></Option>
+                            <Text>more option</Text>
+                        </OptionBox>
+                    </OptionContainer>
 
-            <ComfirmButton>
-                    <Text>Confirm</Text>
-            </ComfirmButton>
-       </Container>
-       </KeyboardAwareScrollView>
+                    <ComfirmButton>
+                        <Text>Confirm</Text>
+                    </ComfirmButton>
+                </Container>
+            </KeyboardAwareScrollView>
+        </ImageBackground>
     );
 };
 
 const Container = styled.View`
     align-items: center;
-    margin-top: 64px;
+    margin-top: 30px;
     flex: 1;
 `;
 
@@ -122,3 +126,11 @@ const ComfirmButton = styled.TouchableOpacity`
   border: 0.5px #707070;
   border-radius: 30px;
 `;
+
+const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center",
+    },
+});

@@ -2,13 +2,19 @@ import React, { useContext, useState } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { firestore } from "firebase";
-import { StyleSheet, TextInput, View, Text, Platform, Picker } from "react-native";
+import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import RNPickerSelect from 'react-native-picker-select';
 
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
+
 export default CreatePostScreen = () => {
+
+  const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
+
   const [productImage, setProductImage] = useState();
   const [selectedOrder, setSelectedOrder] = useState();
   const [selectedPrice, setSelectedPrice] = useState();
@@ -25,6 +31,16 @@ export default CreatePostScreen = () => {
   const [Location, setLocation] = useState();
 
   const [loading, setLoading] = useState(false);
+
+  const state = {
+    location: 'Kathu',
+    catagory: 'Homemade Food'
+  }
+
+  // ที่รักงับ อันนี้เขาเข้าใจแค่นี้น้าาา แงงง
+  const setState = () => {
+
+  }
 
 
   const addProductName = async () => {
@@ -162,106 +178,141 @@ export default CreatePostScreen = () => {
 
 
   return (
-    <KeyboardAwareScrollView>
-      <Container>
+    <ImageBackground source={imagebackground} style={styles.image}>
+      <KeyboardAwareScrollView>
+        <Container>
 
-        <TitleContainer>
-          <TitleField   // ใส่ชื่อ product
-            autoCapitalize="characters"
-            placeholder="Product Name"
-            onChangeText={(ProductName) => setProductName(ProductName)}
-            value={ProductName}
-          />
-        </TitleContainer>
+          <TitleContainer>
+            <TitleField   // ใส่ชื่อ product
+              autoCapitalize="characters"
+              placeholder="Product Name"
+              onChangeText={(ProductName) => setProductName(ProductName)}
+              value={ProductName}
+            />
+          </TitleContainer>
 
-        <ProductImageContainer onPress={addProductPhoto}  >
-          {ProductPhoto ? (
-            <ProductImage source={{ uri: ProductPhoto }} />
-          ) : (
-              <DefaultProductImage>
-                <Ionicons
-                  name="md-photos"
-                  size={57}
-                  color="black" />
-              </DefaultProductImage>
-            )}
-        </ProductImageContainer>
+          <ProductImageContainer onPress={addProductPhoto}  >
+            {ProductPhoto ? (
+              <ProductImage source={{ uri: ProductPhoto }} />
+            ) : (
+                <DefaultProductImage>
+                  <Ionicons
+                    name="md-photos"
+                    size={57}
+                    color="black" />
+                </DefaultProductImage>
+              )}
+          </ProductImageContainer>
 
-        <DetailContainer>
-          <DetailField
-            autoCapitalize="sentences"
-            placeholder="detail"
-            multiline={true}
-            onChangeText={ProductDetail => setProductDetail(ProductDetail)}
-            value={ProductDetail}
-          />
-        </DetailContainer>
+          <DetailContainer>
+            <DetailField
+              autoCapitalize="sentences"
+              placeholder="detail"
+              multiline={true}
+              onChangeText={ProductDetail => setProductDetail(ProductDetail)}
+              value={ProductDetail}
+            />
+          </DetailContainer>
 
-        <LocationContainer>
-          <LocationTitle>Location</LocationTitle>
-          <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'Football', value: 'football' },
-              { label: 'Baseball', value: 'baseball' },
-              { label: 'Hockey', value: 'hockey' },
-            ]}
-          />
-        </LocationContainer>
+          <LocationContainer>
+            <View style={{ marginBottom: 6 }}>
+              <LocationTitle>Location</LocationTitle>
+            </View>
+            <DropDownPicker
+              items={[
+                { label: 'Kathu', value: 'Kathu', hidden: true },
+                { label: 'Talang', value: 'Talang' },
+                { label: 'Maung', value: 'Maung' },
+              ]}
 
-        <CatagoryContainer>
-          <CatagoryTitle>Catagory</CatagoryTitle>
-          <RNPickerSelect
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'Football', value: 'football' },
-              { label: 'Baseball', value: 'baseball' },
-              { label: 'Hockey', value: 'hockey' },
-            ]}
-          />
-        </CatagoryContainer>
+              multiple={true}
+              multipleText={"%d location(s) have been selected."}
+              min={0}
+              max={10}
+
+              defaultValue={state.location}
+              containerStyle={{ height: 40 }}
+              style={{ backgroundColor: '#fafafa' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+              }}
+              dropDownStyle={{ backgroundColor: '#fafafa' }}
+              onChangeItem={item => setState({
+                location: item
+              })}
+            />
+          </LocationContainer>
+
+
+          <CatagoryContainer>
+            <View style={{ marginBottom: 6 }}>
+              <CatagoryTitle>Catagory</CatagoryTitle>
+            </View>
+
+            <DropDownPicker
+              items={[
+                { label: 'Homemade Food', value: 'Homemade Food', hidden: true },
+                { label: 'Handmade Product', value: 'Handmade Product' }
+              ]}
+
+              defaultValue={state.catagory}
+              containerStyle={{ height: 40 }}
+              style={{ backgroundColor: '#fafafa' }}
+              itemStyle={{
+                justifyContent: 'flex-start'
+              }}
+              dropDownStyle={{ backgroundColor: '#fafafa' }}
+              onChangeItem={item => setState({
+                location: item
+              })}
+            />
+          </CatagoryContainer>
 
 
 
-        <OrderandPriceContainer>
-          <LayoutCol
-            style={styles.layoutcols}
-          >
-            <OrderTitle>Quantity</OrderTitle>
-            <PriceTitle >Price</PriceTitle>
-          </LayoutCol>
-          <LayoutCol
-            style={styles.layoutcols}
-          >
-            <OrderField keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
-            <PriceField keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
-          </LayoutCol>
-        </OrderandPriceContainer>
+          <OrderandPriceContainer>
+            <View style={{ flexDirection: 'row', width: '100%' }}>
+              <View style={{ width: '50%' }}>
+                <View style={{ marginBottom: 6 }}>
+                  <OrderTitle>Quantity</OrderTitle>
+                </View>
+                <OrderField keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
+              </View>
 
-        <ComfirmButton onPress={addProductName} disabled={loading}>
-          {loading ? (
-            <Loading />
-          ) : (
-              <Text>Confirm</Text>
-            )}
+              <View style={{ width: '50%' }}>
+                <View style={{ marginBottom: 6 }}>
+                  <PriceTitle >Price</PriceTitle>
+                </View>
+                <PriceField keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
+              </View>
+            </View>
+          </OrderandPriceContainer>
 
-        </ComfirmButton>
+          <ComfirmButton onPress={addProductName} disabled={loading}>
+            {loading ? (
+              <Loading />
+            ) : (
+                <Text>Confirm</Text>
+              )}
 
-        {/* <View>
+          </ComfirmButton>
+
+          {/* <View>
                 <TextInput
                     placeholder='TOPIC'
                     style={styles.topictitleInput}
                 />
             </View> */}
-      </Container>
-    </KeyboardAwareScrollView>
+        </Container>
+      </KeyboardAwareScrollView>
+    </ImageBackground>
 
   );
 };
 
 const Container = styled.View`
     align-items: center;
-    margin-top: 64px;
+    margin-top: 30px;
     flex: 1;
 `;
 
@@ -364,7 +415,7 @@ const OrderField = styled.TextInput`
     border-color: #8e93a1;
     border-width: 0.5px;
     height: 30px;
-    width: 120px;
+    width: 90%;
     text-align-vertical: top;
     padding: 6px;
     border-radius: 2px;
@@ -376,7 +427,7 @@ const PriceField = styled.TextInput`
     border-color: #8e93a1;
     border-width: 0.5px;
     height: 30px;
-    width: 120px;
+    width: 100%;
     text-align-vertical: top;
     padding: 6px;
     border-radius: 2px;
@@ -405,7 +456,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  }
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
 });
 
 const Loading = styled.ActivityIndicator.attrs((props) => ({
