@@ -18,6 +18,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default HomeScreen = ({ navigation }) => {
   const [modalOrder, setmodalOrder] = useState(false);
+  const [searchModal, setsearchModal] = useState(false);
 
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
@@ -53,11 +54,52 @@ export default HomeScreen = ({ navigation }) => {
               </View>
             </View>
 
-            <View style={prop.searchbar}>
-              <TextInput
-                style={component.searchbar}
-                placeholder="search"
-              ></TextInput>
+            {/* Searchbar */}
+            <View style={{ width: '100%' }}>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={searchModal}>
+                <ImageBackground source={imagebackground} style={component.image}>
+                  <View style={{
+                    flex: 1,
+                    alignItems: "center",
+                    marginTop: 20
+                  }}>
+                    <View style={{ backgroundColor: '#FFFFFFC0', width: '90%' }}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setsearchModal(!searchModal);
+                        }}
+                      >
+                        <AntDesign name="closecircleo" size={20} color="gray" />
+                      </TouchableOpacity>
+                      <Text>Love</Text>
+                    </View>
+
+                  </View>
+                </ImageBackground>
+              </Modal>
+              <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <TouchableOpacity
+                  style={{
+                    width: '80%',
+                    height: 30,
+                    margin: 18,
+                    backgroundColor: '#FFFFFFC0',
+                    borderRadius: 30,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  onPress={() => {
+                    setsearchModal(!searchModal);
+                  }}>
+                  <Text style={{ color: "#707070", }}>search</Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
 
@@ -190,6 +232,18 @@ export default HomeScreen = ({ navigation }) => {
                       </View>
                     </View>
 
+                    <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                      <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                        <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                      </View>
+                    </View>
+
                     <View style={component.picturecontent}></View>
 
                     <View style={prop.cardtext}>
@@ -198,24 +252,21 @@ export default HomeScreen = ({ navigation }) => {
 
 
                       <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery on: </Text>
-                          <Text style={prop.carddetail}>11 Aug 2020</Text>
+                        <View style={{ flexDirection: 'column' }}>
+                          <View style={prop.rowtext}>
+                            <Text style={prop.cardsemititle}>delivery on: </Text>
+                            <Text style={prop.carddetail}>11 Aug 2020</Text>
+                          </View>
+                          <View style={prop.rowtext}>
+                            <Text style={prop.cardsemititle}>delivery time: </Text>
+                            <Text style={prop.carddetail}>11.00 - 14.00</Text>
+                          </View>
                         </View>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>order: </Text>
-                          <Text style={prop.carddetail}>14/20</Text>
-                        </View>
-                      </View>
 
-                      <View style={prop.secondrowtext}>
-                        <View style={prop.rowtext}>
-                          <Text style={prop.cardsemititle}>delivery time: </Text>
-                          <Text style={prop.carddetail}>11.00 - 14.00</Text>
-                        </View>
                         <View style={prop.rowtext}>
                           <Text style={prop.cardPrice}>45 ฿</Text>
                         </View>
+
                       </View>
                     </View>
 
@@ -274,12 +325,6 @@ const prop = StyleSheet.create({
   textprofiledisplay: {
     marginLeft: "6%",
     flexDirection: "column",
-    justifyContent: "center",
-  },
-  searchbar: {
-    paddingTop: 20,
-    marginBottom: 20,
-    flexDirection: "row",
     justifyContent: "center",
   },
   displaycontent: {
@@ -370,14 +415,6 @@ const component = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 50,
-  },
-  searchbar: {
-    width: "80%",
-    height: 30,
-    backgroundColor: "#e1e2e6",
-    borderRadius: 30,
-    color: "#707070",
-    textAlign: "center",
   },
   cardcontent: {
     flexDirection: "column",
