@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { firestore } from "firebase";
-import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground } from "react-native";
+import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground, TouchableOpacity, Image } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -180,43 +180,44 @@ export default CreatePostScreen = () => {
   return (
     <ImageBackground source={imagebackground} style={styles.image}>
       <KeyboardAwareScrollView>
-        <Container>
+        <View style={styles.container}>
 
-          <TitleContainer>
-            <TitleField   // ใส่ชื่อ product
-              autoCapitalize="characters"
-              placeholder="Product Name"
-              onChangeText={(ProductName) => setProductName(ProductName)}
-              value={ProductName}
-            />
-          </TitleContainer>
 
-          <ProductImageContainer onPress={addProductPhoto}  >
+          <TextInput   // ใส่ชื่อ product
+            autoCapitalize="characters"
+            placeholder="Product Name"
+            onChangeText={(ProductName) => setProductName(ProductName)}
+            value={ProductName}
+            style={styles.titleField}
+          />
+
+
+          <TouchableOpacity onPress={addProductPhoto} style={styles.imgaeContainer}>
             {ProductPhoto ? (
-              <ProductImage source={{ uri: ProductPhoto }} />
+              <Image style={{ flex: 1 }} source={{ uri: ProductPhoto }} />
             ) : (
-                <DefaultProductImage>
+                <View style={styles.defautProductImage}>
                   <Ionicons
                     name="md-photos"
                     size={57}
                     color="black" />
-                </DefaultProductImage>
+                </View>
               )}
-          </ProductImageContainer>
+          </TouchableOpacity>
 
-          <DetailContainer>
-            <DetailField
-              autoCapitalize="sentences"
-              placeholder="detail"
-              multiline={true}
-              onChangeText={ProductDetail => setProductDetail(ProductDetail)}
-              value={ProductDetail}
-            />
-          </DetailContainer>
 
-          <LocationContainer>
+          <TextInput
+            style={styles.dataField}
+            autoCapitalize="sentences"
+            placeholder="detail"
+            multiline={true}
+            onChangeText={ProductDetail => setProductDetail(ProductDetail)}
+            value={ProductDetail}
+          />
+
+          <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
-              <LocationTitle>Location</LocationTitle>
+              <Text style={styles.locationTitle}>Location</Text>
             </View>
             <DropDownPicker
               items={[
@@ -241,12 +242,12 @@ export default CreatePostScreen = () => {
                 location: item
               })}
             />
-          </LocationContainer>
+          </View>
 
 
-          <CatagoryContainer>
+          <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
-              <CatagoryTitle>Catagory</CatagoryTitle>
+              <Text style={styles.locationTitle}>Catagory</Text>
             </View>
 
             <DropDownPicker
@@ -266,36 +267,36 @@ export default CreatePostScreen = () => {
                 location: item
               })}
             />
-          </CatagoryContainer>
+          </View>
 
 
 
-          <OrderandPriceContainer>
+          <View style={styles.locationContainer}>
             <View style={{ flexDirection: 'row', width: '100%' }}>
               <View style={{ width: '50%' }}>
                 <View style={{ marginBottom: 6 }}>
-                  <OrderTitle>Quantity</OrderTitle>
+                  <Text style={styles.locationTitle}>Quantity</Text>
                 </View>
-                <OrderField keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
+                <TextInput style={styles.textInputQuantity} keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
               </View>
 
               <View style={{ width: '50%' }}>
                 <View style={{ marginBottom: 6 }}>
-                  <PriceTitle >Price</PriceTitle>
+                  <Text style={styles.locationTitle} >Price</Text>
                 </View>
-                <PriceField keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
+                <TextInput style={styles.textInputprice} keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
               </View>
             </View>
-          </OrderandPriceContainer>
+          </View>
 
-          <ComfirmButton onPress={addProductName} disabled={loading}>
+          <TouchableOpacity  style={styles.confirmButton} onPress={addProductName} disabled={loading}>
             {loading ? (
               <Loading />
             ) : (
                 <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>Confirm</Text>
               )}
 
-          </ComfirmButton>
+          </TouchableOpacity>
 
           {/* <View>
                 <TextInput
@@ -303,154 +304,12 @@ export default CreatePostScreen = () => {
                     style={styles.topictitleInput}
                 />
             </View> */}
-        </Container>
+        </View>
       </KeyboardAwareScrollView>
     </ImageBackground>
 
   );
 };
-
-const Container = styled.View`
-    align-items: center;
-    margin-top: 30px;
-    flex: 1;
-    margin-bottom: 24;
-`;
-
-const ProductImageContainer = styled.TouchableOpacity`
-     background-color: #e1e2e6;
-     width: 200px;
-     height: 160px;
-     border-radius: 12px
-     align-self: center;
-     margin-top: 16px;
-     overflow: hidden;
-     border: 2px #707070 dashed;
-`;
-
-const DefaultProductImage = styled.View`
-     align-items: center;
-     justify-content: center;
-     flex: 1;
-`;
-
-const ProductImage = styled.Image`
-    flex: 1;
-`;
-
-
-const TitleContainer = styled.View`
-  margin-bottom: 20px;
-`;
-
-const TitleField = styled.TextInput`
-     border-bottom-color: #8e93a1;
-     border-bottom-width: 1px;
-     height: 30px;
-     width: 200px;
-     text-align: center;
-     font-weight: bold;
-     font-size: 18px;
-     color: #707070;
-`;
-
-const DetailContainer = styled.View`
-    margin-top: 40px;
-    background-color: #FFFFFFD0
-`;
-
-const DetailField = styled.TextInput`
-    border-color: #8e93a1;
-    border-width: 0.5px;
-    height: 120px;
-    width: 300px;
-    text-align-vertical: top;
-    padding: 6px;
-    color: #707070;
-    font-style: italic;
-`;
-
-const LocationContainer = styled.View`
-    width: 300px;
-    margin-top: 30px;
-`;
-
-const LocationTitle = styled.Text`
-    text-align: left;
-    color: #707070;
-    font-weight: bold;
-`;
-
-const CatagoryContainer = styled.View`
-    width: 300px;
-    margin-top: 30px;
-`;
-
-const CatagoryTitle = styled.Text`
-    text-align: left;
-    color: #707070;
-    font-weight: bold;
-`;
-
-const OrderandPriceContainer = styled.View`
-    width: 300px;
-    margin-top: 30px;
-`;
-
-const LayoutCol = styled.View`
-
-`;
-
-const OrderTitle = styled.Text`
-    text-align: left;
-    color: #707070;
-    font-weight: bold;
-`;
-
-const PriceTitle = styled.Text`
-    text-align: left;
-    color: #707070;
-    font-weight: bold;
-`;
-
-const OrderField = styled.TextInput`
-    border-color: #8e93a1;
-    border-width: 0.5px;
-    height: 30px;
-    width: 90%;
-    text-align-vertical: top;
-    padding: 6px;
-    border-radius: 2px;
-    color: #707070;
-    font-style: italic;
-    background-color: #FFFFFFD0;
-`;
-
-const PriceField = styled.TextInput`
-    border-color: #8e93a1;
-    border-width: 0.5px;
-    height: 30px;
-    width: 100%;
-    text-align-vertical: top;
-    padding: 6px;
-    border-radius: 2px;
-    color: #707070;
-    font-style: italic;
-    background-color: #FFFFFFD0;
-`;
-
-const ComfirmButton = styled.TouchableOpacity`
-  margin: 34px;
-  marginTop: 20px;
-  marginBottom: 6px;
-  height: 32px;
-  width: 120px;
-  align-items:center;
-  justify-content: center;
-  border: 0.5px #707070;
-  border-radius: 30px;
-  background-color: gray;
-`;
 
 const styles = StyleSheet.create({
   pickers: {
@@ -467,6 +326,98 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
+  container: {
+    alignItems: 'center',
+    marginTop: 30,
+    flex: 1,
+    marginBottom: 24
+  },
+  titleField: {
+    borderBottomColor: '#8e93a1',
+    borderBottomWidth: 1,
+    height: 30,
+    width: 200,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: '#707070',
+    marginBottom: 20,
+  },
+  imgaeContainer: {
+    backgroundColor: '#FFFFFFD0',
+    width: 200,
+    height: 160,
+    borderRadius: 12,
+    alignSelf: 'center',
+    marginTop: 16,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#707070',
+    borderStyle: 'dashed'
+  },
+  defautProductImage: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  dataField: {
+    borderColor: '#8e93a1',
+    borderWidth: 0.5,
+    height: 120,
+    width: '75%',
+    textAlignVertical: 'top',
+    padding: 6,
+    color: '#707070',
+    fontStyle: 'italic',
+    marginTop: 40,
+    backgroundColor: '#FFFFFFE0'
+  },
+  locationContainer: {
+    width: '75%',
+    marginTop: 30,
+  },
+  locationTitle: {
+    textAlign: 'left',
+    color: '#707070',
+    fontWeight: 'bold',
+  },
+  textInputQuantity: {
+    borderColor: '#8e93a1',
+    borderWidth: 0.5,
+    height: 30,
+    width: '98%',
+    textAlignVertical: 'top',
+    padding: 6,
+    borderRadius: 2,
+    color: '#707070',
+    fontStyle: 'italic',
+    backgroundColor: '#FFFFFFD0',
+  },
+  textInputprice: {
+    borderColor: '#8e93a1',
+    borderWidth: 0.5,
+    height: 30,
+    width: '100%',
+    textAlignVertical: 'top',
+    padding: 6,
+    borderRadius: 2,
+    color: '#707070',
+    fontStyle: 'italic',
+    backgroundColor: '#FFFFFFD0',
+  },
+  confirmButton: {
+    margin: 34,
+    marginTop: 20,
+    marginBottom: 6,
+    height: 32,
+    width: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: '#707070',
+    borderRadius: 30,
+    backgroundColor: 'gray'
+  }
 });
 
 const Loading = styled.ActivityIndicator.attrs((props) => ({
