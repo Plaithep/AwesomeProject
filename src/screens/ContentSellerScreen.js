@@ -20,8 +20,25 @@ export default ContentSellerScreen = () => {
     <ImageBackground source={imagebackground} style={prop.image}>
       <KeyboardAwareScrollView>
         <SafeAreaView>
+
+          {/* post */}
           <View style={prop.container}>
             <View style={component.cardproductdetail}>
+
+              <View style={{alignItems: 'flex-end', marginBottom: 10}}>
+                <View style={{ flexDirection: "row", width: '90%', marginTop: 2, marginBottom: 1, justifyContent: 'flex-end' }}>
+                  <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                    <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                  </View>
+                  <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                    <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                  </View>
+                  <View style={{ backgroundColor: 'gray', paddingLeft: 8, paddingRight: 8, borderRadius: 16, marginLeft: 4, marginRight: 3 }}>
+                    <Text style={{ color: 'white', fontSize: 13 }}>kathu</Text>
+                  </View>
+                </View>
+              </View>
+
               <View style={prop.rowcontent}>
                 <View style={component.picproduct}></View>
                 <View style={prop.textcol}>
@@ -34,13 +51,24 @@ export default ContentSellerScreen = () => {
               </View>
               <View style={prop.rowcontent}>
                 <View>
-                  <Text>order 20/40</Text>
-                  <Text>delivery on 11 Aug 2020</Text>
-                  <Text>delivery time 11.00-12.00</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={text.title2}>order: </Text>
+                    <Text style={text.detail}>20/40</Text>
+                  </View>
+
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={text.title2}>delivery time: </Text>
+                    <Text style={text.detail}>11.00-12.00</Text>
+                  </View>
+
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={text.title2}>delivery on: </Text>
+                    <Text style={text.detail}>11 Aug 2020</Text>
+                  </View>
                 </View>
                 <View>
                   <Text style={text.textPrice}>45 ฿</Text>
-                  <Text>per 1 price</Text>
+                  <Text style={text.detail}>per 1 price</Text>
                 </View>
               </View>
               <View style={{ alignItems: 'center', marginTop: 18, }}>
@@ -52,25 +80,119 @@ export default ContentSellerScreen = () => {
             <View style={prop.containercontect}>
               {/* card contect 1 */}
               <TouchableOpacity style={component.contectcard}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View style={component.piccontect}></View>
-                  <Text>SARA BAR</Text>
-                </View>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Text>4 order</Text>
-                  <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={component.piccontect}></View>
+                    <Text>SARA BAR</Text>
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Text>4 order</Text>
+                    <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+                  </View>
                 </View>
               </TouchableOpacity>
 
               {/* card contect 2 */}
               <TouchableOpacity style={component.contectcard}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View style={component.piccontect}></View>
-                  <Text>PLAITHEP POLRATA</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={component.piccontect}></View>
+                    <Text>PLAITHEP POLRATA</Text>
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Text>4 order</Text>
+                    <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+                  </View>
                 </View>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Text>4 order</Text>
-                  <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+
+
+          {/* poll */}
+          <View style={prop.container}>
+            <View style={component.cardproductdetail}>
+
+              <Text style={text.title}>NEW DELICIOUS CUPCAKE</Text>
+              <Text style={text.detail}>
+                I like to make cupcakes I hope you'll enjoy it and it's no
+                peanuts. Ingredients 1. flour 2. wiping cream 3. candy
+                </Text>
+
+              {/* choice 1 */}
+              <View style={prop.cardpoll}>
+                <TouchableOpacity>
+                  <View style={prop.poll}>
+                    <Text style={prop.carddetail2}>Chocolate Cupcake</Text>
+                    <View style={prop.votepoll}>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              {/* choice 2 */}
+              <View style={prop.cardpoll}>
+                <TouchableOpacity>
+                  <View style={prop.poll}>
+                    <Text style={prop.carddetail2}>Strawberry Cupcake</Text>
+                    <View style={prop.votepoll2}>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              {/* voted choice */}
+              <View style={prop.cardpoll}>
+                <TouchableOpacity>
+                  <View style={prop.poll}>
+                    <Text style={prop.carddetail2}>Lemon Cupcake</Text>
+                    <View style={prop.votepoll3}>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              <View style={{ alignItems: 'center', marginTop: 18, }}>
+                <TouchableOpacity style={{ width: 110, height: 30, backgroundColor: '#D85C5C', alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}>
+                  <Text style={{ fontWeight: 'bold', color: 'white' }}>Close Post</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={prop.containercontect}>
+              {/* card contect 1 */}
+              <TouchableOpacity style={component.contectcard}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={component.piccontect}></View>
+                    <Text>PLAITHEP POLRATA</Text>
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+                  </View>
+                </View>
+                {/* vote 1 */}
+                <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center', }}>
+                  <Text style={text.title2}>Voted: </Text>
+                  <Text style={text.detail}>Chocolate cupcake</Text>
+                </View>
+              </TouchableOpacity>
+
+              {/* card contect 2 */}
+              <TouchableOpacity style={component.contectcard}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={component.piccontect}></View>
+                    <Text>PLAITHEP POLRATA</Text>
+                  </View>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
+                  </View>
+                </View>
+                {/* vote 2 */}
+                <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center', }}>
+                  <Text style={text.title2}>Voted: </Text>
+                  <Text style={text.detail}> Strawberry cupcake</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -104,6 +226,36 @@ const prop = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
+  cardpoll: {
+    width: '100%',
+    alignItems: 'center',
+    padding: 4,
+  },
+  poll: {
+    backgroundColor: 'whitesmoke',
+    padding: 4,
+    paddingLeft: 18,
+    paddingRight: 18,
+    borderRadius: 40
+  },
+  votepoll: {
+    width: '60%',
+    height: 5,
+    backgroundColor: 'lightpink',
+    borderRadius: 10,
+  },
+  votepoll2: {
+    width: '10%',
+    height: 5,
+    backgroundColor: 'lightskyblue',
+    borderRadius: 10,
+  },
+  votepoll3: {
+    width: '30%',
+    height: 5,
+    backgroundColor: 'mediumaquamarine',
+    borderRadius: 10,
+  }
 });
 
 const component = StyleSheet.create({
@@ -126,9 +278,7 @@ const component = StyleSheet.create({
     width: "80%",
     backgroundColor: "white",
     borderRadius: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: "column",
     marginBottom: 15,
   },
   piccontect: {
@@ -143,15 +293,20 @@ const component = StyleSheet.create({
 const text = StyleSheet.create({
   title: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   detail: {
     fontSize: 14,
-    color: "black",
+    color: "#707070",
   },
   textPrice: {
     fontSize: 26,
     fontWeight: "bold",
     color: "#e37272",
-  }
+  },
+  title2: {
+    fontSize: 14,
+    color: "#707070",
+    fontWeight: 'bold'
+  },
 })

@@ -305,12 +305,34 @@ export default HomeScreen = ({ navigation }) => {
                     <Text style={prop.carddetail}>I would like to cook cupcakes but I don't know that What is your favorite cupcake favour</Text>
                   </View>
 
+                  {/* choice 1 */}
                   <View style={prop.cardpoll}>
                     <TouchableOpacity>
                       <View style={prop.poll}>
-
-                        <Text>Chocolate Cupcake</Text>
+                        <Text style={prop.carddetail2}>Chocolate Cupcake</Text>
                         <View style={prop.votepoll}>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* choice 2 */}
+                  <View style={prop.cardpoll}>
+                    <TouchableOpacity>
+                      <View style={prop.poll}>
+                        <Text style={prop.carddetail2}>Strawberry Cupcake</Text>
+                        <View style={prop.votepoll2}>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* voted choice */}
+                  <View style={prop.cardpoll}>
+                    <TouchableOpacity>
+                      <View style={prop.votedpoll}>
+                        <Text style={prop.carddetail2}>Lemon Cupcake</Text>
+                        <View style={prop.votepoll3}>
                         </View>
                       </View>
                     </TouchableOpacity>
@@ -417,6 +439,12 @@ const prop = StyleSheet.create({
     color: "#707070",
     textAlign: "justify",
   },
+  carddetail2: {
+    fontSize: 13,
+    color: "#707070",
+    textAlign: "justify",
+    fontWeight: 'bold'
+  },
   cardsemititle: {
     fontSize: 13,
     fontWeight: "bold",
@@ -443,11 +471,18 @@ const prop = StyleSheet.create({
   cardpoll: {
     width: '100%',
     alignItems: 'center',
-    padding: 15,
+    padding: 4,
   },
   poll: {
     backgroundColor: 'white',
-    padding: 6,
+    padding: 4,
+    paddingLeft: 18,
+    paddingRight: 18,
+    borderRadius: 40
+  },
+  votedpoll: {
+    backgroundColor: 'gainsboro',
+    padding: 4,
     paddingLeft: 18,
     paddingRight: 18,
     borderRadius: 40
@@ -455,7 +490,20 @@ const prop = StyleSheet.create({
   votepoll: {
     width: '60%',
     height: 5,
-    backgroundColor: 'pink'
+    backgroundColor: 'lightpink',
+    borderRadius: 10,
+  },
+  votepoll2: {
+    width: '10%',
+    height: 5,
+    backgroundColor: 'lightskyblue',
+    borderRadius: 10,
+  },
+  votepoll3: {
+    width: '30%',
+    height: 5,
+    backgroundColor: 'mediumaquamarine',
+    borderRadius: 10,
   }
 });
 

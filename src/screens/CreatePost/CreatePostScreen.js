@@ -6,10 +6,9 @@ import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground, T
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import RNPickerSelect from 'react-native-picker-select';
+
 
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
 
 export default CreatePostScreen = () => {
 
@@ -215,6 +214,7 @@ export default CreatePostScreen = () => {
             value={ProductDetail}
           />
 
+          {/* location */}
           <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
               <Text style={styles.locationTitle}>Location</Text>
@@ -244,7 +244,7 @@ export default CreatePostScreen = () => {
             />
           </View>
 
-
+          {/* catagory */}
           <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
               <Text style={styles.locationTitle}>Catagory</Text>
@@ -269,8 +269,25 @@ export default CreatePostScreen = () => {
             />
           </View>
 
+          {/* date */}
+          <View style={styles.locationContainer}>
+            <View style={{ marginBottom: 6 }}>
+              <Text style={styles.locationTitle}>Date</Text>
+            </View>
+
+          </View>
 
 
+          {/* time */}
+          <View style={styles.locationContainer}>
+            <View style={{ marginBottom: 6 }}>
+              <Text style={styles.locationTitle}>Time</Text>
+            </View>
+
+          </View>
+
+
+          {/* quantity and price */}
           <View style={styles.locationContainer}>
             <View style={{ flexDirection: 'row', width: '100%' }}>
               <View style={{ width: '50%' }}>
@@ -289,7 +306,7 @@ export default CreatePostScreen = () => {
             </View>
           </View>
 
-          <TouchableOpacity  style={styles.confirmButton} onPress={addProductName} disabled={loading}>
+          <TouchableOpacity style={styles.confirmButton} onPress={addProductName} disabled={loading}>
             {loading ? (
               <Loading />
             ) : (
