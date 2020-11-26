@@ -81,7 +81,7 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "white",
+                      backgroundColor: "#FFFFFFC0",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
@@ -114,7 +114,7 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "white",
+                      backgroundColor: "#FFFFFFC0",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
@@ -167,7 +167,7 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "white",
+                      backgroundColor: "#FFFFFFC0",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
