@@ -279,6 +279,48 @@ export default HomeScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
 
+
+
+
+
+
+
+
+            <View style={{ width: '100%' }}>
+              <View style={prop.displaycontent}>
+                {/* content 1 */}
+                <View style={component.cardcontent}>
+
+                  <View style={prop.cardheader}>
+                    <View style={prop.profilecardheader}>
+                      <View style={component.picprofilecontent}></View>
+                      <Text style={prop.textcardheader}>
+                        Plaithep Polratanapibol
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View style={prop.cardtext}>
+                    <Text style={prop.cardtitle}>New Delicaious Cupcake</Text>
+                    <Text style={prop.carddetail}>I would like to cook cupcakes but I don't know that What is your favorite cupcake favour</Text>
+                  </View>
+
+                  <View style={prop.cardpoll}>
+                    <TouchableOpacity>
+                      <View style={prop.poll}>
+
+                        <Text>Chocolate Cupcake</Text>
+                        <View style={prop.votepoll}>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+
+                </View>
+
+              </View>
+            </View>
+
           </View>
         </SafeAreaView>
       </KeyboardAwareScrollView>
@@ -398,6 +440,23 @@ const prop = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  cardpoll: {
+    width: '100%',
+    alignItems: 'center',
+    padding: 15,
+  },
+  poll: {
+    backgroundColor: 'white',
+    padding: 6,
+    paddingLeft: 18,
+    paddingRight: 18,
+    borderRadius: 40
+  },
+  votepoll: {
+    width: '60%',
+    height: 5,
+    backgroundColor: 'pink'
+  }
 });
 
 const component = StyleSheet.create({
@@ -433,12 +492,6 @@ const component = StyleSheet.create({
     width: 45,
     height: 45,
     backgroundColor: "#e1e2e6",
-    borderRadius: 100,
-  },
-  leveluser: {
-    width: 22,
-    height: 22,
-    backgroundColor: "#efd779",
     borderRadius: 100,
   },
   picturecontent: {
