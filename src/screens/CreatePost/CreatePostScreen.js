@@ -232,11 +232,11 @@ export default CreatePostScreen = () => {
 
               defaultValue={state.location}
               containerStyle={{ height: 40 }}
-              style={{ backgroundColor: '#fafafa' }}
+              style={{ backgroundColor: '#FFFFFFD0' }}
               itemStyle={{
                 justifyContent: 'flex-start'
               }}
-              dropDownStyle={{ backgroundColor: '#fafafa' }}
+              dropDownStyle={{ backgroundColor: '#FFFFFF' }}
               onChangeItem={item => setState({
                 location: item
               })}
@@ -257,11 +257,11 @@ export default CreatePostScreen = () => {
 
               defaultValue={state.catagory}
               containerStyle={{ height: 40 }}
-              style={{ backgroundColor: '#fafafa' }}
+              style={{ backgroundColor: '#FFFFFFD0' }}
               itemStyle={{
                 justifyContent: 'flex-start'
               }}
-              dropDownStyle={{ backgroundColor: '#fafafa' }}
+              dropDownStyle={{ backgroundColor: '#FFFFFF' }}
               onChangeItem={item => setState({
                 location: item
               })}
@@ -292,7 +292,7 @@ export default CreatePostScreen = () => {
             {loading ? (
               <Loading />
             ) : (
-                <Text>Confirm</Text>
+                <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>Confirm</Text>
               )}
 
           </ComfirmButton>
@@ -314,6 +314,7 @@ const Container = styled.View`
     align-items: center;
     margin-top: 30px;
     flex: 1;
+    margin-bottom: 24;
 `;
 
 const ProductImageContainer = styled.TouchableOpacity`
@@ -355,6 +356,7 @@ const TitleField = styled.TextInput`
 
 const DetailContainer = styled.View`
     margin-top: 40px;
+    background-color: #FFFFFFD0
 `;
 
 const DetailField = styled.TextInput`
@@ -421,6 +423,7 @@ const OrderField = styled.TextInput`
     border-radius: 2px;
     color: #707070;
     font-style: italic;
+    background-color: #FFFFFFD0;
 `;
 
 const PriceField = styled.TextInput`
@@ -433,6 +436,7 @@ const PriceField = styled.TextInput`
     border-radius: 2px;
     color: #707070;
     font-style: italic;
+    background-color: #FFFFFFD0;
 `;
 
 const ComfirmButton = styled.TouchableOpacity`
@@ -444,7 +448,8 @@ const ComfirmButton = styled.TouchableOpacity`
   align-items:center;
   justify-content: center;
   border: 0.5px #707070;
-  border-radius: 30px
+  border-radius: 30px;
+  background-color: gray;
 `;
 
 const styles = StyleSheet.create({

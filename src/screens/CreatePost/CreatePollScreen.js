@@ -36,7 +36,7 @@ export default CreatePollScreen = () => {
                     </OptionContainer>
 
                     <ComfirmButton>
-                        <Text>Confirm</Text>
+                        <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>Confirm</Text>
                     </ComfirmButton>
                 </Container>
             </KeyboardAwareScrollView>
@@ -78,6 +78,7 @@ const DetailField = styled.TextInput`
     padding: 6px;
     color: #707070;
     font-style: italic;
+    background-color: #FFFFFFD0;
 `;
 
 const OptionContainer = styled.View`
@@ -92,7 +93,6 @@ const OptionTitle = styled.Text`
 `;
 
 const OptionBox = styled.View`
-    height: 120px;
     width: 300px;
     align-items:center;
     justify-content: space-around;
@@ -100,31 +100,36 @@ const OptionBox = styled.View`
     color: #707070;
     border-radius: 0.1px
     align-self: center;
-    margin-top: 16px;
+    margin-top: 8px;
+    padding-top: 20;
+    padding-bottom: 18;
     overflow: hidden;
-    border: 0.5px #8e93a1 dashed
+    border: 0.5px #8e93a1 dashed;
+    background-color: #FFFFFFD0;
 `;
 
 const Option = styled.TextInput`
     text-align: center;
     height: 25px;
-    width: 120px;
+    width: 70%;
     align-items:center;
     justify-content: center;
     border: 0.5px #707070;
-    border-radius: 30px
+    border-radius: 30px;
+    margin-bottom: 10;
 `;
 
 const ComfirmButton = styled.TouchableOpacity`
-  margin: 34px;
-  marginTop: 20px;
-  marginBottom: 6px;
-  height: 32px;
-  width: 120px;
-  align-items:center;
-  justify-content: center;
-  border: 0.5px #707070;
-  border-radius: 30px;
+margin: 34px;
+marginTop: 20px;
+marginBottom: 6px;
+height: 32px;
+width: 120px;
+align-items:center;
+justify-content: center;
+border: 0.5px #707070;
+border-radius: 30px;
+background-color: gray;
 `;
 
 const styles = StyleSheet.create({

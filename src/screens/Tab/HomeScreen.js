@@ -198,18 +198,19 @@ export default HomeScreen = ({ navigation }) => {
 
                       </View>
 
-                      <View style={component.orderbutton}>
-                        <TouchableOpacity
-                          onPress={() => {
-                            setmodalOrder(!modalOrder);
-                          }}
-                        >
+
+                      <TouchableOpacity
+                        onPress={() => {
+                          setmodalOrder(!modalOrder);
+                        }}
+                        style={{ width: '100%', alignItems: 'center' }}
+                      ><View style={component.orderbutton}>
                           <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>
                             order
                           </Text>
+                        </View>
+                      </TouchableOpacity>
 
-                        </TouchableOpacity>
-                      </View>
 
                     </View>
                   </View>
