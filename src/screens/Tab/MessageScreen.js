@@ -33,39 +33,6 @@ export default SellerScreen = ({ navigation }) => {
 
             {/* content now */}
             <View>
-              <View style={{ alignItems: 'center', marginBottom: 10 }}>
-                <View style={{ width: "80%", alignItems: "flex-end" }}>
-                  <Text style={{
-                    fontSize: 14,
-                    color: "#707070",
-                    fontWeight: '700'
-                  }}>new post</Text>
-                </View>
-
-                {/* post 1 */}
-                <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("ContentSeller")}>
-                  <View style={component.levelcard}></View>
-                  <View style={prop.textcardcontent}>
-                    <Text style={text.titleproduct}>NEW DELICIOUS CUPCAKE</Text>
-                    <Text style={text.detailproduct}>
-                      delivery on 11 Aug 2020
-                  </Text>
-                    <Text style={text.detailproduct}>order 20/40</Text>
-                  </View>
-                </TouchableOpacity>
-
-                {/* post 2 */}
-                <TouchableOpacity style={component.cardcontent}>
-                  <View style={component.levelcard}></View>
-                  <View style={prop.textcardcontent}>
-                    <Text style={text.titleproduct}>
-                      WHAT IS YOUR FAVOURITE CAKE?
-                  </Text>
-                    <Text style={text.detailproduct}>delivery on 2 Aug 2020</Text>
-                    <Text style={text.detailproduct}>order 38/40</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
 
 
               {/* content history */}
@@ -102,8 +69,8 @@ export default SellerScreen = ({ navigation }) => {
                       justifyContent: 'center'
                     }}>
                       <View style={{
-                        width: 60,
-                        height: 60,
+                        width: 50,
+                        height: 50,
                         backgroundColor: 'gray',
                         borderRadius: 40,
                         padding: '3%',
@@ -114,13 +81,13 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "#777777",
+                      backgroundColor: "white",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
                       <Text style={{
                         fontSize: 14,
-                        color: "white",
+                        color: "black",
                         fontWeight: '700'
                       }}>Jusica Rool</Text>
                       <Text style={text.detailhistoryproduct}>I really like your product, I will wait your new products</Text>
@@ -135,8 +102,8 @@ export default SellerScreen = ({ navigation }) => {
                       justifyContent: 'center'
                     }}>
                       <View style={{
-                        width: 60,
-                        height: 60,
+                        width: 50,
+                        height: 50,
                         backgroundColor: 'gray',
                         borderRadius: 40,
                         padding: '3%',
@@ -147,13 +114,13 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "#777777",
+                      backgroundColor: "white",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
                       <Text style={{
                         fontSize: 14,
-                        color: "white",
+                        color: "black",
                         fontWeight: '700'
                       }}>Jusica Rool</Text>
                       <Text style={text.detailhistoryproduct}>I really like your product, I will wait your new products</Text>
@@ -164,7 +131,7 @@ export default SellerScreen = ({ navigation }) => {
 
 
 
-                {/* history 1 */}
+                {/* history 2 */}
                 <View style={{ width: '100%', alignItems: 'center' }}>
 
                   <View style={component.cardhistorycontent}>
@@ -188,8 +155,8 @@ export default SellerScreen = ({ navigation }) => {
                       justifyContent: 'center'
                     }}>
                       <View style={{
-                        width: 60,
-                        height: 60,
+                        width: 50,
+                        height: 50,
                         backgroundColor: 'gray',
                         borderRadius: 40,
                         padding: '3%',
@@ -200,13 +167,13 @@ export default SellerScreen = ({ navigation }) => {
                     <View style={{
                       flexDirection: "column",
                       width: "80%",
-                      backgroundColor: "#777777",
+                      backgroundColor: "white",
                       borderRadius: 9,
                       padding: '3%',
                     }}>
                       <Text style={{
                         fontSize: 14,
-                        color: "white",
+                        color: "black",
                         fontWeight: '700'
                       }}>Jusica Rool</Text>
                       <Text style={text.detailhistoryproduct}>I really like your product, I will wait your new products</Text>
@@ -262,7 +229,7 @@ const component = StyleSheet.create({
     marginTop: 10,
     padding: "3%",
     width: "80%",
-    backgroundColor: "#777777",
+    backgroundColor: "white",
     borderRadius: 14,
   },
   levelcard: {
@@ -293,13 +260,13 @@ const text = StyleSheet.create({
   titlehistoryproduct: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
   detailproduct: {
     fontSize: 14,
   },
   detailhistoryproduct: {
     fontSize: 14,
-    color: "white",
+    color: "black",
   },
 });
