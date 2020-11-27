@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, TextInput, View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 
 export default NotificationScreen = ({ navigation }) => {
@@ -10,14 +10,14 @@ export default NotificationScreen = ({ navigation }) => {
     <ImageBackground source={imagebackground} style={prop.image}>
       <View style={prop.container}>
 
-        <View name='card notification' style={prop.box}>
+        <TouchableOpacity name='card notification' style={prop.box} onPress={() => navigation.navigate("Review")}>
           <View style={component.boxMessage}>
             <View style={prop.textMessage}>
               <Text style={styles.textMessage}>PLEASE Review !!! New Chocolate Cupcake</Text>
               <Text style={styles.textTime}>3 item(s) will delevery on 12 Aug 2020</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
 
       </View>
     </ImageBackground>

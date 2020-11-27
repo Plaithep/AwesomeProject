@@ -23,6 +23,8 @@ import PollSellerScreen from "../screens/PollSellerScreen";
 import AdminScreen from "../screens/Admin/AdminScreen";
 import AdminAccessScreen from "../screens/Admin/AdminAccessScreen";
 
+import ReviewScreen from "../screens/ReviewScreen";
+
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
 
@@ -144,6 +146,10 @@ function NotiStack() {
       <notiScreenStack.Screen
         name="Notification"
         component={NotificationScreen}
+      />
+      <notiScreenStack.Screen
+        name="Review"
+        component={ReviewScreen}
       />
     </notiScreenStack.Navigator>
   );
