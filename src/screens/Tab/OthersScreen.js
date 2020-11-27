@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { UserContext } from "../../context/UserContext";
 import { FirebaseContext } from "../../context/FirebaseContext";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import { StyleSheet, View, ImageBackground, Image, TouchableOpacity } from "react-native";
 
 import Text from "../../components/Text";
 
-export default OtherScreen = ({navigation}) => {
+export default OtherScreen = ({ navigation }) => {
 
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
@@ -23,89 +23,65 @@ export default OtherScreen = ({navigation}) => {
   };
   return (
     <ImageBackground source={imagebackground} style={styles.image}>
-    <Container style={styles.container}>
-      
-        <View style= {{alignItems: 'center'}}>
-          <ProfilePhotoContainer>
-            <ProfilePhoto
+      <View style={styles.container}>
+
+        <View style={{ alignItems: 'center' }}>
+          <View style={styles.profilepicon}>
+            <Image
+              style={styles.profilephoto}
               source={
                 user.ProfilePhotoUrl === "default"
                   ? require("../../../assets/defaultProfilePicture.jpg")
                   : { uri: user.profilePhotoUrl }
               }
             />
-          </ProfilePhotoContainer>
+          </View>
 
-          <Text medium bold margin="16px 0 32px 0">
+          <Text
+            style={{ fontWeight: 'bold' }}
+            medium bold margin="16px 0 32px 0">
             {user.username}
           </Text>
         </View>
 
         <View>
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-              <Text>PROFILE</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Seller")}>
-              <Text>SELLER</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("History")}>
-              <Text>HISTORY</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.menu} onPress={() => navigation.navigate("Profile")}>
+            <Text style={styles.fontmenu}>PROFILE</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menu} onPress={() => navigation.navigate("Seller")}>
+            <Text style={styles.fontmenu}>SELLER</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menu} onPress={() => navigation.navigate("History")}>
+            <Text style={styles.fontmenu}>HISTORY</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menu} onPress={() => navigation.navigate("Admin")}>
+            <Text style={styles.fontmenu}>ADMIN</Text>
+          </TouchableOpacity>
         </View>
 
         <View>
-          <Logout
+          <TouchableOpacity
+            style={{ marginBottom: 32 }}
             onPress={logOut}>
             <Text style={styles.logOut}>Log out</Text>
-          </Logout></View>
+          </TouchableOpacity></View>
 
-    </Container>
+      </View>
     </ImageBackground>
   );
 };
-
-const Container = styled.View`
-  align-items: center;
-  margin-top: 64px;
-  flex: 1;
-`;
-
-const ProfilePhotoContainer = styled.View`
-  shadow-opacity: 0.8;
-  shadow-radius: 30px;
-  shadow-color: #222222;
-`;
-
-const ProfilePhoto = styled.Image`
-  width: 128px;
-  height: 128px;
-  border-radius: 64px;
-  background-color: #707070;
-`;
-
-
-const TouchableOpacity = styled.TouchableOpacity`
-  width: 100px;
-  padding: 10px;
-  border-color: #707070;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  align-items: center;
-  margin: 16px;
-`;
-
-const Logout = styled.TouchableOpacity`
-  margin-bottom: 32px;
-`;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 64,
+    flex: 1
   },
   logOut: {
-    color: '#E37272',
+    color: 'firebrick',
     fontWeight: 'bold',
   },
   image: {
@@ -113,4 +89,28 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
+  profilepicon: {
+    shadowOpacity: 0.8,
+    shadowRadius: 30,
+    shadowColor: '#222222',
+  },
+  profilephoto: {
+    width: 128,
+    height: 128,
+    borderRadius: 64,
+    backgroundColor: '#707070'
+  },
+  menu: {
+    width: 100,
+    padding: 10,
+    borderColor: '#707070',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    margin: 16
+  },
+  fontmenu: {
+    fontSize: 13,
+    fontWeight: 'bold',
+  }
 });

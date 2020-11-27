@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { StyleSheet, TextInput, View, Text, ImageBackground } from "react-native";
 import styled from "styled-components";
 
-export default HistoryScreen = () => {
+export default AdminScreen = () => {
 
     const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
@@ -27,31 +27,9 @@ export default HistoryScreen = () => {
                         </View>
 
                         <View style={prop.textMessage}>
-                            <Text style={styles.textMessage}>you vote Chocolate Cake in WHAT IS YOUR FAVORITE CAKE? of SANDEA RICH's poll</Text>
-                            <Text style={styles.textDelivery}>3 item(s) will delevery on 12 Aug 2020</Text>
+                            <Text style={styles.textDelivery}>JESIGA JONE</Text>
+                            <Text style={styles.textMessage}>Required access to be the seller</Text>
                         </View>
-                    </View>
-
-                    {/* box 2 */}
-                    <View style={component.boxMessage}>
-                        <View style={prop.iconcol}>
-                            <View style={prop.icon}>
-                                <View style={component.profilePic}></View>
-                            </View>
-                        </View>
-
-                        <View style={prop.textMessage}>
-                            <Text style={styles.textMessage}>you vote Chocolate Cake in WHAT IS YOUR FAVORITE CAKE? of SANDEA RICH's poll</Text>
-                            <Text style={styles.textDelivery}>3 item(s) will delevery on 12 Aug 2020</Text>
-                        </View>
-                    </View>
-
-                </View>
-
-                {/* date 2 */}
-                <View name='card history'>
-                    <View style={prop.leftScreen}>
-                        <Text style={styles.textTime}>11 Aug 2020 <Text>17.30</Text></Text>
                     </View>
 
                     {/* box 1 */}
@@ -63,17 +41,17 @@ export default HistoryScreen = () => {
                         </View>
 
                         <View style={prop.textMessage}>
-                            <Text style={styles.textMessage}>you vote Chocolate Cake in WHAT IS YOUR FAVORITE CAKE? of SANDEA RICH's poll</Text>
-                            <Text style={styles.textDelivery}>3 item(s) will delevery on 12 Aug 2020</Text>
+                            <Text style={styles.textDelivery}>JESIGA JONE</Text>
+                            <Text style={styles.textMessage}>Required access to be the seller</Text>
                         </View>
                     </View>
-
                 </View>
+
             </View>
 
         </ImageBackground>
     );
-};
+}
 
 const styles = StyleSheet.create({
     textTime: {
@@ -132,7 +110,7 @@ const prop = StyleSheet.create({
         width: '20%',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     image: {
         flex: 1,

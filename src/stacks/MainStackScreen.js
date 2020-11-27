@@ -16,6 +16,7 @@ import CreatePollScreen from "../screens/CreatePost/CreatePollScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SellerScreen from "../screens/SellerScreen";
 import HistoryScreen from "../screens/HistoryScreen";
+import AdminScreen from "../screens/AdminScreen";
 
 import ContentSellerScreen from "../screens/ContentSellerScreen";
 
@@ -117,6 +118,7 @@ function OtherStack() {
       <OtherScreenStack.Screen name="Profile" component={ProfileScreen} />
       <OtherScreenStack.Screen name="Seller" component={ConSellStack} />
       <OtherScreenStack.Screen name="History" component={HistoryScreen} />
+      <OtherScreenStack.Screen name="Admin" component={AdminScreen}/>
     </OtherScreenStack.Navigator>
   );
 }
