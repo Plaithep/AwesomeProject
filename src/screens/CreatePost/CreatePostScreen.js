@@ -2,15 +2,15 @@ import React, { useContext, useState } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { firestore } from "firebase";
-import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground ,TouchableOpacity,KeyboardAvoidingView} from "react-native";
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import RNPickerSelect from 'react-native-picker-select';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export default CreatePostScreen = () => {
 
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
@@ -179,7 +179,7 @@ export default CreatePostScreen = () => {
 
   return (
     <ImageBackground source={imagebackground} style={styles.image}>
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView >
         <View style={styles.container}>
 
 
@@ -243,7 +243,7 @@ export default CreatePostScreen = () => {
               })}
             />
           </View>
-
+ 
 
           <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
@@ -373,6 +373,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFFE0'
   },
   locationContainer: {
+    width: '75%',
+    marginTop: 30,
+  },
+  location2Container: {
     width: '75%',
     marginTop: 30,
   },
