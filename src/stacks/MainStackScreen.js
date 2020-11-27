@@ -16,9 +16,11 @@ import CreatePollScreen from "../screens/CreatePost/CreatePollScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SellerScreen from "../screens/SellerScreen";
 import HistoryScreen from "../screens/HistoryScreen";
-import AdminScreen from "../screens/AdminScreen";
 
 import ContentSellerScreen from "../screens/ContentSellerScreen";
+
+import AdminScreen from "../screens/Admin/AdminScreen";
+import AdminAccessScreen from "../screens/Admin/AdminAccessScreen";
 
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
@@ -118,7 +120,7 @@ function OtherStack() {
       <OtherScreenStack.Screen name="Profile" component={ProfileScreen} />
       <OtherScreenStack.Screen name="Seller" component={ConSellStack} />
       <OtherScreenStack.Screen name="History" component={HistoryScreen} />
-      <OtherScreenStack.Screen name="Admin" component={AdminScreen}/>
+      <OtherScreenStack.Screen name="Admin" component={AdminStack}/>
     </OtherScreenStack.Navigator>
   );
 }
@@ -156,5 +158,18 @@ function ConSellStack() {
         component={ContentSellerScreen}
       />
     </ContentSellerScreenStack.Navigator>
+  );
+}
+
+const AdminScreenStack = createStackNavigator();
+function AdminStack() {
+  return (
+    <AdminScreenStack.Navigator  hearderMode="none">
+      <AdminScreenStack.Screen name="Admin" component={AdminScreen} />
+      <AdminScreenStack.Screen
+        name="AdminAccess"
+        component={AdminAccessScreen}
+      />
+    </AdminScreenStack.Navigator>
   );
 }

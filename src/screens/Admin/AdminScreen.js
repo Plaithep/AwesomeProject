@@ -1,9 +1,9 @@
 import { useLinkProps } from "@react-navigation/native";
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, TextInput, View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 
-export default AdminScreen = () => {
+export default AdminScreen = ({ navigation }) => {
 
     const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
@@ -19,7 +19,7 @@ export default AdminScreen = () => {
                     </View>
 
                     {/* box 1 */}
-                    <View style={component.boxMessage}>
+                    <TouchableOpacity style={component.boxMessage} onPress={() => navigation.navigate("AdminAccess")}>
                         <View style={prop.iconcol}>
                             <View style={prop.icon}>
                                 <View style={component.profilePic}></View>
@@ -30,10 +30,10 @@ export default AdminScreen = () => {
                             <Text style={styles.textDelivery}>JESIGA JONE</Text>
                             <Text style={styles.textMessage}>Required access to be the seller</Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
 
                     {/* box 1 */}
-                    <View style={component.boxMessage}>
+                    <TouchableOpacity style={component.boxMessage} onPress={() => navigation.navigate("AdminAccess")}>
                         <View style={prop.iconcol}>
                             <View style={prop.icon}>
                                 <View style={component.profilePic}></View>
@@ -44,7 +44,7 @@ export default AdminScreen = () => {
                             <Text style={styles.textDelivery}>JESIGA JONE</Text>
                             <Text style={styles.textMessage}>Required access to be the seller</Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 </View>
 
             </View>
