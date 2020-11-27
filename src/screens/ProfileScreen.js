@@ -64,14 +64,14 @@ export default ProfileScreen = () => {
                 <View style={prop.centeredModalView}>
                   <View style={component.modalView}>
                     <View style={{ width: '100%' }}>
-                      <Label>name</Label>
+                      <Text style={styles.label}>name</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
                       placeholder={name}
                     ></TextInput>
                     <View style={{ width: '100%' }}>
-                      <Label>surname</Label>
+                      <Text style={styles.label}>surname</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
@@ -107,7 +107,7 @@ export default ProfileScreen = () => {
                 }}
               >
                 <View>
-                  <Label>name</Label>
+                  <Text style={styles.label}>name</Text>
                   <Text style={component.textinformation}>
                     {name} {surname}
                   </Text>
@@ -128,7 +128,7 @@ export default ProfileScreen = () => {
                 <View style={prop.centeredModalView}>
                   <View style={component.modalView}>
                     <View style={{ width: '100%' }}>
-                      <Label>bio</Label>
+                      <Text style={styles.label}>bio</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
@@ -164,7 +164,7 @@ export default ProfileScreen = () => {
                 }}
               >
                 <View>
-                  <Label>bio</Label>
+                  <Text style={styles.label}>bio</Text>
                   <Text style={component.textinformation}>{bio}</Text>
                 </View>
               </TouchableOpacity>
@@ -183,7 +183,7 @@ export default ProfileScreen = () => {
                 <View style={prop.centeredModalView}>
                   <View style={component.modalView}>
                     <View style={{ width: '100%' }}>
-                      <Label>email</Label>
+                      <Text style={styles.label}>email</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
@@ -220,7 +220,7 @@ export default ProfileScreen = () => {
                 }}
               >
                 <View>
-                  <Label>email</Label>
+                  <Text style={styles.label}>email</Text>
                   <Text style={component.textinformation}>{email}</Text>
                 </View>
               </TouchableOpacity>
@@ -239,7 +239,7 @@ export default ProfileScreen = () => {
                 <View style={prop.centeredModalView}>
                   <View style={component.modalView}>
                     <View style={{ width: '100%' }}>
-                      <Label>telephone</Label>
+                      <Text style={styles.label}>telephone</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
@@ -277,7 +277,7 @@ export default ProfileScreen = () => {
                 }}
               >
                 <View>
-                  <Label>telephone</Label>
+                  <Text style={styles.label}>telephone</Text>
                   <Text style={component.textinformation}>{tel}</Text>
                 </View>
               </TouchableOpacity>
@@ -296,35 +296,35 @@ export default ProfileScreen = () => {
                 <View style={prop.centeredModalView}>
                   <View style={component.modalView}>
                     <View style={{ width: '100%' }}>
-                      <Label>address</Label>
+                      <Text style={styles.label}>address</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
                       placeholder={address.detail}
                     ></TextInput>
                     <View style={{ width: '100%' }}>
-                      <Label>road</Label>
+                      <Text style={styles.label}>road</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
                       placeholder={address.road}
                     ></TextInput>
                     <View style={{ width: '100%' }}>
-                      <Label>sub-distric</Label>
+                      <Text style={styles.label}>sub-distric</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
                       placeholder={address.subdistrict}
                     ></TextInput>
                     <View style={{ width: '100%' }}>
-                      <Label>distric</Label>
+                      <Text style={styles.label}>distric</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
                       placeholder={address.district}
                     ></TextInput>
                     <View style={{ width: '100%' }}>
-                      <Label>province</Label>
+                      <Text style={styles.label}>province</Text>
                     </View>
                     <TextInput
                       style={component.textinput}
@@ -360,7 +360,7 @@ export default ProfileScreen = () => {
                 }}
               >
                 <View>
-                  <Label>address</Label>
+                  <Text style={styles.label}>address</Text>
                   <Text style={component.textinformation}>
                     {address.detail}, {address.road}, {address.subdistrict},{" "}
                     {address.district}, {address.province}
@@ -378,12 +378,6 @@ export default ProfileScreen = () => {
 const ProfilePic = styled.View``;
 
 const ProfilePicฺBorder = styled.View``;
-
-const Label = styled.Text`
-  flex-direction: row;
-  color: #707070;
-  font-weight: bold;
-`;
 
 const component = StyleSheet.create({
   profilepicborder: {
@@ -474,4 +468,13 @@ const prop = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
+
 });
+
+const styles = StyleSheet.create({
+  label: {
+    flexDirection: 'row',
+    color: '#707070',
+    fontWeight: 'bold'
+  }
+})

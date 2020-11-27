@@ -15,6 +15,11 @@ export default CreatePostScreen = () => {
   const bio = "i am new";
   const [modalBio, setmodalBio] = useState(false);
 
+  const price = 1;
+  const quantity = 1;
+  const [modalPrice, setmodalPrice] = useState(false);
+  const [modalQuantity, setmodalQuantity] = useState(false);
+
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
   const [productImage, setProductImage] = useState();
@@ -294,31 +299,127 @@ export default CreatePostScreen = () => {
             <View style={{ marginBottom: 6 }}>
               <Text style={styles.locationTitle}>Time</Text>
             </View>
-
           </View>
 
-
-          {/* quantity and price */}
+          {/* Price */}
           <View style={styles.locationContainer}>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
-              <View style={{ width: '50%' }}>
-                <View style={{ marginBottom: 6 }}>
-                  <Text style={styles.locationTitle}>Quantity</Text>
+            <Text style={styles.locationTitle}>Price</Text>
+          </View>
+          <View style={styles.centeredView}>
+            <Modal
+              animationType="none"
+              transparent={true}
+              visible={modalPrice}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+              }}
+            >
+              <View style={styles.centeredModalView}>
+                <View style={styles.modalView}>
+                  <View style={{ width: '100%' }}>
+                    <Text style={styles.label}>price</Text>
+                  </View>
+                  <TextInput
+                    keyboardType="numeric"
+                    style={styles.textinput}
+                    placeholder={'number'}
+                  ></TextInput>
+                  <View style={styles.rowbutton}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setmodalPrice(!modalPrice);
+                      }}
+                    >
+                      <Text style={{ color: "green", fontWeight: "bold" }}>
+                        Save
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setmodalPrice(!modalPrice);
+                      }}
+                    >
+                      <Text style={{ color: "red", fontWeight: "bold" }}>
+                        Cancle
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-                <TextInput style={styles.textInputQuantity} keyboardType="numeric" onChangeText={(ProductQuantity) => setProductQuantity(ProductQuantity.trim())} />
               </View>
-
-              <View style={{ width: '50%' }}>
-                <View style={{ marginBottom: 6 }}>
-                  <Text style={styles.locationTitle} >Price</Text>
-                </View>
-                <TextInput style={styles.textInputprice} keyboardType="numeric" onChangeText={(ProductPrice) => setProductPrice(ProductPrice.trim())} />
+            </Modal>
+            <TouchableOpacity
+              style={styles.cardModal}
+              onPress={() => {
+                setmodalPrice(!modalPrice);
+              }}
+            >
+              <View>
+                <Text style={styles.textinformation}>{price} Baht per 1 piece</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
 
 
-          
+          {/* Quantity */}
+          <View style={styles.locationContainer}>
+            <Text style={styles.locationTitle}>Quantity</Text>
+          </View>
+          <View style={styles.centeredView}>
+            <Modal
+              animationType="none"
+              transparent={true}
+              visible={modalQuantity}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+              }}
+            >
+              <View style={styles.centeredModalView}>
+                <View style={styles.modalView}>
+                  <View style={{ width: '100%' }}>
+                    <Text style={styles.label}>Quantity</Text>
+                  </View>
+                  <TextInput
+                    keyboardType="numeric"
+                    style={styles.textinput}
+                    placeholder={'number'}
+                  ></TextInput>
+                  <View style={styles.rowbutton}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setmodalQuantity(!modalQuantity);
+                      }}
+                    >
+                      <Text style={{ color: "green", fontWeight: "bold" }}>
+                        Save
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        setmodalQuantity(!modalQuantity);
+                      }}
+                    >
+                      <Text style={{ color: "red", fontWeight: "bold" }}>
+                        Cancle
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+            <TouchableOpacity
+              style={styles.cardModal}
+              onPress={() => {
+                setmodalQuantity(!modalQuantity);
+              }}
+            >
+              <View>
+                <Text style={styles.textinformation}>{quantity} piece(s)</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
+
 
           <TouchableOpacity style={styles.confirmButton} onPress={addProductName} disabled={loading}>
             {loading ? (
@@ -462,11 +563,11 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   modalView: {
-    width: '75%',
+    width: '65%',
     padding: 20,
     paddingLeft: 30,
     paddingRight: 30,
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     borderRadius: 10,
     alignItems: "center",
     shadowColor: "#000",
@@ -479,16 +580,15 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   cardModal: {
-    width: 300,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    padding: 14,
-    elevation: 2,
+    width: '75%',
+    backgroundColor: "#FFFFFFD0",
+    borderRadius: 5,
+    padding: 10,
   },
   centeredView: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 3,
     alignItems: "center",
+    width: '100%'
   },
   centeredModalView: {
     flex: 1,
