@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import { firestore } from "firebase";
-import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TextInput, View, Text, Platform, Picker, ImageBackground, TouchableOpacity, Image, Modal, Alert } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -11,6 +11,9 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default CreatePostScreen = () => {
+
+  const bio = "i am new";
+  const [modalBio, setmodalBio] = useState(false);
 
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
@@ -205,21 +208,27 @@ export default CreatePostScreen = () => {
           </TouchableOpacity>
 
 
-          <TextInput
-            style={styles.dataField}
-            autoCapitalize="sentences"
-            placeholder="detail"
-            multiline={true}
-            onChangeText={ProductDetail => setProductDetail(ProductDetail)}
-            value={ProductDetail}
-          />
+          <View style={styles.detailcontainer}>
+            <TextInput
+              style={styles.detailfield}
+              autoCapitalize="sentences"
+              placeholder="detail"
+              numberOfLines={6}
+              multiline={true}
+              onChangeText={ProductDetail => setProductDetail(ProductDetail)}
+              value={ProductDetail}
+            />
+          </View>
 
           {/* location */}
           <View style={styles.locationContainer}>
             <View style={{ marginBottom: 6 }}>
               <Text style={styles.locationTitle}>Location</Text>
             </View>
+          </View>
+          <View style={{ width: '75%' }}>
             <DropDownPicker
+
               items={[
                 { label: 'Kathu', value: 'Kathu', hidden: true },
                 { label: 'Talang', value: 'Talang' },
@@ -249,7 +258,8 @@ export default CreatePostScreen = () => {
             <View style={{ marginBottom: 6 }}>
               <Text style={styles.locationTitle}>Catagory</Text>
             </View>
-
+          </View>
+          <View style={{ width: '75%' }}>
             <DropDownPicker
               items={[
                 { label: 'Homemade Food', value: 'Homemade Food', hidden: true },
@@ -268,6 +278,7 @@ export default CreatePostScreen = () => {
               })}
             />
           </View>
+
 
           {/* date */}
           <View style={styles.locationContainer}>
@@ -305,6 +316,9 @@ export default CreatePostScreen = () => {
               </View>
             </View>
           </View>
+
+
+          
 
           <TouchableOpacity style={styles.confirmButton} onPress={addProductName} disabled={loading}>
             {loading ? (
@@ -347,7 +361,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 30,
     flex: 1,
-    marginBottom: 24
+    marginBottom: 24,
   },
   titleField: {
     borderBottomColor: '#8e93a1',
@@ -377,17 +391,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  dataField: {
-    borderColor: '#8e93a1',
-    borderWidth: 0.5,
-    height: 120,
+  detailcontainer: {
+    marginTop: 40,
     width: '75%',
+    backgroundColor: '#FFFFFFD0',
+    borderRadius: 10
+  },
+  detailfield: {
     textAlignVertical: 'top',
-    padding: 6,
+    padding: 20,
     color: '#707070',
     fontStyle: 'italic',
-    marginTop: 40,
-    backgroundColor: '#FFFFFFE0'
   },
   locationContainer: {
     width: '75%',
@@ -399,25 +413,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textInputQuantity: {
-    borderColor: '#8e93a1',
-    borderWidth: 0.5,
     height: 30,
     width: '98%',
     textAlignVertical: 'top',
     padding: 6,
-    borderRadius: 2,
+    borderRadius: 5,
     color: '#707070',
     fontStyle: 'italic',
     backgroundColor: '#FFFFFFD0',
   },
   textInputprice: {
-    borderColor: '#8e93a1',
-    borderWidth: 0.5,
     height: 30,
     width: '100%',
     textAlignVertical: 'top',
     padding: 6,
-    borderRadius: 2,
+    borderRadius: 5,
     color: '#707070',
     fontStyle: 'italic',
     backgroundColor: '#FFFFFFD0',
@@ -434,7 +444,63 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
     borderRadius: 30,
     backgroundColor: 'gray'
-  }
+  },
+  label: {
+    flexDirection: 'row',
+    color: '#707070',
+    fontWeight: 'bold'
+  },
+  textinformation: {
+    color: "gray",
+  },
+  textinput: {
+    marginBottom: 20,
+    padding: 2,
+    borderBottomWidth: 1,
+    borderBottomColor: "gray",
+    width: '90%',
+    color: "gray",
+  },
+  modalView: {
+    width: '75%',
+    padding: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  cardModal: {
+    width: 300,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    padding: 14,
+    elevation: 2,
+  },
+  centeredView: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: "center",
+  },
+  centeredModalView: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#707070B0",
+  },
+  rowbutton: {
+    width: 170,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });
 
 const Loading = styled.ActivityIndicator.attrs((props) => ({

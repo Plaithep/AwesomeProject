@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, TextInput, View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import styled from "styled-components";
@@ -11,126 +11,41 @@ export default CreatePollScreen = () => {
     return (
         <ImageBackground source={imagebackground} style={styles.image}>
             <KeyboardAwareScrollView>
-                <Container>
-                    <TitleContainer>
-                        <TitleField
-                            autoCapitalize="none"
-                            placeholder="Title"
-                        />
-                    </TitleContainer>
+                <View style={styles.container}>
 
-                    <DetailContainer>
-                        <DetailField
-                            autoCapitalize="none"
+                    <TextInput   // ใส่ชื่อ product
+                        autoCapitalize="characters"
+                        placeholder="Title"
+                        style={styles.titleField}
+                    />
+
+                    <View style={styles.detailcontainer}>
+                        <TextInput
+                            style={styles.detailfield}
+                            autoCapitalize="sentences"
                             placeholder="detail"
+                            numberOfLines={6}
+                            multiline={true}
                         />
-                    </DetailContainer>
+                    </View>
 
-                    <OptionContainer>
-                        <OptionTitle>Option</OptionTitle>
-                        <OptionBox>
-                            <Option placeholder="option1"></Option>
-                            <Option placeholder="option2"></Option>
-                            <Text>more option</Text>
-                        </OptionBox>
-                    </OptionContainer>
+                    <View style={styles.optioncontainer}>
+                        <Text style={styles.optiontitle}>Option</Text>
+                        <View style={styles.optionbox}>
+                            <TextInput style={styles.option} placeholder="option1"></TextInput>
+                            <TextInput style={styles.option} placeholder="option2"></TextInput>
+                            <Text style={styles.optiontitle}>more option</Text>
+                        </View>
+                    </View>
 
-                    <ComfirmButton>
+                    <TouchableOpacity style={styles.button}>
                         <Text style={{ color: "white", fontWeight: '700', fontSize: 15 }}>Confirm</Text>
-                    </ComfirmButton>
-                </Container>
+                    </TouchableOpacity>
+                </View>
             </KeyboardAwareScrollView>
         </ImageBackground>
     );
 };
-
-const Container = styled.View`
-    align-items: center;
-    margin-top: 30px;
-    flex: 1;
-`;
-
-const TitleContainer = styled.View`
-  margin-bottom: 20px;
-`;
-
-const TitleField = styled.TextInput`
-     border-bottom-color: #8e93a1;
-     border-bottom-width: 1px;
-     height: 30px;
-     width: 200px;
-     text-align: center;
-     font-weight: bold;
-     font-size: 18px;
-     color: #707070;
-`;
-
-const DetailContainer = styled.View`
-    margin-top: 40px;
-`;
-
-const DetailField = styled.TextInput`
-    border-color: #8e93a1;
-    border-width: 0.5px;
-    height: 120px;
-    width: 300px;
-    text-align-vertical: top;
-    padding: 6px;
-    color: #707070;
-    font-style: italic;
-    background-color: #FFFFFFD0;
-`;
-
-const OptionContainer = styled.View`
-    width: 300px;
-    margin-top: 30px;
-`;
-
-const OptionTitle = styled.Text`
-    text-align: left;
-    color: #707070;
-    font-weight: bold;
-`;
-
-const OptionBox = styled.View`
-    width: 300px;
-    align-items:center;
-    justify-content: space-around;
-    padding: 6px;
-    color: #707070;
-    border-radius: 0.1px
-    align-self: center;
-    margin-top: 8px;
-    padding-top: 20;
-    padding-bottom: 18;
-    overflow: hidden;
-    border: 0.5px #8e93a1 dashed;
-    background-color: #FFFFFFD0;
-`;
-
-const Option = styled.TextInput`
-    text-align: center;
-    height: 25px;
-    width: 70%;
-    align-items:center;
-    justify-content: center;
-    border: 0.5px #707070;
-    border-radius: 30px;
-    margin-bottom: 10;
-`;
-
-const ComfirmButton = styled.TouchableOpacity`
-margin: 34px;
-marginTop: 20px;
-marginBottom: 6px;
-height: 32px;
-width: 120px;
-align-items:center;
-justify-content: center;
-border: 0.5px #707070;
-border-radius: 30px;
-background-color: gray;
-`;
 
 const styles = StyleSheet.create({
     image: {
@@ -138,4 +53,78 @@ const styles = StyleSheet.create({
         resizeMode: "cover",
         justifyContent: "center",
     },
+    container: {
+        alignItems: 'center',
+        marginTop: 30,
+        flex: 1,
+        marginBottom: 24,
+    },
+    titleField: {
+        borderBottomColor: '#8e93a1',
+        borderBottomWidth: 1,
+        height: 30,
+        width: 200,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: '#707070',
+    },
+    defautProductImage: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+    },
+    detailcontainer: {
+        marginTop: 40,
+        width: '75%',
+        backgroundColor: '#FFFFFFD0',
+        borderRadius: 10
+    },
+    detailfield: {
+        textAlignVertical: 'top',
+        padding: 20,
+        color: '#707070',
+        fontStyle: 'italic',
+    },
+    optioncontainer: {
+        width: 300,
+        marginTop: 30,
+    },
+    optiontitle: {
+        textAlign: 'left',
+        color: '#707070',
+        fontWeight: 'bold'
+    },
+    optionbox: {
+        width: '100%',
+        alignItems: 'center',
+        padding: 6,
+        color: '#707070',
+        borderRadius: 10,
+        marginTop: 8,
+        paddingTop: 20,
+        paddingBottom: 18,
+        overflow: 'hidden',
+        backgroundColor: '#FFFFFFD0',
+        paddingTop: 30
+    },
+    option: {
+        textAlign: 'center',
+        height: 32,
+        width: '60%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 30,
+        marginBottom: 15,
+        backgroundColor: 'lightgray'
+    },
+    button: {
+        marginTop: 40,
+        height: 32,
+        width: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 30,
+        backgroundColor: 'gray'
+    }
 });
