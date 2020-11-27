@@ -18,6 +18,7 @@ import SellerScreen from "../screens/SellerScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 
 import ContentSellerScreen from "../screens/ContentSellerScreen";
+import PollSellerScreen from "../screens/PollSellerScreen";
 
 import AdminScreen from "../screens/Admin/AdminScreen";
 import AdminAccessScreen from "../screens/Admin/AdminAccessScreen";
@@ -156,6 +157,10 @@ function ConSellStack() {
       <ContentSellerScreenStack.Screen
         name="ContentSeller"
         component={ContentSellerScreen}
+      />
+      <ContentSellerScreenStack.Screen
+        name="PollSeller"
+        component={PollSellerScreen}
       />
     </ContentSellerScreenStack.Navigator>
   );

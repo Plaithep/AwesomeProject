@@ -45,14 +45,13 @@ export default SellerScreen = ({ navigation }) => {
                     <Text style={text.detailproduct}>order 20/40</Text>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={component.cardcontent}>
+
+                <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("PollSeller")}>
                   <View style={component.levelcard}></View>
                   <View style={prop.textcardcontent}>
                     <Text style={text.titleproduct}>
                       WHAT IS YOUR FAVOURITE CAKE?
                   </Text>
-                    <Text style={text.detailproduct}>delivery on 2 Aug 2020</Text>
-                    <Text style={text.detailproduct}>order 38/40</Text>
                   </View>
                 </TouchableOpacity>
               </View>
