@@ -66,18 +66,73 @@ export default HomeScreen = ({ navigation }) => {
                     alignItems: "center",
                     marginTop: 20
                   }}>
-                    <View style={{ backgroundColor: '#FFFFFFC0', width: '90%' }}>
+
+                    <View style={{ backgroundColor: '#FFFFFFC0', width: '90%', padding: 20, borderRadius: 20, alignItems: 'center', height: '97%' }}>
                       <TouchableOpacity
+                        style={{ alignItems: 'flex-end', width: '100%' }}
                         onPress={() => {
                           setsearchModal(!searchModal);
                         }}
                       >
                         <AntDesign name="closecircleo" size={20} color="gray" />
                       </TouchableOpacity>
-                      <Text>Love</Text>
-                    </View>
 
+                      <TextInput
+                        style={{ marginTop: 10, paddingLeft: 20, backgroundColor: 'lightgray', borderRadius: 30, height: 30, width: '90%' }}
+                        placeholder="search"
+                      ></TextInput>
+
+                      {/* Search people */}
+                      <View
+                        style={{ width: '90%', padding: 12 }}
+                      >
+                        {/* people */}
+                        <Text style={{ color: '#707070', fontWeight: 'bold', marginBottom: 12 }}>People</Text>
+
+                        {/* person 1 */}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 9 }}>
+                          <View style={{ width: '20%', alignItems: 'center' }}>
+                            <View style={{ width: 40, height: 40, backgroundColor: 'gray', borderRadius: 35 }}></View>
+                          </View>
+                          <View style={{ width: '80%' }}>
+                            <Text style={{ paddingLeft: 10, color: '#606060' }}>Puminan Picroh</Text>
+                          </View>
+                        </View>
+
+                        {/* person 2 */}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 9 }}>
+                          <View style={{ width: '20%', alignItems: 'center' }}>
+                            <View style={{ width: 40, height: 40, backgroundColor: 'gray', borderRadius: 35 }}></View>
+                          </View>
+                          <View style={{ width: '80%' }}>
+                            <Text style={{ paddingLeft: 10, color: '#606060' }}>Plaithep Polratanapibol</Text>
+                          </View>
+                        </View>
+
+                        {/* person 3 */}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 9 }}>
+                          <View style={{ width: '20%', alignItems: 'center' }}>
+                            <View style={{ width: 40, height: 40, backgroundColor: 'gray', borderRadius: 35 }}></View>
+                          </View>
+                          <View style={{ width: '80%' }}>
+                            <Text style={{ paddingLeft: 10, color: '#606060' }}>Wipada Raksayod</Text>
+                          </View>
+                        </View>
+
+                        {/* person 4 */}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 9 }}>
+                          <View style={{ width: '20%', alignItems: 'center' }}>
+                            <View style={{ width: 40, height: 40, backgroundColor: 'gray', borderRadius: 35 }}></View>
+                          </View>
+                          <View style={{ width: '80%' }}>
+                            <Text style={{ paddingLeft: 10, color: '#606060' }}>Prattana Jinapol</Text>
+                          </View>
+                        </View>
+
+                      </View>
+                    </View>
                   </View>
+
                 </ImageBackground>
               </Modal>
               <View style={{
@@ -103,7 +158,7 @@ export default HomeScreen = ({ navigation }) => {
             </View>
 
 
-            {/* content 1 */}
+            {/* post */}
             <View style={{ width: '100%' }}>
 
               <Modal
@@ -281,11 +336,7 @@ export default HomeScreen = ({ navigation }) => {
 
 
 
-
-
-
-
-
+            {/* poll */}
             <View style={{ width: '100%' }}>
               <View style={prop.displaycontent}>
                 {/* content 1 */}
