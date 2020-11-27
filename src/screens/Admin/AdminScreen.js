@@ -27,8 +27,8 @@ export default AdminScreen = ({ navigation }) => {
                         </View>
 
                         <View style={prop.textMessage}>
-                            <Text style={styles.textDelivery}>JESIGA JONE</Text>
-                            <Text style={styles.textMessage}>Required access to be the seller</Text>
+                            <Text style={styles.textDelivery}>Register</Text>
+                            <Text style={styles.textMessage}>Register access to be the seller</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -41,10 +41,11 @@ export default AdminScreen = ({ navigation }) => {
                         </View>
 
                         <View style={prop.textMessage}>
-                            <Text style={styles.textDelivery}>JESIGA JONE</Text>
+                            <Text style={styles.textDelivery}>Required</Text>
                             <Text style={styles.textMessage}>Required access to be the seller</Text>
                         </View>
                     </TouchableOpacity>
+
                 </View>
 
             </View>

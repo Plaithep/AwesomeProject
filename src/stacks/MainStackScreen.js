@@ -25,6 +25,8 @@ import AdminAccessScreen from "../screens/Admin/AdminAccessScreen";
 
 import ReviewScreen from "../screens/ReviewScreen";
 
+import RegisterSellerScreen from "../screens/RegisterSellerScreen";
+
 export default MainStackScreens = () => {
   const MainStack = createBottomTabNavigator();
 
@@ -167,6 +169,10 @@ function ConSellStack() {
       <ContentSellerScreenStack.Screen
         name="PollSeller"
         component={PollSellerScreen}
+      />
+      <ContentSellerScreenStack.Screen
+        name="RegisterSeller"
+        component={RegisterSellerScreen}
       />
     </ContentSellerScreenStack.Navigator>
   );

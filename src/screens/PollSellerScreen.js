@@ -26,10 +26,10 @@ export default PollSellerScreen = () => {
                         <View style={component.cardproductdetail}>
 
                             <Text style={text.title}>NEW DELICIOUS CUPCAKE</Text>
-                            <Text style={text.detail}>
+                            <Text style={text.detailtext}>
                                 I like to make cupcakes I hope you'll enjoy it and it's no
                                 peanuts. Ingredients 1. flour 2. wiping cream 3. candy
-                </Text>
+                            </Text>
 
                             {/* choice 1 */}
                             <View style={prop.cardpoll}>
@@ -215,6 +215,12 @@ const text = StyleSheet.create({
     detail: {
         fontSize: 12,
         color: "#707070",
+    },
+    detailtext: {
+        fontSize: 13,
+        color: "#707070",
+        marginTop: 2,
+        marginBottom: 12
     },
     textPrice: {
         fontSize: 26,

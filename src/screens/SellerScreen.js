@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 export default SellerScreen = ({ navigation }) => {
 
   const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
-  
+
   return (
     <ImageBackground source={imagebackground} style={component.image}>
       <KeyboardAwareScrollView>
@@ -51,6 +51,15 @@ export default SellerScreen = ({ navigation }) => {
                   <View style={prop.textcardcontent}>
                     <Text style={text.titleproduct}>
                       WHAT IS YOUR FAVOURITE CAKE?
+                  </Text>
+                  </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={component.cardcontent} onPress={() => navigation.navigate("RegisterSeller")}>
+                  <View style={component.levelcard}></View>
+                  <View style={prop.textcardcontent}>
+                    <Text style={text.titleproduct}>
+                      REGISTER TO SELLER
                   </Text>
                   </View>
                 </TouchableOpacity>
