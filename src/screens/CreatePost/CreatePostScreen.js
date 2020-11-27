@@ -90,8 +90,6 @@ export default CreatePostScreen = () => {
   /**
    * ! Pick up Product Image 
    */
-
-
   const getPermission = async () => {
     if (Platform.OS !== "web") {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -127,7 +125,6 @@ export default CreatePostScreen = () => {
     }
 
   };
-
 
   const uploadProductImage = async (uri) => {
     try {

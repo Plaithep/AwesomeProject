@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     picture: {
         width: 265,
         height: 145,
-        backgroundColor: 'gray',
+        backgroundColor: '#E0E0E0',
         borderRadius: 12,
     },
     card: {
