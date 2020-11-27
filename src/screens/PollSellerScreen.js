@@ -76,17 +76,20 @@ export default PollSellerScreen = () => {
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
                                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                                         <View style={component.piccontect}></View>
-                                        <Text style={text.textname}>PLAITHEP POLRATA</Text>
+                                        <View>
+                                            <Text style={text.textname}>PLAITHEP POLRATA</Text>
+                                            {/* vote 1 */}
+                                            <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
+                                                <Text style={text.title2}>Voted: </Text>
+                                                <Text style={text.detail}> Chocolate cupcake</Text>
+                                            </View>
+                                        </View>
                                     </View>
                                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                                         <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
                                     </View>
                                 </View>
-                                {/* vote 1 */}
-                                <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center', }}>
-                                    <Text style={text.title2}>Voted: </Text>
-                                    <Text style={text.detail}> Chocolate cupcake</Text>
-                                </View>
+
                             </TouchableOpacity>
 
                             {/* card contect 2 */}
@@ -94,16 +97,19 @@ export default PollSellerScreen = () => {
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: "center", }}>
                                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                                         <View style={component.piccontect}></View>
-                                        <Text style={text.textname}>PLAITHEP POLRATA</Text>
+                                        <View>
+                                            <Text style={text.textname}>PLAITHEP POLRATA</Text>
+                                            {/* vote 2 */}
+                                            <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
+                                                <Text style={text.title2}>Voted: </Text>
+                                                <Text style={text.detail}> Strawberry cupcake</Text>
+                                            </View>
+                                        </View>
+
                                     </View>
                                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                                         <View><Ionicons name="ios-chatboxes" size={36} color="gray" style={{ marginLeft: 20 }} /></View>
                                     </View>
-                                </View>
-                                {/* vote 2 */}
-                                <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center', }}>
-                                    <Text style={text.title2}>Voted: </Text>
-                                    <Text style={text.detail}> Strawberry cupcake</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -207,7 +213,7 @@ const text = StyleSheet.create({
         fontWeight: 'bold',
     },
     detail: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#707070",
     },
     textPrice: {
@@ -216,7 +222,7 @@ const text = StyleSheet.create({
         color: "#e37272",
     },
     title2: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#707070",
         fontWeight: 'bold'
     },
