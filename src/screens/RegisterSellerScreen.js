@@ -10,40 +10,54 @@ import {
 } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default RegisterSellerScreen = () => {
 
     const imagebackground = { uri: "https://i.pinimg.com/564x/36/ae/1c/36ae1c8441c61dc2e6268f8077f0dd19.jpg" };
 
+    const name = 'Puminan Picroh';
+    const id = '1769900493909';
+    const tel = '0623578734';
     return (
         <ImageBackground source={imagebackground} style={styles.image}>
             <KeyboardAwareScrollView>
                 <View style={styles.component}>
-                    <View style={styles.borderpicture}>
-                        <View style={styles.picture}></View>
-                    </View>
+                    <TouchableOpacity style={styles.borderpicture}>
+                        <View style={styles.picture}>
+                            <Ionicons
+                                name="md-photos"
+                                size={57}
+                                color="#505050" />
+                        </View>
+                    </TouchableOpacity>
 
                     <View style={styles.card}>
                         <Text style={styles.label}>Name</Text>
-                        <Text style={styles.detail}>Puminan Picroh</Text>
+                        <TextInput
+                            placeholder={name}
+                            style={styles.detail} />
                     </View>
                     <View style={styles.card}>
                         <Text style={styles.label}>ID Card</Text>
-                        <Text style={styles.detail}>1769900493909</Text>
+                        <TextInput
+                            placeholder={id}
+                            keyboardType="numeric"
+                            style={styles.detail} />
                     </View>
                     <View style={styles.card}>
                         <Text style={styles.label}>Telephone</Text>
-                        <Text style={styles.detail}>0623578734</Text>
+                        <TextInput
+                            placeholder={tel}
+                            autoCompleteType="tel"
+                            keyboardType="numeric"
+                            style={styles.detail} />
                     </View>
 
                     <View style={styles.buttoncomponent}>
                         <TouchableOpacity style={styles.confirmbutton}>
                             <Text style={styles.fontbutton}>Confirm</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.canclebutton}>
-                            <Text style={styles.fontbutton}>Cancle</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -78,8 +92,10 @@ const styles = StyleSheet.create({
     picture: {
         width: 265,
         height: 145,
-        backgroundColor: '#E0E0E0',
+        backgroundColor: '#C0C0C0',
         borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     card: {
         width: '75%',
@@ -96,26 +112,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     detail: {
-        color: "gray",
+        height: 30,
+        color: 'gray',
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'gray',
     },
     buttoncomponent: {
-        width: '55%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         marginTop: 28,
     },
     confirmbutton: {
         alignItems: 'center',
-        width: '44%',
+        width: '30%',
         padding: 8,
         backgroundColor: '#539C65',
-        borderRadius: 18,
-    },
-    canclebutton: {
-        alignItems: 'center',
-        width: '44%',
-        padding: 8,
-        backgroundColor: '#9C5353',
         borderRadius: 18,
     },
     fontbutton: {
